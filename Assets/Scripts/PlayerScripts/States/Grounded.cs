@@ -16,8 +16,7 @@ public class Grounded : BaseState
             player.ChangeState(player.fallingState);
 
         if(input.IsJump)
-            ChangeState(player.jumpState);
-        
+            ChangeState(player.jumpState);        
     }
 
 }

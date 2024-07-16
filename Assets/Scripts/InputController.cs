@@ -16,6 +16,7 @@ public class InputController : MonoBehaviour
 
     public bool IsStart { get; private set; }
 
+
     [HideInInspector] public bool IsFalling;
 
     [HideInInspector] public bool IsMoving;
@@ -42,6 +43,8 @@ public class InputController : MonoBehaviour
         IsJump = _inputMap.FindAction("Jump").triggered;
 
         IsShoot = _inputMap.FindAction("Shoot").triggered;
+
+        IsStart = _inputMap.FindAction("Pause").triggered;
 
         //state checks
         IsFalling = playerController._rb.velocity.y < -0.2f && !playerController.IsGrounded();

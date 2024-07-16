@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,6 +133,7 @@ public class PlayerController : MonoBehaviour
             _currentState.HandleInput();
         }
         */
+        Horizontal = inputController.MoveInput.x;
         _currentState.UpdateState();
         _currentState.HandleInput();
     }
