@@ -24,9 +24,6 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
-
-
-
     public float Horizontal 
     {
         get
@@ -107,7 +104,6 @@ public class PlayerController : MonoBehaviour
         //set player health
         _currentHealth = settings.maxHealth;
 
-
         lastDirection = 1;
 
         // set up player states
@@ -118,9 +114,7 @@ public class PlayerController : MonoBehaviour
         jumpState = new JumpState(this);
         hitState = new HitState(this);
         #endregion
-        ChangeState(idleState);
-
-        
+        ChangeState(idleState);     
     }
 
     void Update()
@@ -142,6 +136,12 @@ public class PlayerController : MonoBehaviour
     {
         //if (!GameManager.Instance.Pause)
             _currentState.HandleMovement();
+
+        if(!grounded)
+        {
+            // Limits horizontal speed while in the air
+            _rb.velocity = new Vector2(_rb.velocity.x * .5f, _rb.velocity.y);
+        }
     }
 
     public void ChangeState(BaseState state)
@@ -161,12 +161,8 @@ public class PlayerController : MonoBehaviour
         var size = transform.localScale;
         Vector3 direction = GetPlayerDirection();
 
-
-        transform.localScale = new Vector3(direction.x * Mathf.Abs(size.x),size.y,size.z);
-
-    
+        transform.localScale = new Vector3(direction.x * Mathf.Abs(size.x),size.y,size.z); 
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -221,10 +217,6 @@ public class PlayerController : MonoBehaviour
 
     //returns true if player is ontop of an object with the ground layer
     public bool IsGrounded() => Physics2D.OverlapCircle(_groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
-
-
-
-
 }
 
 
