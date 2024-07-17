@@ -20,6 +20,7 @@ public class PlayerSettings : ScriptableObject
 
     [Header("Shooting Settings")]
     public float shootingCooldown = .15f;
+    public float shootingForce = 1f;
 
 
     [Header("GroundCheck Settings")]
