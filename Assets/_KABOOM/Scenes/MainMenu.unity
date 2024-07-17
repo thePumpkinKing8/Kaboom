@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20f18830af039f4fa024244f12630a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainMenu: {fileID: 117572202}
   _newGameMenu: {fileID: 1190304569}
   _continueMenu: {fileID: 375239623}
   _settingsMenu: {fileID: 1704073547}

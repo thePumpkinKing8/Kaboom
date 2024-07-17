@@ -10,6 +10,9 @@ public class MainMenuManager : MonoBehaviour
     private int _firstSceneIndex = 1; // The first scene that should load via the build index
 
     [SerializeField]
+    private GameObject _mainMenu;
+
+    [SerializeField]
     private GameObject _newGameMenu;
 
     [SerializeField]
@@ -98,6 +101,7 @@ public class MainMenuManager : MonoBehaviour
             _settingsMenu.SetActive(false);
             _howToPlayMenu.SetActive(false);
             _continueMenu.SetActive(false);
+            _mainMenu.SetActive(true);
         }
     }
     #endregion
