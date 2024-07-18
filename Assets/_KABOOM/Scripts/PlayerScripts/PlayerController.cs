@@ -47,11 +47,24 @@ public class PlayerController : MonoBehaviour
                 _horizontal = value;
         } 
     }
+    private float _horizontal;
 
     private float _currentHealth;
 
     [HideInInspector] public bool grounded = true;
-    private float _horizontal;
+    [HideInInspector] public Vector2 momentum 
+    { 
+        get
+        {
+            return _momentum;
+        }
+        set
+        {
+            _momentum = value;
+        }
+    }
+    private Vector2 _momentum;
+    
 
     public PlayerSettings settings;
     [HideInInspector] public Rigidbody2D _rb;
@@ -68,6 +81,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public JumpState jumpState;
     [HideInInspector] public FallingState fallingState;
     [HideInInspector] public HitState hitState;
+    [HideInInspector] public ShootingState shootingState;
     #endregion
 
     //GameEvents
@@ -113,6 +127,7 @@ public class PlayerController : MonoBehaviour
         fallingState = new FallingState(this);
         jumpState = new JumpState(this);
         hitState = new HitState(this);
+        shootingState = new ShootingState(this);
         #endregion
         ChangeState(idleState);     
     }

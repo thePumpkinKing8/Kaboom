@@ -42,7 +42,7 @@ public class InputController : MonoBehaviour
 
         IsJump = _inputMap.FindAction("Jump").triggered;
 
-        IsShoot = _inputMap.FindAction("Shoot").triggered;
+        IsShoot = _inputMap.FindAction("Shoot").IsPressed();
 
         IsStart = _inputMap.FindAction("Pause").triggered;
 

@@ -20,6 +20,7 @@ MonoBehaviour:
   knockBackForce: 6
   hitTime: 0.25
   shootingCooldown: 0.15
+  shootingForce: 5
   groundCheckRadius: 0.1
   groundLayerMask:
     serializedVersion: 2

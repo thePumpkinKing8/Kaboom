@@ -35,7 +35,8 @@ public abstract class BaseState
 
     public virtual void HandleInput()
     {
- 
+        if (input.IsShoot)
+            player.ChangeState(player.shootingState);
     }
 
     public virtual void UpdateState()

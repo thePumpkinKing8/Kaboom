@@ -8,6 +8,7 @@ public class Airborne : BaseState
     {
     }
 
+    private Vector2 playerVelocity;
     public override void HandleInput()
     {
         base.HandleInput();
@@ -20,14 +21,16 @@ public class Airborne : BaseState
 
         Move();
         HandleFallSpeed();
+        
     }
 
     private void Move()
     {
-        player._rb.velocity = new Vector2(input.MoveInput.x * player.settings.movementSpeed, player._rb.velocity.y);
+        player._rb.velocity = new Vector2(input.MoveInput.x * settings.movementSpeed, player._rb.velocity.y);
+        
     }
     
-    //reduces player velocity if the player is jumping and the jump button isnt pressed
+    //reduces player velocity if the player is jumping and the jump button is pressed
     private void HandleFallSpeed()
     {
         if(player._rb.velocity.y > 0 && input.IsJump)
@@ -35,4 +38,8 @@ public class Airborne : BaseState
             player._rb.velocity += Vector2.up * (Physics2D.gravity.y * (settings.lowJumpMultiplier - 1) * Time.deltaTime);
         }
     }
+
+   
+  
+    
 }

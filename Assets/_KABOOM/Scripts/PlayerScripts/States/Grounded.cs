@@ -8,6 +8,12 @@ public class Grounded : BaseState
     {
     }
 
+    public override void EnterState()
+    {
+        base.EnterState();
+        player._rb.velocity = new Vector2(player.momentum.x, 0);
+    }
+
     public override void HandleInput()
     {
         base.HandleInput();
