@@ -39,6 +39,7 @@ public abstract class BaseState
             player.ChangeState(player.shootingState);
     }
 
+
     public virtual void UpdateState()
     {
         

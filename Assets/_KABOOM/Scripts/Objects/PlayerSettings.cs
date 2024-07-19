@@ -9,7 +9,11 @@ public class PlayerSettings : ScriptableObject
 {
     [Header("Player Settings")]
     public float movementSpeed = 5f;
+    public float gravityScale = 5f;
     public float jumpHeight = 10f;
+    [Tooltip("The distance the players ground check will move down when in the air allowing for earlier jumps in the air. if set too high the ground check may clip through the floor")]
+    public float jumpBufferOffset = .2f;
+    public float coyoteTime = .2f;
     [Tooltip("lower the value lower the jump")]
     public float lowJumpMultiplier = 5f;
     public float maxHealth = 100f;
@@ -19,8 +23,9 @@ public class PlayerSettings : ScriptableObject
     public float hitTime = .25f;
 
     [Header("Shooting Settings")]
-    public float shootingCooldown = .15f;
     public float shootingForce = 1f;
+    public float maxShootingForce = 5f;
+    public float minShootingForce = 1f;
     public float dragCoeffecient = .2f;
 
 

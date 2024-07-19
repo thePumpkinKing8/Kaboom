@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Transform _groundCheck;
+    public Transform groundCheck;
 
     private float _lastDirection;
     [HideInInspector] public float lastDirection 
@@ -119,6 +119,8 @@ public class PlayerController : MonoBehaviour
         _currentHealth = settings.maxHealth;
 
         lastDirection = 1;
+
+        _rb.gravityScale = settings.gravityScale;
 
         // set up player states
         #region StateSetUp
@@ -231,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
 
     //returns true if player is ontop of an object with the ground layer
-    public bool IsGrounded() => Physics2D.OverlapCircle(_groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
+    public bool IsGrounded() => Physics2D.OverlapCircle(groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
 }
 
 

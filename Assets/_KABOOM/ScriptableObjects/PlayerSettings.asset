@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   jumpHeight: 5
+  jumpBufferOffset: 0.005
+  coyoteTime: 0.5
   lowJumpMultiplier: 5
   maxHealth: 100
   invulnFrameTime: 1.5
   knockBackForce: 6
   hitTime: 0.25
-  shootingCooldown: 0.15
   shootingForce: 5
+  maxShootingForce: 5
+  minShootingForce: 1
   dragCoeffecient: 0.05
   groundCheckRadius: 0.1
   groundLayerMask:

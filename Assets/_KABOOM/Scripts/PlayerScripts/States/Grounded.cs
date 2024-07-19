@@ -8,6 +8,7 @@ public class Grounded : BaseState
     {
     }
 
+    private float _coyoteTimer = 0;
     public override void EnterState()
     {
         base.EnterState();
@@ -25,10 +26,29 @@ public class Grounded : BaseState
         base.HandleInput();
 
         if (input.IsFalling)
-            player.ChangeState(player.fallingState);
+        {
+            CoyoteTime();
+        }
 
         if(input.IsJump)
             ChangeState(player.jumpState);        
+    }
+
+  
+
+    private void CoyoteTime()
+    {
+        _coyoteTimer += Time.deltaTime;
+        if(_coyoteTimer >= settings.coyoteTime)
+        {
+            player.ChangeState(player.fallingState);
+        }
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        _coyoteTimer = 0;
     }
 
 }

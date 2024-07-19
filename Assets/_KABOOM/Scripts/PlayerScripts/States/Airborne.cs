@@ -12,6 +12,12 @@ public class Airborne : BaseState
 
     //leftover momentum in the xAxis 
     protected float _xMomentum;
+
+    public override void EnterState()
+    {
+        base.EnterState();
+        player.groundCheck.Translate(new Vector3(0,-settings.jumpBufferOffset, 0));
+    }
     public override void HandleInput()
     {
         base.HandleInput();
@@ -55,7 +61,11 @@ public class Airborne : BaseState
             _xMomentum *= sign;
     }
 
-   
-  
-    
+    public override void ExitState()
+    {
+        base.ExitState();
+        player.groundCheck.Translate(new Vector3(0, -settings.jumpBufferOffset, 0));
+    }
+
+
 }

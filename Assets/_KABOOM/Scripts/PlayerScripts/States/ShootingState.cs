@@ -8,7 +8,10 @@ public class ShootingState : BaseState
     {
     }
 
-
+    public override void EnterState()
+    {
+        base.EnterState();
+    }
     public override void HandleInput()
     {
         base.HandleInput();
