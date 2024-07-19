@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  jumpHeight: 10
+  jumpHeight: 5
   lowJumpMultiplier: 5
   maxHealth: 100
   invulnFrameTime: 1.5
@@ -21,6 +21,7 @@ MonoBehaviour:
   hitTime: 0.25
   shootingCooldown: 0.15
   shootingForce: 5
+  dragCoeffecient: 0.05
   groundCheckRadius: 0.1
   groundLayerMask:
     serializedVersion: 2

@@ -21,6 +21,7 @@ public class PlayerSettings : ScriptableObject
     [Header("Shooting Settings")]
     public float shootingCooldown = .15f;
     public float shootingForce = 1f;
+    public float dragCoeffecient = .2f;
 
 
     [Header("GroundCheck Settings")]

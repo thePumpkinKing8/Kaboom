@@ -43,5 +43,12 @@ public class ShootingState : BaseState
         Vector2 direction = (new Vector2(-(settings.shootingForce * Mathf.Cos(angle)), -(settings.shootingForce * Mathf.Sin(angle))));
         return direction;
     }
-    
+
+    public override void ExitState()
+    {
+        base.ExitState();   
+        //saves the players momentum in the x axis
+        player.momentum = new Vector2(player._rb.velocity.x, 0);
+    }
+
 }

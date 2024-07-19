@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,9 @@ public class Airborne : BaseState
     }
 
     private Vector2 playerVelocity;
+
+    //leftover momentum in the xAxis 
+    protected float _xMomentum;
     public override void HandleInput()
     {
         base.HandleInput();
@@ -26,8 +29,10 @@ public class Airborne : BaseState
 
     private void Move()
     {
-        player._rb.velocity = new Vector2(input.MoveInput.x * settings.movementSpeed, player._rb.velocity.y);
+        player._rb.velocity = new Vector2((input.MoveInput.x * settings.movementSpeed) + _xMomentum, player._rb.velocity.y);
         
+        if (Mathf.Abs(_xMomentum) > 0)
+            HandleMomentum();
     }
     
     //reduces player velocity if the player is jumping and the jump button is pressed
@@ -37,6 +42,17 @@ public class Airborne : BaseState
         {
             player._rb.velocity += Vector2.up * (Physics2D.gravity.y * (settings.lowJumpMultiplier - 1) * Time.deltaTime);
         }
+    }
+
+    //reduces xMomentum by the settings drag coeffecient
+    private void HandleMomentum()
+    {
+        float sign = Mathf.Sign(_xMomentum);
+        _xMomentum = (Mathf.Abs(_xMomentum) - settings.dragCoeffecient);
+        if (_xMomentum <= 0)
+            _xMomentum = 0;
+        else
+            _xMomentum *= sign;
     }
 
    

@@ -11,7 +11,13 @@ public class Grounded : BaseState
     public override void EnterState()
     {
         base.EnterState();
-        player._rb.velocity = new Vector2(player.momentum.x, 0);
+        //applies any leftover momentum from when the player was airborne
+        if(player.momentum.x != 0 )
+        {
+            player._rb.velocity = new Vector2(player.momentum.x, 0);
+            player.momentum = Vector2.zero;
+        }
+        
     }
 
     public override void HandleInput()
