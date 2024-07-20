@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public Transform groundCheck;
+    [Tooltip("temorary")]
+    public GameObject gun;
 
     private float _lastDirection;
     [HideInInspector] public float lastDirection 

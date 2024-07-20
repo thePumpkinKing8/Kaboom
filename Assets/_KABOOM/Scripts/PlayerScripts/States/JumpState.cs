@@ -15,7 +15,6 @@ public class JumpState : Airborne
         //player.anim.SetBool("Jumping", true);
 
         Jump();
-        Debug.Log("Jump");
 
        // AudioManager.Instance.PlayerPlay(player.jumpSFX);
     }
@@ -40,7 +39,6 @@ public class JumpState : Airborne
             
         if(!input.JumpHeld && input.IsJumping)
         {
-            Debug.Log("true");
             player._rb.velocity = new Vector2(player._rb.velocity.x, player._rb.velocity.y / settings.shortJumpSlowDown);
             input.IsJumping = false;
         }
