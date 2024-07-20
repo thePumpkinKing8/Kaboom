@@ -9,6 +9,7 @@ public class PlayerSettings : ScriptableObject
 {
     [Header("Player Settings")]
     public float movementSpeed = 5f;
+    public float maxVelocity = 20f;
     public float maxHealth = 100f;
     public float invulnFrameTime = 1.5f;
     public float knockBackForce = 6f;
