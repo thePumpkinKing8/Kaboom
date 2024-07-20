@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
         _currentState = state;
         _currentState?.EnterState();
 
-        Debug.Log(_currentState.name);
+       // Debug.Log(_currentState.name);
     }
 
     public BaseState GetCurrentState() => _currentState;

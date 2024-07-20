@@ -30,12 +30,13 @@ public class Airborne : BaseState
 
         Move();
         HandleFallSpeed();
-        
+        if (player.GetCurrentState() != player.fallingState && player._rb.velocity.y < -player.settings.fallCheck)
+            player.ChangeState(player.fallingState);
     }
 
     private void Move()
     {
-        player._rb.velocity = new Vector2((input.MoveInput.x * settings.movementSpeed) + _xMomentum, player._rb.velocity.y);
+        player._rb.velocity = new Vector2((input.MoveInput.x * settings.airSpeed) + _xMomentum, player._rb.velocity.y);
         
         if (Mathf.Abs(_xMomentum) > 0)
             HandleMomentum();
