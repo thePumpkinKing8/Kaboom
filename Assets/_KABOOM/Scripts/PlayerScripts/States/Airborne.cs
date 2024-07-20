@@ -7,11 +7,7 @@ public class Airborne : BaseState
     protected Airborne(string name, PlayerController player) : base(name, player)
     {
     }
-
-    private Vector2 playerVelocity;
-
-    //leftover momentum in the xAxis 
-    protected float _xMomentum;
+ 
 
     public override void EnterState()
     {
@@ -29,17 +25,24 @@ public class Airborne : BaseState
         base.UpdateState();
 
         Move();
-        HandleFallSpeed();
+        //HandleFallSpeed();
         if (player.GetCurrentState() != player.fallingState && player._rb.velocity.y < -player.settings.fallCheck)
+        {
             player.ChangeState(player.fallingState);
+        }
+            
+    }
+
+    public override void HandleMovement()
+    {
+        base.HandleMovement();
+        if (Mathf.Abs(player.xMomentum) > 0)
+            HandleMomentum();
     }
 
     private void Move()
     {
-        player._rb.velocity = new Vector2((input.MoveInput.x * settings.airSpeed) + _xMomentum, player._rb.velocity.y);
-        
-        if (Mathf.Abs(_xMomentum) > 0)
-            HandleMomentum();
+        player._rb.velocity = new Vector2((input.MoveInput.x * settings.airSpeed) + player.xMomentum, player._rb.velocity.y);
     }
     
     //reduces player velocity if the player is jumping and the jump button is pressed
@@ -52,14 +55,18 @@ public class Airborne : BaseState
     }
 
     //reduces xMomentum by the settings drag coeffecient
-    private void HandleMomentum()
+    protected void HandleMomentum()
     {
-        float sign = Mathf.Sign(_xMomentum);
-        _xMomentum = (Mathf.Abs(_xMomentum) - settings.dragCoeffecient);
-        if (_xMomentum <= 0)
-            _xMomentum = 0;
+        float sign = Mathf.Sign(player.xMomentum);
+        player.xMomentum = (Mathf.Abs(player.xMomentum) - settings.playerDrag);
+        if (player.xMomentum <= 0)
+        {
+            player.xMomentum = 0;
+            Debug.Log("?");
+        }
+           
         else
-            _xMomentum *= sign;
+            player.xMomentum *= sign;
     }
 
     public override void ExitState()

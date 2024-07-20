@@ -54,18 +54,9 @@ public class PlayerController : MonoBehaviour
     private float _currentHealth;
 
     [HideInInspector] public bool grounded = true;
-    [HideInInspector] public Vector2 momentum 
-    { 
-        get
-        {
-            return _momentum;
-        }
-        set
-        {
-            _momentum = value;
-        }
-    }
-    private Vector2 _momentum;
+    //leftover momentum in the xAxis 
+    [HideInInspector] public float xMomentum = 0;
+    
     
 
     public PlayerSettings settings;
@@ -138,6 +129,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(xMomentum);
         /*
         if(!GameManager.Instance.Pause)
         {

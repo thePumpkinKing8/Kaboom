@@ -36,7 +36,7 @@ public class ShootingState : BaseState
         if(!input.IsShoot)
         {
             if (player.IsGrounded())
-                player.ChangeState(player.idleState);
+                player.ChangeState(player.walkingState);
             else
                 player.ChangeState(player.fallingState);
         }
@@ -106,9 +106,9 @@ public class ShootingState : BaseState
 
     public override void ExitState()
     {
-        base.ExitState();   
+        base.ExitState();
         //saves the players momentum in the x axis
-        player.momentum = new Vector2(player._rb.velocity.x, 0);
+        player.xMomentum = player._rb.velocity.x;
         _laser.enabled = false;
     }
 

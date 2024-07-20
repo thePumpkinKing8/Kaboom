@@ -18,6 +18,7 @@ public abstract class BaseState
         input = player.inputController;
         settings = player.settings;
     }
+    
 
     #region Cached Properties
     /* left over from goofland
@@ -42,14 +43,14 @@ public abstract class BaseState
 
     public virtual void UpdateState()
     {
-        if(player._rb.velocity.x > settings.maxVelocity)
+        if(Mathf.Abs(player._rb.velocity.x) > settings.maxVelocity)
         {
-            player._rb.velocity = new Vector2(settings.maxVelocity, player._rb.velocity.y);
+            player._rb.velocity = new Vector2(Mathf.Sign(player._rb.velocity.x) * settings.maxVelocity, player._rb.velocity.y);
         }
 
-        if (player._rb.velocity.y > settings.maxVelocity)
+        if (Mathf.Abs(player._rb.velocity.y) > settings.maxVelocity)
         {
-            player._rb.velocity = new Vector2(player._rb.velocity.x, settings.maxVelocity);
+            player._rb.velocity = new Vector2(player._rb.velocity.x, Mathf.Sign(player._rb.velocity.y) *  settings.maxVelocity);
         }
     }
     /// <summary>
@@ -60,7 +61,10 @@ public abstract class BaseState
 
     }
 
-    public virtual void ExitState() { }
+    public virtual void ExitState() 
+    {
+    
+    }
 
 
 }

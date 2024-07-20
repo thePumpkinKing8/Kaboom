@@ -18,7 +18,7 @@ public class WalkingState : Grounded
     {
         base.HandleInput();
 
-        if (input.IsIdle)
+        if (player._rb.velocity.x == 0)
             player.ChangeState(player.idleState);
             
     }
@@ -26,7 +26,7 @@ public class WalkingState : Grounded
     public override void UpdateState()
     {
         base.UpdateState();
-        player._rb.velocity = new Vector2(input.MoveInput.x * player.settings.movementSpeed, player._rb.velocity.y);
+        player._rb.velocity = new Vector2(input.MoveInput.x * player.settings.movementSpeed + player.xMomentum, player._rb.velocity.y);
     }
 
     public override void ExitState()

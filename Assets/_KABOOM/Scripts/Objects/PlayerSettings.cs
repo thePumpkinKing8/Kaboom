@@ -15,9 +15,11 @@ public class PlayerSettings : ScriptableObject
     public float knockBackForce = 6f;
     [Tooltip("time player has no control after being hit")]
     public float hitTime = .25f;
-    [Header("Jump/Gravity Settings")]
+    [Header("Jump/Physics Settings")]
     public float airSpeed = 5f;
     public float gravityScale = 5f;
+    public float playerDrag = .2f;
+    public float playerFriction = .6f;
     public float jumpHeight = 10f;
     [Tooltip("amount velocity is devided by when jump the player stops jumping early")]
     public float shortJumpSlowDown = 2f;
@@ -34,7 +36,7 @@ public class PlayerSettings : ScriptableObject
     public float shootingForce = 1f;
     public float maxShootingForce = 5f;
     public float minShootingForce = 1f;
-    public float dragCoeffecient = .2f;
+    
 
 
     [Header("GroundCheck Settings")]
