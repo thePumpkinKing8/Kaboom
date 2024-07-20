@@ -8,7 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Transform _groundCheck;
+    public Transform groundCheck;
+    [Tooltip("temorary")]
+    public GameObject gun;
 
     private float _lastDirection;
     [HideInInspector] public float lastDirection 
@@ -47,11 +49,24 @@ public class PlayerController : MonoBehaviour
                 _horizontal = value;
         } 
     }
+    private float _horizontal;
 
     private float _currentHealth;
 
     [HideInInspector] public bool grounded = true;
-    private float _horizontal;
+    [HideInInspector] public Vector2 momentum 
+    { 
+        get
+        {
+            return _momentum;
+        }
+        set
+        {
+            _momentum = value;
+        }
+    }
+    private Vector2 _momentum;
+    
 
     public PlayerSettings settings;
     [HideInInspector] public Rigidbody2D _rb;
@@ -68,6 +83,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public JumpState jumpState;
     [HideInInspector] public FallingState fallingState;
     [HideInInspector] public HitState hitState;
+    [HideInInspector] public ShootingState shootingState;
     #endregion
 
     //GameEvents
@@ -106,6 +122,8 @@ public class PlayerController : MonoBehaviour
 
         lastDirection = 1;
 
+        _rb.gravityScale = settings.gravityScale;
+
         // set up player states
         #region StateSetUp
         idleState = new IdleState(this);
@@ -113,6 +131,7 @@ public class PlayerController : MonoBehaviour
         fallingState = new FallingState(this);
         jumpState = new JumpState(this);
         hitState = new HitState(this);
+        shootingState = new ShootingState(this);
         #endregion
         ChangeState(idleState);     
     }
@@ -150,7 +169,7 @@ public class PlayerController : MonoBehaviour
         _currentState = state;
         _currentState?.EnterState();
 
-        Debug.Log(_currentState.name);
+       // Debug.Log(_currentState.name);
     }
 
     public BaseState GetCurrentState() => _currentState;
@@ -216,7 +235,7 @@ public class PlayerController : MonoBehaviour
 
 
     //returns true if player is ontop of an object with the ground layer
-    public bool IsGrounded() => Physics2D.OverlapCircle(_groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
+    public bool IsGrounded() => Physics2D.OverlapCircle(groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
 }
 
 

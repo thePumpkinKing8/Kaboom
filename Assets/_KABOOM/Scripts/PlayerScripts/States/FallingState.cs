@@ -8,10 +8,16 @@ public class FallingState : Airborne
     {
     }
 
+
     public override void EnterState()
     {
         base.EnterState();
         //player.anim.SetBool("Falling", true);
+        
+        if(player.momentum != Vector2.zero)
+        {
+            _xMomentum = player.momentum.x;
+        }
     }
 
     public override void HandleInput()
@@ -25,6 +31,10 @@ public class FallingState : Airborne
     public override void ExitState()
     {
         base.ExitState();
+        if(Mathf.Abs(_xMomentum) > 0)
+        {
+            player.momentum = new Vector2(_xMomentum,0);
+        }
         //player.anim.SetBool("Falling", false); 
     }
 }

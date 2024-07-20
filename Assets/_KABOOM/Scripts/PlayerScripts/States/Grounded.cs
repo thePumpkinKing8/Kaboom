@@ -8,15 +8,47 @@ public class Grounded : BaseState
     {
     }
 
+    private float _coyoteTimer = 0;
+    public override void EnterState()
+    {
+        base.EnterState();
+        //applies any leftover momentum from when the player was airborne
+        if(player.momentum.x != 0 )
+        {
+            player._rb.velocity = new Vector2(player.momentum.x, 0);
+            player.momentum = Vector2.zero;
+        }
+        
+    }
+
     public override void HandleInput()
     {
         base.HandleInput();
 
         if (input.IsFalling)
-            player.ChangeState(player.fallingState);
+        {
+            CoyoteTime();
+        }
 
         if(input.IsJump)
             ChangeState(player.jumpState);        
+    }
+
+  
+
+    private void CoyoteTime()
+    {
+        _coyoteTimer += Time.deltaTime;
+        if(_coyoteTimer >= settings.coyoteTime)
+        {
+            player.ChangeState(player.fallingState);
+        }
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        _coyoteTimer = 0;
     }
 
 }

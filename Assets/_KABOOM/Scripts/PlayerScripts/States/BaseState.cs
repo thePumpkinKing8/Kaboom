@@ -35,12 +35,22 @@ public abstract class BaseState
 
     public virtual void HandleInput()
     {
- 
+        if (input.IsShoot)
+            player.ChangeState(player.shootingState);
     }
+
 
     public virtual void UpdateState()
     {
-        
+        if(player._rb.velocity.x > settings.maxVelocity)
+        {
+            player._rb.velocity = new Vector2(settings.maxVelocity, player._rb.velocity.y);
+        }
+
+        if (player._rb.velocity.y > settings.maxVelocity)
+        {
+            player._rb.velocity = new Vector2(player._rb.velocity.x, settings.maxVelocity);
+        }
     }
     /// <summary>
     /// used to handle movement that we want to happen on the fixed update step

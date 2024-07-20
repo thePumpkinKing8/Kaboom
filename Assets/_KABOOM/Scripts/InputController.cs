@@ -24,6 +24,8 @@ public class InputController : MonoBehaviour
     [HideInInspector] public bool IsIdle;
 
     [HideInInspector] public bool IsJumping;
+
+    [HideInInspector] public bool JumpHeld;
     void Awake()
     {
         input = GetComponent<PlayerInput>();
@@ -41,13 +43,14 @@ public class InputController : MonoBehaviour
         MoveInput = _inputMap.FindAction("Move").ReadValue<Vector2>();
 
         IsJump = _inputMap.FindAction("Jump").triggered;
+        JumpHeld = _inputActions.FindAction("Jump").IsPressed();
 
-        IsShoot = _inputMap.FindAction("Shoot").triggered;
+        IsShoot = _inputMap.FindAction("Shoot").IsPressed();
 
         IsStart = _inputMap.FindAction("Pause").triggered;
 
         //state checks
-        IsFalling = playerController._rb.velocity.y < -0.2f && !playerController.IsGrounded();
+        IsFalling = playerController._rb.velocity.y < -playerController.settings.fallCheck && !playerController.IsGrounded();
 
         IsMoving = MoveInput != Vector2.zero;
 
