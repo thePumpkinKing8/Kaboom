@@ -52,13 +52,17 @@ public class PlayerController : MonoBehaviour
     private float _horizontal;
 
     private float _currentHealth;
-
+    /// <summary>
+    /// Commit to proper naming conventions. This is very hard to understand
+    /// </summary>
     [HideInInspector] public bool grounded = true;
     //leftover momentum in the xAxis 
     [HideInInspector] public float xMomentum = 0;
     
     
-
+/// <summary>
+/// If these are in the states, they should be protected if they are inheriting from player controller, but they shouldn't be. If they are public, then name them with proper coding conventions. The naming is lazy at the moment.
+/// </summary>
     public PlayerSettings settings;
     [HideInInspector] public Rigidbody2D _rb;
     [HideInInspector] public InputController inputController;
@@ -111,7 +115,7 @@ public class PlayerController : MonoBehaviour
         //set player health
         _currentHealth = settings.maxHealth;
 
-        lastDirection = 1;
+        lastDirection = 1; //ENUMS.
 
         _rb.gravityScale = settings.gravityScale;
 
@@ -142,26 +146,27 @@ public class PlayerController : MonoBehaviour
         _currentState.UpdateState();
         _currentState.HandleInput();
     }
-
+    
+    /// <summary>
+    /// This should be in the states and not in the fixed update. each state handles its own movement
+    /// </summary>
     private void FixedUpdate()
     {
         //if (!GameManager.Instance.Pause)
-            _currentState.HandleMovement();
+        _currentState.HandleMovement();
 
-        if(!grounded)
+        if(!grounded) 
         {
             // Limits horizontal speed while in the air
-            _rb.velocity = new Vector2(_rb.velocity.x * .5f, _rb.velocity.y);
+            _rb.velocity = new Vector2(_rb.velocity.x * .5f, _rb.velocity.y); 
         }
     }
 
     public void ChangeState(BaseState state)
     {
-       _currentState?.ExitState();
+        _currentState?.ExitState();
         _currentState = state;
         _currentState?.EnterState();
-
-       // Debug.Log(_currentState.name);
     }
 
     public BaseState GetCurrentState() => _currentState;
@@ -214,7 +219,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Die", true);
         */
     }
-
+    
     private Vector3 GetPlayerDirection()
     {
         return inputController.MoveInput.x switch
