@@ -34,6 +34,7 @@ public abstract class BaseState
     protected void ChangeState(BaseState state) => player.ChangeState(state); 
     public virtual void EnterState() { }
 
+    //handled on the update step
     public virtual void HandleInput()
     {
         if (input.IsShoot)
@@ -41,6 +42,7 @@ public abstract class BaseState
     }
 
 
+    //handled on the update step
     public virtual void UpdateState()
     {
         if(Mathf.Abs(player._rb.velocity.x) > settings.maxVelocity)

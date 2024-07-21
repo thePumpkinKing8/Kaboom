@@ -44,16 +44,7 @@ public class Airborne : BaseState
     {
         player._rb.velocity = new Vector2((input.MoveInput.x * settings.airSpeed) + player.xMomentum, player._rb.velocity.y);
     }
-    
-    //reduces player velocity if the player is jumping and the jump button is pressed
-    private void HandleFallSpeed()
-    {
-        if(player._rb.velocity.y > 0 && input.IsJump)
-        {
-            player._rb.velocity += Vector2.up * (Physics2D.gravity.y * (settings.lowJumpMultiplier - 1) * Time.deltaTime);
-        }
-    }
-
+  
     //reduces xMomentum by the settings drag coeffecient
     protected void HandleMomentum()
     {

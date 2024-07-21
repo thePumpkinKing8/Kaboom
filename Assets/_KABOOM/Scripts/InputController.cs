@@ -55,7 +55,7 @@ public class InputController : MonoBehaviour
         IsMoving = MoveInput != Vector2.zero;
 
         IsIdle = !IsMoving && !IsFalling;
-        // IsStart = _inputMap.FindAction("Start").triggered;
+        //IsStart = _inputMap.FindAction("Start").triggered;
        // Debug.Log(IsMoving);
     }
 }

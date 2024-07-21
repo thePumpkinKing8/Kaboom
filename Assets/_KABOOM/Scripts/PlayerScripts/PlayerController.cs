@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("temorary")]
     public GameObject gun;
 
-    private float _lastDirection;
-    [HideInInspector] public float lastDirection 
+    private Direction _lastDirection;
+    [HideInInspector] public Direction lastDirection 
     { 
         get
         {
@@ -22,34 +22,9 @@ public class PlayerController : MonoBehaviour
         
         set 
         {
-            _lastDirection = (value > 0 ? 1 : -1); 
+            _lastDirection = value; 
         } 
     }
-
-    public float Horizontal 
-    {
-        get
-        {
-            return _horizontal;
-        }
-
-        //this is messy and may no longer be needed. clean up after prototype
-        private set
-        {
-            if (value != 0)
-            {
-                _horizontal = value;
-                if(lastDirection != value)
-                {
-                    lastDirection = value;
-                    FlipPlayer();
-                }
-            }
-            else
-                _horizontal = value;
-        } 
-    }
-    private float _horizontal;
 
     private float _currentHealth;
 
@@ -101,8 +76,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //if (GameManager.Instance.player == null)
-          //  GameManager.Instance.player = this;
 
         _rb = GetComponent<Rigidbody2D>();
         inputController = GetComponent<InputController>();
@@ -111,7 +84,7 @@ public class PlayerController : MonoBehaviour
         //set player health
         _currentHealth = settings.maxHealth;
 
-        lastDirection = 1;
+        lastDirection = Direction.Right;
 
         _rb.gravityScale = settings.gravityScale;
 
@@ -129,16 +102,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(xMomentum);
-        /*
-        if(!GameManager.Instance.Pause)
-        {
-            Horizontal = InputManager.Move.ReadValue<Vector2>().x;
-            _currentState.UpdateState();
-            _currentState.HandleInput();
-        }
-        */
-        Horizontal = inputController.MoveInput.x;
+        FlipPlayer();
         _currentState.UpdateState();
         _currentState.HandleInput();
     }
@@ -167,67 +131,41 @@ public class PlayerController : MonoBehaviour
     public BaseState GetCurrentState() => _currentState;
 
 
+
     private void FlipPlayer()
     {
         var size = transform.localScale;
-        Vector3 direction = GetPlayerDirection();
-
-        transform.localScale = new Vector3(direction.x * Mathf.Abs(size.x),size.y,size.z); 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        Direction direction = GetPlayerDirection();
+        if (lastDirection != GetPlayerDirection())
         {
-            grounded = true;
+            lastDirection = GetPlayerDirection();
+            FlipPlayer();
         }
+
+        transform.localScale = new Vector3(direction == Direction.Right ? 1 : -1 * Mathf.Abs(size.x),size.y,size.z); 
     }
 
-    public void OnHit(float damage, Vector2 direction)
-    {
-        ChangeHealth(-damage);
 
-        if (_currentHealth <= 0)
-            Die();
-        else
-        {
-            hitState.direction = direction;
-            ChangeState(hitState);
-           // AudioManager.Instance.PlayerPlay(hurtSFX);
-        }
-    }
 
-    public void ChangeHealth(float health)
-    {
-        _currentHealth += health;
-        //healthbar.ChangeHealthFill(_currentHealth);  //Adjusts healthbar based on players health
-    }
-    private void Die()
-    {
-        //player dies
-       // AudioManager.Instance.PlayerPlay(dieSFX);
-        anim.SetBool("Die", true);
-        /*
-        this.Wait(1.06f, () => { GameManager.Instance.PlayerDie(); });
-        this.Wait(1.06f, () => {InputManager.Instance.enabled = false; });
-        this.Wait(1.06f, () => { anim.SetBool("Die", false); });
-        anim.SetBool("Die", true);
-        */
-    }
-
-    private Vector3 GetPlayerDirection()
+    private Direction GetPlayerDirection()
     {
         return inputController.MoveInput.x switch
         {
-            > 0 => Vector3.right,
-            < 0 => Vector3.left,
-            _ => new Vector3(Mathf.Round(lastDirection),0,0),
+            > 0 => Direction.Right,
+            < 0 => Direction.Left,
+            _ => lastDirection,
         };
     }
 
 
     //returns true if player is ontop of an object with the ground layer
     public bool IsGrounded() => Physics2D.OverlapCircle(groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
+}
+
+public enum Direction
+{ 
+    Left,
+    Right
 }
 
 
