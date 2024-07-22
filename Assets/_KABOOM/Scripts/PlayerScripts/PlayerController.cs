@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public PlayerSettings Settings;
     private PlayerActionsData _playerActions;
     public Rigidbody2D Rb { get; private set; }
+    private SpriteRenderer _sprite;
     [SerializeField] private Transform _groundCheck;
     private float _horizontal;
     [HideInInspector] public float XMomentum;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.ActionsData.PlayerShootCancel.AddListener(StopShooting);
 
         Rb = GetComponent<Rigidbody2D>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -109,6 +111,13 @@ public class PlayerController : MonoBehaviour
         Rb.AddForce(force);
     }
 
+    public void FlipPlayer(bool flip)
+    {
+        if (flip)
+            GetComponent<SpriteRenderer>().flipX = true;
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
+    }
 
     //returns true if player is ontop of an object with the ground layer
     public bool IsGrounded() => Physics2D.OverlapCircle(_groundCheck.position, Settings.groundCheckRadius, Settings.groundLayerMask);

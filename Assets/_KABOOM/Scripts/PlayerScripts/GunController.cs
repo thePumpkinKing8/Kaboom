@@ -38,6 +38,7 @@ public class GunController : MonoBehaviour
             pos = Camera.main.ScreenToWorldPoint(pos);
             Vector2 direction = pos - new Vector2(transform.position.x, transform.position.y);
             GunAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Debug.Log(GunAngle);
         }
         else
         {
@@ -45,10 +46,17 @@ public class GunController : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(0,0,GunAngle);
 
-        if (pos.x >= 0)
+        if (Mathf.Abs(GunAngle) <= 90)
+        {
             _gun.flipY = false;
+            _player.FlipPlayer(false);
+        }
         else
+        {
             _gun.flipY = true;
+            _player.FlipPlayer(true);
+        }
+            
     }
 
 }

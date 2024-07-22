@@ -29,8 +29,8 @@ MonoBehaviour:
   lowJumpMultiplier: 5
   fallCheck: 0.2
   shootingForce: 1
-  maxShootingForce: 5
-  minShootingForce: 2
+  maxShootingForce: 10
+  minShootingForce: 5
   groundCheckRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
