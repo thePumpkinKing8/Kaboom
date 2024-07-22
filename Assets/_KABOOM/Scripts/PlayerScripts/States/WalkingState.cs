@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class WalkingState : Grounded
 {
     public WalkingState(PlayerController player) : base("WalkingState", player)
@@ -35,3 +35,4 @@ public class WalkingState : Grounded
         //player.anim.SetBool("Walking", false);
     }
 }
+*/

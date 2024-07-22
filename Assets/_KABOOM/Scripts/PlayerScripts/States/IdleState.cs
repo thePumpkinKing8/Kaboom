@@ -1,5 +1,5 @@
 using UnityEngine;
-
+/*
 public class IdleState : Grounded
 {
     public IdleState(PlayerController player) : base("IdleState", player)
@@ -12,3 +12,4 @@ public class IdleState : Grounded
             player.ChangeState(player.walkingState);
     }
 }
+*/

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class HitState : BaseState
 {
     public HitState(PlayerController player) : base("HitState", player)
@@ -31,3 +31,4 @@ public class HitState : BaseState
         }
     }
 }
+*/

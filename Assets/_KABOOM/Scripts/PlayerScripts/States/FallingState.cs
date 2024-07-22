@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class FallingState : Airborne
 {
     public FallingState(PlayerController player) : base("FallingState",player) 
@@ -32,3 +32,4 @@ public class FallingState : Airborne
         //player.anim.SetBool("Falling", false); 
     }
 }
+*/

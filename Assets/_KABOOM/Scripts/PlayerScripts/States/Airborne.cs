@@ -1,7 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class Airborne : BaseState
 {
     protected Airborne(string name, PlayerController player) : base(name, player)
@@ -68,3 +68,4 @@ public class Airborne : BaseState
 
 
 }
+*/

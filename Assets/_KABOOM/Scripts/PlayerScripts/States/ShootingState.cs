@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class ShootingState : BaseState
 {
+    
     public ShootingState(PlayerController player) : base("ShootingState", player)
     {
     }
@@ -111,5 +113,6 @@ public class ShootingState : BaseState
         player.xMomentum = player.rb.velocity.x;
         _laser.enabled = false;
     }
-
+    
 }
+    */

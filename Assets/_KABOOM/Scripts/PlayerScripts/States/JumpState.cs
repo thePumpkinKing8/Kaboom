@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class JumpState : Airborne
 {
     public JumpState(PlayerController player) : base("JumpingState", player)
@@ -50,3 +50,4 @@ public class JumpState : Airborne
         input.IsJumping = false;
     }
 }
+*/
