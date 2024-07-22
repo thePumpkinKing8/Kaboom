@@ -22,7 +22,7 @@ public class FallingState : Airborne
         base.HandleInput();
 
         if (player.IsGrounded())
-            player.ChangeState(player._rb.velocity.x != 0 ? player.walkingState : player.idleState);
+            player.ChangeState(player.rb.velocity.x != 0 ? player.walkingState : player.idleState);
     }
 
     public override void ExitState()

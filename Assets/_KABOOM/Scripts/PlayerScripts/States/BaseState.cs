@@ -45,14 +45,14 @@ public abstract class BaseState
     //handled on the update step
     public virtual void UpdateState()
     {
-        if(Mathf.Abs(player._rb.velocity.x) > settings.maxVelocity)
+        if(Mathf.Abs(player.rb.velocity.x) > settings.maxVelocity)
         {
-            player._rb.velocity = new Vector2(Mathf.Sign(player._rb.velocity.x) * settings.maxVelocity, player._rb.velocity.y);
+            player.rb.velocity = new Vector2(Mathf.Sign(player.rb.velocity.x) * settings.maxVelocity, player.rb.velocity.y);
         }
 
-        if (Mathf.Abs(player._rb.velocity.y) > settings.maxVelocity)
+        if (Mathf.Abs(player.rb.velocity.y) > settings.maxVelocity)
         {
-            player._rb.velocity = new Vector2(player._rb.velocity.x, Mathf.Sign(player._rb.velocity.y) *  settings.maxVelocity);
+            player.rb.velocity = new Vector2(player.rb.velocity.x, Mathf.Sign(player.rb.velocity.y) *  settings.maxVelocity);
         }
     }
     /// <summary>

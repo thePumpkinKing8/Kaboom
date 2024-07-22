@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gun;
 
     private Direction _lastDirection;
-    [HideInInspector] public Direction lastDirection 
+    [HideInInspector] private Direction lastDirection 
     { 
         get
         {
@@ -28,14 +28,13 @@ public class PlayerController : MonoBehaviour
 
     private float _currentHealth;
 
-    [HideInInspector] public bool grounded = true;
     //leftover momentum in the xAxis 
     [HideInInspector] public float xMomentum = 0;
     
     
 
     public PlayerSettings settings;
-    [HideInInspector] public Rigidbody2D _rb;
+    [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public InputController inputController;
     [HideInInspector] public Animator anim;
 
@@ -77,7 +76,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         inputController = GetComponent<InputController>();
         anim = GetComponent<Animator>();
 
@@ -86,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         lastDirection = Direction.Right;
 
-        _rb.gravityScale = settings.gravityScale;
+        rb.gravityScale = settings.gravityScale;
 
         // set up player states
         #region StateSetUp
@@ -111,12 +110,6 @@ public class PlayerController : MonoBehaviour
     {
         //if (!GameManager.Instance.Pause)
             _currentState.HandleMovement();
-
-        if(!grounded)
-        {
-            // Limits horizontal speed while in the air
-            _rb.velocity = new Vector2(_rb.velocity.x * .5f, _rb.velocity.y);
-        }
     }
 
     public void ChangeState(BaseState state)

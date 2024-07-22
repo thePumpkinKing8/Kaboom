@@ -26,7 +26,7 @@ public class Airborne : BaseState
 
         Move();
         //HandleFallSpeed();
-        if (player.GetCurrentState() != player.fallingState && player._rb.velocity.y < -player.settings.fallCheck)
+        if (player.GetCurrentState() != player.fallingState && player.rb.velocity.y < -player.settings.fallCheck)
         {
             player.ChangeState(player.fallingState);
         }
@@ -42,7 +42,7 @@ public class Airborne : BaseState
 
     private void Move()
     {
-        player._rb.velocity = new Vector2((input.MoveInput.x * settings.airSpeed) + player.xMomentum, player._rb.velocity.y);
+        player.rb.velocity = new Vector2((input.MoveInput.x * settings.airSpeed) + player.xMomentum, player.rb.velocity.y);
     }
   
     //reduces xMomentum by the settings drag coeffecient

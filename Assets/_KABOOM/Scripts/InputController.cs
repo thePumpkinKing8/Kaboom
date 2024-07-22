@@ -50,7 +50,7 @@ public class InputController : MonoBehaviour
         IsStart = _inputMap.FindAction("Pause").triggered;
 
         //state checks
-        IsFalling = playerController._rb.velocity.y < -playerController.settings.fallCheck && !playerController.IsGrounded();
+        IsFalling = playerController.rb.velocity.y < -playerController.settings.fallCheck && !playerController.IsGrounded();
 
         IsMoving = MoveInput != Vector2.zero;
 
