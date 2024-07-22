@@ -13,16 +13,7 @@ public class MainMenuManager : MonoBehaviour
     private GameObject _mainMenu;
 
     [SerializeField]
-    private GameObject _newGameMenu;
-
-    [SerializeField]
-    private GameObject _continueMenu;
-
-    [SerializeField]
-    private GameObject _settingsMenu;
-
-    [SerializeField]
-    private GameObject _howToPlayMenu;
+    private GameObject _optionsMenu;
 
     [SerializeField]
     private GameObject _loadingScreen;
@@ -62,45 +53,33 @@ public class MainMenuManager : MonoBehaviour
     #region Button functions
 
     // When the game starts
-    public void OnNewGameButton()
+    public void OnPlayGame()
     {
-        _newGameMenu.SetActive(true);
-    }
-
-    private void LoadingScreen()
-    {
-        // Use this once we have stuff for starting a new game
         StartCoroutine(LoadSceneAsync(_firstSceneIndex));
     }
-
-    public void OnContinueButton()
+    public void OnOptions()
     {
-        _continueMenu.SetActive(true);
-        // Will need another function with logic for continuing a saved game
+        _optionsMenu.SetActive(true);
     }
-    public void OnSettings()
+    public void OnControls()
     {
-        _settingsMenu.SetActive(true);
+        // controls stuff
     }
     public void OnQuit()
     {
         Application.Quit(); // This only works in the build
         Debug.Log("Quitting game...");
     }
-
-    public void OnHowToPlay()
+    public void OnStory()
     {
-        _howToPlayMenu.SetActive(true);
+        // Stuff for opening the story
     }
     public void CloseMenus()
     {
         // For closing menus within the main menu
-        if(_newGameMenu.activeInHierarchy || _settingsMenu.activeInHierarchy || _continueMenu.activeInHierarchy || _howToPlayMenu.activeInHierarchy)
+        if(_optionsMenu.activeInHierarchy)
         {
-            _newGameMenu.SetActive(false);
-            _settingsMenu.SetActive(false);
-            _howToPlayMenu.SetActive(false);
-            _continueMenu.SetActive(false);
+            _optionsMenu.SetActive(false);
             _mainMenu.SetActive(true);
         }
     }
