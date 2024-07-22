@@ -33,7 +33,7 @@ public class PoolManager : Singleton<PoolManager>
             PoolObject poolObject = objStack.Peek();//look at the top item
             PoolObject objectClone = Instantiate(poolObject);
             objectClone.name = poolObject.name;//make sure all objects have the same name
-            objectClone.GetComponent<SpriteRenderer>().color =// GameManager.Instance.color;
+          //  objectClone.GetComponent<SpriteRenderer>().color =// GameManager.Instance.color;
             return objectClone;
         }
         PoolObject oldPoolObject = objStack.Pop();
