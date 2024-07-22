@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class PlayerShooting : MonoBehaviour
 {
     private Rigidbody2D _rb;
@@ -31,3 +31,4 @@ public class PlayerShooting : MonoBehaviour
         _rb.AddForce(direction);
     }
 }
+*/

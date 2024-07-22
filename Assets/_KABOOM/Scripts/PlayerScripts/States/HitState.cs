@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class HitState : BaseState
 {
     public HitState(PlayerController player) : base("HitState", player)
@@ -13,11 +13,11 @@ public class HitState : BaseState
     public override void EnterState()
     {
         base.EnterState();
-        player._rb.velocity = direction * settings.knockBackForce;
+        player.rb.velocity = direction * settings.knockBackForce;
 
-        if(player._rb.velocity.y <= 0)
+        if(player.rb.velocity.y <= 0)
         {
-            player._rb.velocity = new Vector2(player._rb.velocity.x, 6);
+            player.rb.velocity = new Vector2(player.rb.velocity.x, 6);
         }
     }
 
@@ -31,3 +31,4 @@ public class HitState : BaseState
         }
     }
 }
+*/

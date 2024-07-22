@@ -4,168 +4,114 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform groundCheck;
-    [Tooltip("temorary")]
-    public GameObject gun;
-
-    private Direction _lastDirection;
-    [HideInInspector] public Direction lastDirection 
-    { 
-        get
-        {
-            return _lastDirection;
-        }
-        
-        set 
-        {
-            _lastDirection = value; 
-        } 
-    }
-
-    private float _currentHealth;
-
-    [HideInInspector] public bool grounded = true;
-    //leftover momentum in the xAxis 
-    [HideInInspector] public float xMomentum = 0;
-    
-    
-
-    public PlayerSettings settings;
-    [HideInInspector] public Rigidbody2D _rb;
-    [HideInInspector] public InputController inputController;
-    [HideInInspector] public Animator anim;
-
-    //state machine variables
-    #region StateMachine
-    private BaseState _currentState;
-
-    //states
-    [HideInInspector] public IdleState idleState;
-    [HideInInspector] public WalkingState walkingState;
-    [HideInInspector] public JumpState jumpState;
-    [HideInInspector] public FallingState fallingState;
-    [HideInInspector] public HitState hitState;
-    [HideInInspector] public ShootingState shootingState;
-    #endregion
-
-    //GameEvents
-    #region Events
-    /*
-    [Header("Events")]
-     public GameEvent jumpEvent;
-     public GameEvent hurtEvent;
-    */
-    #endregion
-
-    //SFX
-    #region Sound
-    [Header("SFX")]
-    public AudioClip jumpSFX;
-    public AudioClip hurtSFX;
-    public AudioClip shootSFX;
-    public AudioClip dashSFX;
-    public AudioClip compressSFX;
-    public AudioClip shieldBlockSFX;
-    public AudioClip shieldUpSFX;
-    public AudioClip dieSFX;
-    #endregion
-
+    public PlayerSettings Settings;
+    private PlayerActionsData _playerActions;
+    public Rigidbody2D Rb { get; private set; }
+    [SerializeField] private Transform _groundCheck;
+    private float _horizontal;
+    [HideInInspector] public float XMomentum;
+    private bool _isJumping;
+    private bool _isShooting;
     private void Awake()
     {
+        _playerActions = InputManager.Instance.ActionsData;
 
-        _rb = GetComponent<Rigidbody2D>();
-        inputController = GetComponent<InputController>();
-        anim = GetComponent<Animator>();
+        _playerActions.PlayerMoveEvent.AddListener(HandleMovement);
+        _playerActions.PlayerJumpEvent.AddListener(HandleJump);
+        _playerActions.PlayerJumpCancel.AddListener(JumpCancel);
 
-        //set player health
-        _currentHealth = settings.maxHealth;
+        InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
+        InputManager.Instance.ActionsData.PlayerShootCancel.AddListener(StopShooting);
 
-        lastDirection = Direction.Right;
-
-        _rb.gravityScale = settings.gravityScale;
-
-        // set up player states
-        #region StateSetUp
-        idleState = new IdleState(this);
-        walkingState = new WalkingState(this);
-        fallingState = new FallingState(this);
-        jumpState = new JumpState(this);
-        hitState = new HitState(this);
-        shootingState = new ShootingState(this);
-        #endregion
-        ChangeState(idleState);     
+        Rb = GetComponent<Rigidbody2D>();
     }
-
-    void Update()
+    private void Update()
     {
-        FlipPlayer();
-        _currentState.UpdateState();
-        _currentState.HandleInput();
+        if( _isJumping )
+        {
+            if(IsGrounded())
+                _isJumping = false;
+        }
+        HandleMomentum();
+
+        if (Mathf.Abs(Rb.velocity.x) > Settings.maxVelocity)
+        {
+            Rb.velocity = new Vector2(Mathf.Sign(Rb.velocity.x) * Settings.maxVelocity, Rb.velocity.y);
+        }
+
+        if (Mathf.Abs(Rb.velocity.y) > Settings.maxVelocity)
+        {
+            Rb.velocity = new Vector2(Rb.velocity.x, Mathf.Sign(Rb.velocity.y) * Settings.maxVelocity);
+        }
     }
 
     private void FixedUpdate()
     {
-        //if (!GameManager.Instance.Pause)
-            _currentState.HandleMovement();
-
-        if(!grounded)
+        if (!_isShooting)
         {
-            // Limits horizontal speed while in the air
-            _rb.velocity = new Vector2(_rb.velocity.x * .5f, _rb.velocity.y);
+            Rb.velocity = new Vector2(_horizontal * Settings.movementSpeed + XMomentum, Rb.velocity.y);
+        }
+        
+    }
+
+    private void StartShooting()
+    {
+        _isShooting = true;
+    }
+
+    private void StopShooting()
+    {
+        _isShooting = false;
+    }
+
+    private void HandleMovement(Vector2 val)
+    {
+        _horizontal = val.x;
+    }
+    private void HandleJump()
+    {
+        if (IsGrounded())
+        {
+            Rb.velocity = new Vector2(Rb.velocity.x, Settings.jumpHeight);
+            _isJumping = true;
         }
     }
-
-    public void ChangeState(BaseState state)
+    private void JumpCancel()
     {
-       _currentState?.ExitState();
-        _currentState = state;
-        _currentState?.EnterState();
-
-       // Debug.Log(_currentState.name);
+        if(_isJumping)
+            Rb.velocity = new Vector2(Rb.velocity.x, Rb.velocity.y / Settings.shortJumpSlowDown);
     }
 
-    public BaseState GetCurrentState() => _currentState;
-
-
-
-    private void FlipPlayer()
+    private void HandleMomentum()
     {
-        var size = transform.localScale;
-        Direction direction = GetPlayerDirection();
-        if (lastDirection != GetPlayerDirection())
+        if (!_isShooting)
         {
-            lastDirection = GetPlayerDirection();
-            FlipPlayer();
+            float sign = Mathf.Sign(XMomentum);
+            if (IsGrounded())
+                XMomentum = (Mathf.Abs(XMomentum) - Settings.playerFriction);
+            else
+                XMomentum = (Mathf.Abs(XMomentum) - Settings.playerDrag);
+
+            if (XMomentum <= 0)
+                XMomentum = 0;
+            else
+                XMomentum *= sign;
         }
-
-        transform.localScale = new Vector3(direction == Direction.Right ? 1 : -1 * Mathf.Abs(size.x),size.y,size.z); 
+        
     }
 
-
-
-    private Direction GetPlayerDirection()
+    public void AddForce(Vector2 force)
     {
-        return inputController.MoveInput.x switch
-        {
-            > 0 => Direction.Right,
-            < 0 => Direction.Left,
-            _ => lastDirection,
-        };
+        Rb.AddForce(force);
     }
 
 
     //returns true if player is ontop of an object with the ground layer
-    public bool IsGrounded() => Physics2D.OverlapCircle(groundCheck.position, settings.groundCheckRadius, settings.groundLayerMask);
-}
-
-public enum Direction
-{ 
-    Left,
-    Right
+    public bool IsGrounded() => Physics2D.OverlapCircle(_groundCheck.position, Settings.groundCheckRadius, Settings.groundLayerMask);
 }
 
 

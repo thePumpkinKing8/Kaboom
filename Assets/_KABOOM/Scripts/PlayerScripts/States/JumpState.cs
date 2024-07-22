@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class JumpState : Airborne
 {
     public JumpState(PlayerController player) : base("JumpingState", player)
@@ -24,7 +24,7 @@ public class JumpState : Airborne
         if (!player.IsGrounded()) return;
 
         //player.jumpEvent.Raise();
-        player._rb.velocity = new Vector2(player._rb.velocity.x, player.settings.jumpHeight);
+        player.rb.velocity = new Vector2(player.rb.velocity.x, player.settings.jumpHeight);
     }
 
     public override void HandleInput()
@@ -39,7 +39,7 @@ public class JumpState : Airborne
             
         if(!input.JumpHeld && input.IsJumping)
         {
-            player._rb.velocity = new Vector2(player._rb.velocity.x, player._rb.velocity.y / settings.shortJumpSlowDown);
+            player.rb.velocity = new Vector2(player.rb.velocity.x, player.rb.velocity.y / settings.shortJumpSlowDown);
             input.IsJumping = false;
         }
     }
@@ -50,3 +50,4 @@ public class JumpState : Airborne
         input.IsJumping = false;
     }
 }
+*/

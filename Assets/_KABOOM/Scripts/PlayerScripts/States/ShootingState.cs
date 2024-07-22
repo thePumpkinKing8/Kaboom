@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class ShootingState : BaseState
 {
+    
     public ShootingState(PlayerController player) : base("ShootingState", player)
     {
     }
@@ -95,12 +97,12 @@ public class ShootingState : BaseState
 
         if (player.IsGrounded())
         {
-            player._rb.velocity = new Vector2(input.MoveInput.x * player.settings.movementSpeed, player._rb.velocity.y);
+            player.rb.velocity = new Vector2(input.MoveInput.x * player.settings.movementSpeed, player.rb.velocity.y);
 
         }
         else
         {
-            player._rb.AddForce(force);
+            player.rb.AddForce(force);
         } 
     }
 
@@ -108,8 +110,9 @@ public class ShootingState : BaseState
     {
         base.ExitState();
         //saves the players momentum in the x axis
-        player.xMomentum = player._rb.velocity.x;
+        player.xMomentum = player.rb.velocity.x;
         _laser.enabled = false;
     }
-
+    
 }
+    */

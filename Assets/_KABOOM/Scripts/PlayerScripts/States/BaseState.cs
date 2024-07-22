@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+/*
 
 /// <summary>
 /// Base class for player states.
@@ -20,16 +20,8 @@ public abstract class BaseState
     }
     
 
-    #region Cached Properties
-    /* left over from goofland
-    protected static readonly int Walking = Animator.StringToHash("Walking");
-    protected static readonly int Running = Animator.StringToHash("Running");
-    protected static readonly int Jumping = Animator.StringToHash("Jumping");
-    protected static readonly int Falling = Animator.StringToHash("Falling");
-    protected static readonly int Gliding = Animator.StringToHash("Gliding");
-    protected internal static readonly int Attacking = Animator.StringToHash("Attacking");
-    */
-    #endregion
+
+    
 
     protected void ChangeState(BaseState state) => player.ChangeState(state); 
     public virtual void EnterState() { }
@@ -45,14 +37,14 @@ public abstract class BaseState
     //handled on the update step
     public virtual void UpdateState()
     {
-        if(Mathf.Abs(player._rb.velocity.x) > settings.maxVelocity)
+        if(Mathf.Abs(player.rb.velocity.x) > settings.maxVelocity)
         {
-            player._rb.velocity = new Vector2(Mathf.Sign(player._rb.velocity.x) * settings.maxVelocity, player._rb.velocity.y);
+            player.rb.velocity = new Vector2(Mathf.Sign(player.rb.velocity.x) * settings.maxVelocity, player.rb.velocity.y);
         }
 
-        if (Mathf.Abs(player._rb.velocity.y) > settings.maxVelocity)
+        if (Mathf.Abs(player.rb.velocity.y) > settings.maxVelocity)
         {
-            player._rb.velocity = new Vector2(player._rb.velocity.x, Mathf.Sign(player._rb.velocity.y) *  settings.maxVelocity);
+            player.rb.velocity = new Vector2(player.rb.velocity.x, Mathf.Sign(player.rb.velocity.y) *  settings.maxVelocity);
         }
     }
     /// <summary>
@@ -70,3 +62,4 @@ public abstract class BaseState
 
 
 }
+*/

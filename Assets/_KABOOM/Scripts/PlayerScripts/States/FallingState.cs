@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class FallingState : Airborne
 {
     public FallingState(PlayerController player) : base("FallingState",player) 
@@ -22,7 +22,7 @@ public class FallingState : Airborne
         base.HandleInput();
 
         if (player.IsGrounded())
-            player.ChangeState(player._rb.velocity.x != 0 ? player.walkingState : player.idleState);
+            player.ChangeState(player.rb.velocity.x != 0 ? player.walkingState : player.idleState);
     }
 
     public override void ExitState()
@@ -32,3 +32,4 @@ public class FallingState : Airborne
         //player.anim.SetBool("Falling", false); 
     }
 }
+*/

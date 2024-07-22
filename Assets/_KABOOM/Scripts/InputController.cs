@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+/*
 public class InputController : MonoBehaviour
 {
     private InputActionAsset _inputActions;
@@ -50,7 +51,7 @@ public class InputController : MonoBehaviour
         IsStart = _inputMap.FindAction("Pause").triggered;
 
         //state checks
-        IsFalling = playerController._rb.velocity.y < -playerController.settings.fallCheck && !playerController.IsGrounded();
+        IsFalling = playerController.rb.velocity.y < -playerController.settings.fallCheck && !playerController.IsGrounded();
 
         IsMoving = MoveInput != Vector2.zero;
 
@@ -59,3 +60,4 @@ public class InputController : MonoBehaviour
        // Debug.Log(IsMoving);
     }
 }
+*/
