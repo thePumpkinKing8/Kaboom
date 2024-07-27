@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    // One scriptable object per clip
+    // To add a new sound, create a scriptable object using the AudioSO class and assign the values to it, then add it to the _audioSOs list in the inspector of the AudioManager object in the scene.
+
     public static AudioManager Instance;
 
     [SerializeField]
