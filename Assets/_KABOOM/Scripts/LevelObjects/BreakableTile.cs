@@ -12,11 +12,18 @@ public class BreakableTile : MonoBehaviour
     private void Awake()
     {
         _breakableTilemap = GetComponent<Tilemap>();
+
+        if(_breakableTilemap == null)
+        {
+            Debug.LogError("Tilemap not found");
+        }
     }
 
     // This function should be called by an event
     public void BreakTile(Collision2D collision)
     {
+        Debug.Log("BreakTile function called");
+
         Vector3 hitPosition = Vector3.zero;
 
         HashSet<Vector3Int> brokenTiles = new HashSet<Vector3Int>(); // Used to avoid processing issues from duplicate hits
@@ -29,13 +36,17 @@ public class BreakableTile : MonoBehaviour
 
             Vector3Int currentCellPosition = _breakableTilemap.WorldToCell(hitPosition);
 
-            if(!brokenTiles.Contains(currentCellPosition))
+            Debug.Log($"Hit position: {hitPosition}, Cell position: {currentCellPosition}");
+
+            if (!brokenTiles.Contains(currentCellPosition))
             {
                 // Adds the broken tile to the HashSet
                 brokenTiles.Add(currentCellPosition);
 
                 // Sets the affected tile to null
                 _breakableTilemap.SetTile(currentCellPosition, null);
+
+                Debug.Log($"Tile located at {currentCellPosition} set to null");
             }
         }
     }
