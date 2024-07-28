@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
   m_Name: BwopAudio
   m_EditorClassIdentifier: 
-  AudioName: bwop
   Clip: {fileID: 8300000, guid: 706d5828d3999194ca5638dc5e2ff9c9, type: 3}
+  Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
+  AudioName: bwop
   Volume: 1
-  Pitch: 1
+  Pitch: 2
   Priority: 128
   Loop: 0
   PlayOnAwake: 0
-  Source: {fileID: 0}
