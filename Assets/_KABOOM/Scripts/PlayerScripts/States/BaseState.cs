@@ -7,16 +7,16 @@ public class BaseState : MonoBehaviour, IPlayerState
     private PlayerActionsData _actions;
     private float _momentum;
     private bool _stateActive;
-    private PlayerController _controller;
+    private GroundCheck _groundCheck;
     private float _horizontal;
-    private PlayerSettings _settings;
+    [SerializeField] private PlayerSettings _settings;
     private void Awake()
     {
         _actions = InputManager.Instance.ActionsData;
         _actions.PlayerMoveEvent.AddListener(HandleMovement);
         _actions.PlayerShootEvent.AddListener(PlayerShooting);
         Rb = GetComponent<Rigidbody2D>();
-        _settings = _controller.Settings;
+        _groundCheck = GetComponentInChildren<GroundCheck>();
     }
     //in this state the player is grounded and can walk
     public void EnterState()
@@ -29,7 +29,7 @@ public class BaseState : MonoBehaviour, IPlayerState
         if(_stateActive)
         {
             HandleMomentum();
-            if (!_controller.IsGrounded())
+            if (!_groundCheck.IsGrounded())
             {
                 ExitState();
                 //go to falling state
@@ -54,7 +54,7 @@ public class BaseState : MonoBehaviour, IPlayerState
     public void HandleMomentum()
     {
         float sign = Mathf.Sign(_momentum);
-        if (_controller.IsGrounded())
+        if (_groundCheck.IsGrounded())
             _momentum = (Mathf.Abs(_momentum) - _settings.playerFriction);
         else
             _momentum = (Mathf.Abs(_momentum) - _settings.playerDrag);
