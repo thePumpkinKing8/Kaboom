@@ -54,6 +54,10 @@ public class PlayerLaser : MonoBehaviour
         {
             _laser.SetPosition(1, _ray.point);
             Debug.DrawLine(_barrel.position, _ray.point);
+            if(_ray.collider.GetComponent<BreakableTile>() != null)
+            {
+                _ray.collider.GetComponent<BreakableTile>().BreakTile(_ray.point);
+            }
         }
             
         else
