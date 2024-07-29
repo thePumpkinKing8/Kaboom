@@ -1,65 +1,79 @@
 
 using UnityEngine;
-/*
 
-/// <summary>
-/// Base class for player states.
-/// </summary>
-public abstract class BaseState
+public class BaseState : MonoBehaviour, IPlayerState
 {
-    public string name;
-    protected internal PlayerController player;
-    protected InputController input;
-    protected PlayerSettings settings;
-    protected BaseState(string name, PlayerController player)
+    public Rigidbody2D Rb;
+    private PlayerActionsData _actions;
+    private float _momentum;
+    private bool _stateActive;
+    private PlayerController _controller;
+    private float _horizontal;
+    private PlayerSettings _settings;
+    private void Awake()
     {
-        this.name = name;
-        this.player = player;
-        input = player.inputController;
-        settings = player.settings;
+        _actions = InputManager.Instance.ActionsData;
+        _actions.PlayerMoveEvent.AddListener(HandleMovement);
+        _actions.PlayerShootEvent.AddListener(PlayerShooting);
+        Rb = GetComponent<Rigidbody2D>();
+        _settings = _controller.Settings;
     }
-    
-
-
-    
-
-    protected void ChangeState(BaseState state) => player.ChangeState(state); 
-    public virtual void EnterState() { }
-
-    //handled on the update step
-    public virtual void HandleInput()
+    //in this state the player is grounded and can walk
+    public void EnterState()
     {
-        if (input.IsShoot)
-            player.ChangeState(player.shootingState);
+
     }
 
-
-    //handled on the update step
-    public virtual void UpdateState()
+    private void Update()
     {
-        if(Mathf.Abs(player.rb.velocity.x) > settings.maxVelocity)
+        if(_stateActive)
         {
-            player.rb.velocity = new Vector2(Mathf.Sign(player.rb.velocity.x) * settings.maxVelocity, player.rb.velocity.y);
-        }
+            HandleMomentum();
+            if (!_controller.IsGrounded())
+            {
+                ExitState();
+                //go to falling state
+            }
+        }     
+    }
 
-        if (Mathf.Abs(player.rb.velocity.y) > settings.maxVelocity)
+    private void FixedUpdate()
+    {
+        if (_stateActive)
         {
-            player.rb.velocity = new Vector2(player.rb.velocity.x, Mathf.Sign(player.rb.velocity.y) *  settings.maxVelocity);
+            Rb.velocity = new Vector2(_horizontal * _settings.movementSpeed + _momentum, Rb.velocity.y);
         }
     }
-    /// <summary>
-    /// used to handle movement that we want to happen on the fixed update step
-    /// </summary>
-    public virtual void HandleMovement()
-    {
 
+    // used to handle movement that we want to happen on the fixed update step
+    public void HandleMovement(Vector2 move)
+    {
+        _horizontal = move.x;
     }
 
-    public virtual void ExitState() 
+    public void HandleMomentum()
     {
-    
+        float sign = Mathf.Sign(_momentum);
+        if (_controller.IsGrounded())
+            _momentum = (Mathf.Abs(_momentum) - _settings.playerFriction);
+        else
+            _momentum = (Mathf.Abs(_momentum) - _settings.playerDrag);
+
+        if (_momentum <= 0)
+            _momentum = 0;
+        else
+            _momentum *= sign;
+    }
+
+    private void PlayerShooting()
+    {
+        ExitState();
+        //change state to shooting state
+    }
+    public void ExitState() 
+    {
+        _stateActive = false;
     }
 
 
 }
-*/
