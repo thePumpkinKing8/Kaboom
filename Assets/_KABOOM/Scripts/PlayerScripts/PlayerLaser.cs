@@ -16,9 +16,11 @@ public class PlayerLaser : MonoBehaviour
         InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
         InputManager.Instance.ActionsData.PlayerShootCancel.AddListener(StopShooting);
         InputManager.Instance.ActionsData.PlayerAimEvent.AddListener(SetAngle);
+        _barrel = transform.parent;
         _laser = GetComponent<LineRenderer>();
         _player = GetComponentInParent<PlayerController>();
         _settings = _player.Settings;
+        _laser.enabled = false;
     }
 
     private void Update()
@@ -47,8 +49,23 @@ public class PlayerLaser : MonoBehaviour
     {
         _laser.SetPosition(0, _barrel.position);
         _ray = Physics2D.Raycast(_barrel.position, _gunAngle,100f, ~LayerMask.NameToLayer("Player"));
-        Debug.DrawLine(_barrel.position, _gunAngle);
-        _laser.SetPosition(1, _ray.point);
+        
+        if (_ray.collider != null)
+        {
+            _laser.SetPosition(1, _ray.point);
+            Debug.DrawLine(_barrel.position, _ray.point);
+            if(_ray.collider.GetComponent<BreakableTile>() != null)
+            {
+                _ray.collider.GetComponent<BreakableTile>().BreakTile(_ray.point);
+            }
+        }
+            
+        else
+        {
+            _laser.SetPosition(1, (Vector2)_barrel.position + (_gunAngle * 100f));
+            Debug.DrawLine(_barrel.position, (Vector2)_barrel.position + (_gunAngle * 100f));
+        }
+            
     }
 
     private void SetAngle(Vector2 pos, bool isMouse)

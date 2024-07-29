@@ -38,7 +38,6 @@ public class GunController : MonoBehaviour
             pos = Camera.main.ScreenToWorldPoint(pos);
             Vector2 direction = pos - new Vector2(transform.position.x, transform.position.y);
             GunAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Debug.Log(GunAngle);
         }
         else
         {
