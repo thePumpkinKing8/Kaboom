@@ -6,16 +6,10 @@ using UnityEngine.Tilemaps;
 public class BreakableTile : MonoBehaviour
 {
     private Tilemap _breakableTilemap;
-    private Grid _grid;
-
-    private float _compensationNumber = 0.01f;
-
-    
 
     private void Awake()
     {
         _breakableTilemap = GetComponent<Tilemap>();
-        _grid = GetComponentInParent<Grid>();
 
         if(_breakableTilemap == null)
         {

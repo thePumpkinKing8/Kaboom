@@ -20,14 +20,6 @@ public class PlayerSettings : ScriptableObject
     public float gravityScale = 5f;
     public float playerDrag = .2f;
     public float playerFriction = .6f;
-    public float jumpHeight = 10f;
-    [Tooltip("amount velocity is devided by when jump the player stops jumping early")]
-    public float shortJumpSlowDown = 2f;
-    [Tooltip("The distance the players ground check will move down when in the air allowing for earlier jumps in the air. if set too high the ground check may clip through the floor")]
-    public float jumpBufferOffset = .2f;
-    public float coyoteTime = .2f;
-    [Tooltip("lower the value lower the jump")]
-    public float lowJumpMultiplier = 5f;
     [Tooltip("downward velocity required to be considered falling")]
     public float fallCheck = .2f;
     

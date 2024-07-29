@@ -15,14 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
     private float _horizontal;
     [HideInInspector] public float XMomentum;
-    private bool _isJumping;
     private bool _isShooting;
     private void Awake()
     {
         _playerActions = InputManager.Instance.ActionsData;
 
         _playerActions.PlayerMoveEvent.AddListener(HandleMovement);
-        _playerActions.PlayerJumpCancel.AddListener(JumpCancel);
 
         InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
         InputManager.Instance.ActionsData.PlayerShootCancel.AddListener(StopShooting);
@@ -70,11 +68,6 @@ public class PlayerController : MonoBehaviour
         _horizontal = val.x;
     }
    
-    private void JumpCancel()
-    {
-        if(_isJumping)
-            Rb.velocity = new Vector2(Rb.velocity.x, Rb.velocity.y / Settings.shortJumpSlowDown);
-    }
 
     private void HandleMomentum()
     {

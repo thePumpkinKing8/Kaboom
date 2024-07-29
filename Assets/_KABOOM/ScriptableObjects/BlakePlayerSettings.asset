@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01642a625c5b7224d9ba5d8b7b030269, type: 3}
+  m_Name: BlakePlayerSettings
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  maxVelocity: 20
+  maxHealth: 100
+  invulnFrameTime: 1.5
+  knockBackForce: 6
+  hitTime: 0.25
+  airSpeed: 5
+  gravityScale: 5
+  playerDrag: 0.2
+  playerFriction: 0.6
+  jumpHeight: 10
+  shortJumpSlowDown: 2
+  jumpBufferOffset: 0.2
+  coyoteTime: 0.2
+  lowJumpMultiplier: 5
+  fallCheck: 0.2
+  shootingForce: 1
+  maxShootingForce: 5
+  minShootingForce: 1
+  groundCheckRadius: 0.1
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
