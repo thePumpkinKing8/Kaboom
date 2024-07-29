@@ -16,6 +16,8 @@ public class TurretProjectile : PoolObject
         GetComponent<Rigidbody2D>().velocity = Direction * _speed;
     }
 
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
  
@@ -27,7 +29,7 @@ public class TurretProjectile : PoolObject
             OnDeSpawn();
         }
 
-        else if (collision.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+        else
             OnDeSpawn();
     }
 }

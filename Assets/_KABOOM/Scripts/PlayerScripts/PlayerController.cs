@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
         _playerActions = InputManager.Instance.ActionsData;
 
         _playerActions.PlayerMoveEvent.AddListener(HandleMovement);
-        _playerActions.PlayerJumpEvent.AddListener(HandleJump);
         _playerActions.PlayerJumpCancel.AddListener(JumpCancel);
 
         InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
@@ -33,11 +32,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if( _isJumping )
-        {
-            if(IsGrounded())
-                _isJumping = false;
-        }
+        
         HandleMomentum();
 
         if (Mathf.Abs(Rb.velocity.x) > Settings.maxVelocity)
@@ -74,14 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         _horizontal = val.x;
     }
-    private void HandleJump()
-    {
-        if (IsGrounded())
-        {
-            Rb.velocity = new Vector2(Rb.velocity.x, Settings.jumpHeight);
-            _isJumping = true;
-        }
-    }
+   
     private void JumpCancel()
     {
         if(_isJumping)
@@ -105,7 +93,6 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
     public void AddForce(Vector2 force)
     {
         Rb.AddForce(force);

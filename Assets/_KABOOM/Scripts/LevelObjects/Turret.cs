@@ -46,6 +46,7 @@ public class Turret : MonoBehaviour
         }
     }
 
+    //spawns and initializes projectile
     private void ShootProjectile()
     {
         TurretProjectile projectile = PoolManager.Instance.Spawn("TurretProjectile").GetComponent<TurretProjectile>();
@@ -55,6 +56,7 @@ public class Turret : MonoBehaviour
         projectile.Shoot();
     }
 
+    //turret starts firing
     IEnumerator ProjectileAttack()
     {
         _isShooting = true;
