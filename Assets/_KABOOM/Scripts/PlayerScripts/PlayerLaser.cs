@@ -86,10 +86,13 @@ public class PlayerLaser : MonoBehaviour
 
     private void AddForce()
     {
+
         float shootingForce = 0;
+        /*
         float distance = _ray.point.magnitude - _player.transform.position.magnitude;
 
         float _dist = Vector2.Distance(_player.transform.position, _ray.point);
+        Debug.Log(_dist);
         if (_dist != 0)
         {
             _dist = 1f / _dist;
@@ -97,10 +100,11 @@ public class PlayerLaser : MonoBehaviour
         }
 
         else
-            shootingForce = _settings.maxShootingForce;
+           */ shootingForce = _settings.maxShootingForce;
 
         Vector2 force = new Vector2(-shootingForce * _gunAngle.x, -shootingForce * _gunAngle.y);
         _player.AddForce(force);
+        Debug.Log(force);
     }
 
     

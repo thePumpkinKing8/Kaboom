@@ -19,14 +19,9 @@ MonoBehaviour:
   knockBackForce: 2
   hitTime: 0.25
   airSpeed: 5
-  gravityScale: 5
+  gravityScale: 1
   playerDrag: 0.02
   playerFriction: 1
-  jumpHeight: 5
-  shortJumpSlowDown: 2
-  jumpBufferOffset: 0.005
-  coyoteTime: 0.5
-  lowJumpMultiplier: 5
   fallCheck: 0.2
   shootingForce: 1
   maxShootingForce: 50

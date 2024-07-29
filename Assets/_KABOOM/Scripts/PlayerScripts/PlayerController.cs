@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
         Rb = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
+
+        Rb.gravityScale = Settings.gravityScale;
     }
     private void Update()
     {
