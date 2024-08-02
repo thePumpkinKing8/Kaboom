@@ -14,17 +14,7 @@ public class GunController : MonoBehaviour
         _gun = GetComponentInChildren<SpriteRenderer>();
         _playerSprite = GetComponentInParent<SpriteRenderer>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void Aim(Vector2 pos, bool isMouse)
     {
@@ -32,6 +22,7 @@ public class GunController : MonoBehaviour
         {
             pos = Camera.main.ScreenToWorldPoint(pos);
             Vector2 direction = pos - new Vector2(transform.position.x, transform.position.y);
+           
             GunAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
         else
@@ -43,14 +34,12 @@ public class GunController : MonoBehaviour
         if (Mathf.Abs(GunAngle) <= 90)
         {
             _gun.flipY = false;
-            //_player.FlipPlayer(false);
             _playerSprite.flipX = false;
             
         }
         else
         {
             _gun.flipY = true;
-            //_player.FlipPlayer(true);
             _playerSprite.flipX = true;
         }
             

@@ -22,7 +22,7 @@ public class ShootingState : MonoBehaviour, IPlayerState
         _groundCheck = GetComponentInChildren<GroundCheck>();
         _baseState = GetComponent<BaseState>();
         _fallingState = GetComponent<FallingState>();
-        _laser = GetComponentInChildren<PlayerLaser>();
+        _laser = GetComponentInChildren<PlayerLaser>(); //the players laser that has information on the direction the gun is facing
         _settings = GameManager.Instance.PlayerPhysicsSettings;
     }
 
@@ -44,14 +44,14 @@ public class ShootingState : MonoBehaviour, IPlayerState
     {
         if(_stateActive)
         {
-            _rb.AddForce(_laser.AddForce(_settings.shootingForce));
+            HandleMovement(_laser.ForceVector(_settings.shootingForce));
         }
     }
 
-    // used to handle movement that we want to happen on the fixed update step
-    public void HandleMovement(Vector2 move)
+    //applies force to the player
+    public void HandleMovement(Vector2 force)
     {
-        
+        _rb.AddForce(force);
     }
 
     public void HandleMomentum()
@@ -59,12 +59,12 @@ public class ShootingState : MonoBehaviour, IPlayerState
         
     }
 
-    private void StopShooting()
+    private void StopShooting() 
     {
         ExitState(_groundCheck.IsGrounded(_settings.groundCheckRadius, _settings.groundLayerMask) ? _baseState : _fallingState);
-        //change state to shooting state
     }
 
+    //sets this state to inactive and activates the next state
     public void ExitState(IPlayerState state)
     {
         Momentum = _rb.velocity.x;

@@ -28,7 +28,7 @@ public class FallingState : MonoBehaviour, IPlayerState
 
     public void EnterState(float momentum = 0)
     {
-        _stateActive = true;
+        _stateActive = true; 
         Momentum = momentum;
     }
 
@@ -36,7 +36,6 @@ public class FallingState : MonoBehaviour, IPlayerState
     {
         if(_stateActive)
         {
-            
             if (_groundCheck.IsGrounded(_settings.groundCheckRadius, _settings.groundLayerMask))
             {
                 ExitState(_baseState);
@@ -49,27 +48,27 @@ public class FallingState : MonoBehaviour, IPlayerState
         if (_stateActive)
         {
             HandleMomentum();
-            Debug.Log(Momentum);
             _rb.velocity = new Vector2(_horizontal * _settings.airSpeed + Momentum, _rb.velocity.y);
         }
     }
 
-    // used to handle movement that we want to happen on the fixed update step
+    // used to handle movement inputs
     public void HandleMovement(Vector2 move)
     {
         _horizontal = move.x;
     }
 
+    //manually reduces the players momentum over time
     public void HandleMomentum()
     {
-        float sign = Mathf.Sign(Momentum);
+        float sign = Mathf.Sign(Momentum); //save whether momentum is in a positive or negative direction
        
-        Momentum = (Mathf.Abs(Momentum) - _settings.playerDrag);
+        Momentum = (Mathf.Abs(Momentum) - _settings.playerDrag); //reduce the absolute value of the players momentum 
 
-        if (Momentum <= 0)
+        if (Momentum <= 0) //sets the player momentum to zero if it becomes negative
             Momentum = 0;
         else
-            Momentum *= sign;
+            Momentum *= sign; //reapply the saved sign to momentum
     }
 
     private void PlayerShooting()
@@ -78,7 +77,8 @@ public class FallingState : MonoBehaviour, IPlayerState
         //change state to shooting state
     }
 
-    public  void ExitState(IPlayerState state)
+    //sets this state to inactive and activates the next state
+    public void ExitState(IPlayerState state)
     {
         _stateActive = false;
         state.EnterState(Momentum);

@@ -4,48 +4,45 @@ using UnityEngine;
 
 public class PlayerLaser : MonoBehaviour
 {
-    private bool _isShooting;
     private LineRenderer _laser;
-    private PlayerController _player;
-    private PlayerSettings _settings;
     private Vector2 _gunAngle;
-    [SerializeField] private Transform _barrel;
+    private GunController _gunController;
+    private Transform _barrel;
     private RaycastHit2D _ray;
     private void Awake()
     {
         InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
         InputManager.Instance.ActionsData.PlayerShootCancel.AddListener(StopShooting);
-        InputManager.Instance.ActionsData.PlayerAimEvent.AddListener(SetAngle);
         _barrel = transform.parent;
         _laser = GetComponent<LineRenderer>();
-        _player = GetComponentInParent<PlayerController>();
+        _gunController = GetComponentInParent<GunController>();
+       
         //_settings = _player.Settings;
+        _laser.enabled = false;
+    }
+
+
+    private void StartShooting()
+    {
+        _laser.enabled = true;
+    }
+
+    private void StopShooting()
+    { 
         _laser.enabled = false;
     }
 
     private void Update()
     {
-        /*
-        if(_isShooting)
+        if(_laser.enabled)
         {
-            Shoot();
-            AddForce(_settings.shootingForce);
+            _gunAngle = (new Vector2(Mathf.Cos(_gunController.GunAngle * Mathf.Deg2Rad), Mathf.Sin(_gunController.GunAngle * Mathf.Deg2Rad))); //gets the angle the gun is facing
         }
-        */
     }
 
-    private void StartShooting()
-    {
-        _isShooting = true;
-        _laser.enabled = true;
-    }
-
-    private void StopShooting()
-    {
-        _isShooting = false;
-        _laser.enabled = false;
-    }
-
+    /// <summary>
+    /// sets the lasers endpoint position
+    /// </summary>
     public void Shoot()
     {
         _laser.SetPosition(0, _barrel.position);
@@ -69,25 +66,16 @@ public class PlayerLaser : MonoBehaviour
             
     }
 
-    private void SetAngle(Vector2 pos, bool isMouse)
-    {
-        if (isMouse)
-        {
-            pos = Camera.main.ScreenToWorldPoint(pos);
-            Vector2 direction = pos - new Vector2(transform.position.x, transform.position.y);
-            float angle = Mathf.Atan2(direction.y, direction.x) ;
-            _gunAngle = (new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
-        }
-        else
-        {
-            float angle = Mathf.Atan2(pos.y, pos.x);
-            _gunAngle = (new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
-        }
-    }
 
-    public Vector2 AddForce(float recoilForce)
+    /// <summary>
+    /// returns a force vector based on the angle of the laser and the inputed force
+    /// </summary>
+    /// <param name="recoilForce"></param>
+    /// <returns></returns>
+    public Vector2 ForceVector(float recoilForce)
     {
-        /* code for chnaging force based on distance from object. commented incase we want to go back to this
+        /* code for chnaging force based on distance from object hit by the laser. commented out incase we want to go back to this
+         
         float distance = _ray.point.magnitude - _player.transform.position.magnitude;
 
         float _dist = Vector2.Distance(_player.transform.position, _ray.point);

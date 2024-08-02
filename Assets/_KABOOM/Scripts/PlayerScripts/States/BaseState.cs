@@ -28,7 +28,7 @@ public class BaseState : MonoBehaviour, IPlayerState
     private void Start()
     {
         _rb.gravityScale = _settings.gravityScale;
-        EnterState();
+        EnterState(); //this is always the starting state
     }
     //in this state the player is grounded and can walk
     public void EnterState(float momentum = 0)
@@ -58,23 +58,23 @@ public class BaseState : MonoBehaviour, IPlayerState
         }
     }
 
-    // used to handle movement that we want to happen on the fixed update step
+    // used to handle movement inputs
     public void HandleMovement(Vector2 move)
     {
         _horizontal = move.x;
     }
 
+    //manually reduces the players momentum over time
     public void HandleMomentum()
     {
-        float sign = Mathf.Sign(Momentum);
-        
-        Momentum = (Mathf.Abs(Momentum) - _settings.playerFriction);
-        
+        float sign = Mathf.Sign(Momentum); //save whether momentum is in a positive or negative direction
 
-        if (Momentum <= 0)
+        Momentum = (Mathf.Abs(Momentum) - _settings.playerFriction); //reduce the absolute value of the players momentum 
+
+        if (Momentum <= 0) //sets the player momentum to zero if it becomes negative
             Momentum = 0;
         else
-            Momentum *= sign;
+            Momentum *= sign; //reapply the saved sign to momentum
     }
 
     private void PlayerShooting()
@@ -82,6 +82,8 @@ public class BaseState : MonoBehaviour, IPlayerState
         ExitState(_shootingState);
         //change state to shooting state
     }
+
+    //sets this state to inactive and activates the next state
     public void ExitState(IPlayerState state) 
     {
         _stateActive = false;
