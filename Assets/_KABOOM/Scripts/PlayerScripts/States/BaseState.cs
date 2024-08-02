@@ -5,11 +5,14 @@ public class BaseState : MonoBehaviour, IPlayerState
 {
     public Rigidbody2D Rb;
     private PlayerActionsData _actions;
-    private float _momentum;
+    public float Momentum { get; set; }
     private bool _stateActive;
     private GroundCheck _groundCheck;
     private float _horizontal;
     [SerializeField] private PlayerSettings _settings;
+    private ShootingState _shootingState;
+    private FallingState _fallingState;
+ 
     private void Awake()
     {
         _actions = InputManager.Instance.ActionsData;
@@ -17,11 +20,14 @@ public class BaseState : MonoBehaviour, IPlayerState
         _actions.PlayerShootEvent.AddListener(PlayerShooting);
         Rb = GetComponent<Rigidbody2D>();
         _groundCheck = GetComponentInChildren<GroundCheck>();
+        _shootingState = GetComponent<ShootingState>();
+        _fallingState = GetComponent<FallingState>();
     }
     //in this state the player is grounded and can walk
-    public void EnterState()
+    public void EnterState(float momentum = 0)
     {
-
+        _stateActive = true;
+        Momentum = momentum;
     }
 
     private void Update()
@@ -31,7 +37,7 @@ public class BaseState : MonoBehaviour, IPlayerState
             HandleMomentum();
             if (!_groundCheck.IsGrounded())
             {
-                ExitState();
+                ExitState(_fallingState);
                 //go to falling state
             }
         }     
@@ -41,7 +47,7 @@ public class BaseState : MonoBehaviour, IPlayerState
     {
         if (_stateActive)
         {
-            Rb.velocity = new Vector2(_horizontal * _settings.movementSpeed + _momentum, Rb.velocity.y);
+            Rb.velocity = new Vector2(_horizontal * _settings.movementSpeed + Momentum, Rb.velocity.y);
         }
     }
 
@@ -53,26 +59,27 @@ public class BaseState : MonoBehaviour, IPlayerState
 
     public void HandleMomentum()
     {
-        float sign = Mathf.Sign(_momentum);
-        if (_groundCheck.IsGrounded())
-            _momentum = (Mathf.Abs(_momentum) - _settings.playerFriction);
-        else
-            _momentum = (Mathf.Abs(_momentum) - _settings.playerDrag);
+        float sign = Mathf.Sign(Momentum);
+        
+        Momentum = (Mathf.Abs(Momentum) - _settings.playerFriction);
+        
 
-        if (_momentum <= 0)
-            _momentum = 0;
+        if (Momentum <= 0)
+            Momentum = 0;
         else
-            _momentum *= sign;
+            Momentum *= sign;
     }
 
     private void PlayerShooting()
     {
-        ExitState();
+        ExitState(_shootingState);
         //change state to shooting state
     }
-    public void ExitState() 
+    public void ExitState(IPlayerState state) 
     {
         _stateActive = false;
+        state.EnterState(Momentum);
+        
     }
 
 

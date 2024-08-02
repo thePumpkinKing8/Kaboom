@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingState : MonoBehaviour, IPlayerState
+public class ShootingState : MonoBehaviour, IPlayerState
 {
     public Rigidbody2D Rb;
     private PlayerActionsData _actions;
@@ -11,17 +11,18 @@ public class FallingState : MonoBehaviour, IPlayerState
     private GroundCheck _groundCheck;
     private float _horizontal;
     [SerializeField] private PlayerSettings _settings;
-    private ShootingState _shootingState;
+    private FallingState _fallingState;
     private BaseState _baseState;
+    private PlayerLaser _laser;
     private void Awake()
     {
         _actions = InputManager.Instance.ActionsData;
-        _actions.PlayerMoveEvent.AddListener(HandleMovement);
-        _actions.PlayerShootEvent.AddListener(PlayerShooting);
+        _actions.PlayerShootCancel.AddListener(StopShooting);
         Rb = GetComponent<Rigidbody2D>();
         _groundCheck = GetComponentInChildren<GroundCheck>();
-        _shootingState = GetComponent<ShootingState>();
         _baseState = GetComponent<BaseState>();
+        _fallingState = GetComponent<FallingState>();
+        _laser = GetComponentInChildren<PlayerLaser>();
     }
 
 
@@ -30,17 +31,13 @@ public class FallingState : MonoBehaviour, IPlayerState
         _stateActive = true;
         Momentum = momentum;
     }
-
     private void Update()
     {
         if(_stateActive)
         {
-            HandleMomentum();
-            if (_groundCheck.IsGrounded())
-            {
-                ExitState(_baseState);
-            }
-        }       
+            _laser.Shoot();
+            Rb.AddForce(_laser.AddForce(_settings.shootingForce));
+        }
     }
 
     private void FixedUpdate()
@@ -59,25 +56,18 @@ public class FallingState : MonoBehaviour, IPlayerState
 
     public void HandleMomentum()
     {
-        float sign = Mathf.Sign(Momentum);
-       
-        Momentum = (Mathf.Abs(Momentum) - _settings.playerDrag);
-
-        if (Momentum <= 0)
-            Momentum = 0;
-        else
-            Momentum *= sign;
+        
     }
 
-    private void PlayerShooting()
+    private void StopShooting()
     {
-        ExitState(_shootingState);
+        ExitState(_groundCheck.IsGrounded() ? _baseState : _fallingState);
         //change state to shooting state
     }
 
-    public  void ExitState(IPlayerState state)
+    public void ExitState(IPlayerState state)
     {
+        Momentum = Rb.velocity.x;
         _stateActive = false;
-        state.EnterState(Momentum);
     }
 }

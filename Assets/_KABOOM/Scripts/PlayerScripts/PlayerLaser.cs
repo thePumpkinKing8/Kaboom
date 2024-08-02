@@ -25,11 +25,13 @@ public class PlayerLaser : MonoBehaviour
 
     private void Update()
     {
+        /*
         if(_isShooting)
         {
             Shoot();
-            AddForce();
+            AddForce(_settings.shootingForce);
         }
+        */
     }
 
     private void StartShooting()
@@ -45,7 +47,7 @@ public class PlayerLaser : MonoBehaviour
         _player.XMomentum += _player.Rb.velocity.x;
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         _laser.SetPosition(0, _barrel.position);
         _ray = Physics2D.Raycast(_barrel.position, _gunAngle,100f, ~LayerMask.NameToLayer("Player"));
@@ -84,11 +86,9 @@ public class PlayerLaser : MonoBehaviour
         }
     }
 
-    private void AddForce()
+    public Vector2 AddForce(float recoilForce)
     {
-
-        float shootingForce = 0;
-        /*
+        /* code for chnaging force based on distance from object. commented incase we want to go back to this
         float distance = _ray.point.magnitude - _player.transform.position.magnitude;
 
         float _dist = Vector2.Distance(_player.transform.position, _ray.point);
@@ -100,11 +100,12 @@ public class PlayerLaser : MonoBehaviour
         }
 
         else
-           */ shootingForce = _settings.maxShootingForce;
+           */ 
 
-        Vector2 force = new Vector2(-shootingForce * _gunAngle.x, -shootingForce * _gunAngle.y);
-        _player.AddForce(force);
+        Vector2 force = new Vector2(-recoilForce * _gunAngle.x, -recoilForce * _gunAngle.y);
+        //_player.AddForce(force);
         Debug.Log(force);
+        return force;
     }
 
     

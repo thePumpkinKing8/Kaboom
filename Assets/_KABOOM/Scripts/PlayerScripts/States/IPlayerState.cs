@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface IPlayerState 
 {
-    void EnterState();
+    public float Momentum { get; set; }
+    void EnterState(float momentum = 0);
     void HandleMovement(Vector2 movement);
     void HandleMomentum();
-    void ExitState();
+    void ExitState(IPlayerState state);
 }
