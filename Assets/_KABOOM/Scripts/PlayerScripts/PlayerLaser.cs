@@ -19,7 +19,7 @@ public class PlayerLaser : MonoBehaviour
         _barrel = transform.parent;
         _laser = GetComponent<LineRenderer>();
         _player = GetComponentInParent<PlayerController>();
-        _settings = _player.Settings;
+        //_settings = _player.Settings;
         _laser.enabled = false;
     }
 
@@ -44,7 +44,6 @@ public class PlayerLaser : MonoBehaviour
     {
         _isShooting = false;
         _laser.enabled = false;
-        _player.XMomentum += _player.Rb.velocity.x;
     }
 
     public void Shoot()
@@ -104,7 +103,6 @@ public class PlayerLaser : MonoBehaviour
 
         Vector2 force = new Vector2(-recoilForce * _gunAngle.x, -recoilForce * _gunAngle.y);
         //_player.AddForce(force);
-        Debug.Log(force);
         return force;
     }
 

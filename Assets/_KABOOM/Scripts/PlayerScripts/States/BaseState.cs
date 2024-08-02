@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class BaseState : MonoBehaviour, IPlayerState
 {
-    public Rigidbody2D Rb;
+    private Rigidbody2D _rb;
     private PlayerActionsData _actions;
     public float Momentum { get; set; }
     private bool _stateActive;
     private GroundCheck _groundCheck;
     private float _horizontal;
-    [SerializeField] private PlayerSettings _settings;
+    private PlayerSettings _settings;
     private ShootingState _shootingState;
     private FallingState _fallingState;
  
@@ -18,10 +18,17 @@ public class BaseState : MonoBehaviour, IPlayerState
         _actions = InputManager.Instance.ActionsData;
         _actions.PlayerMoveEvent.AddListener(HandleMovement);
         _actions.PlayerShootEvent.AddListener(PlayerShooting);
-        Rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
         _groundCheck = GetComponentInChildren<GroundCheck>();
         _shootingState = GetComponent<ShootingState>();
         _fallingState = GetComponent<FallingState>();
+        _settings = GameManager.Instance.PlayerPhysicsSettings;
+    }
+
+    private void Start()
+    {
+        _rb.gravityScale = _settings.gravityScale;
+        EnterState();
     }
     //in this state the player is grounded and can walk
     public void EnterState(float momentum = 0)
@@ -34,8 +41,7 @@ public class BaseState : MonoBehaviour, IPlayerState
     {
         if(_stateActive)
         {
-            HandleMomentum();
-            if (!_groundCheck.IsGrounded())
+            if (!_groundCheck.IsGrounded(_settings.groundCheckRadius, _settings.groundLayerMask))
             {
                 ExitState(_fallingState);
                 //go to falling state
@@ -47,7 +53,8 @@ public class BaseState : MonoBehaviour, IPlayerState
     {
         if (_stateActive)
         {
-            Rb.velocity = new Vector2(_horizontal * _settings.movementSpeed + Momentum, Rb.velocity.y);
+            HandleMomentum();
+            _rb.velocity = new Vector2(_horizontal * _settings.movementSpeed + Momentum, _rb.velocity.y);
         }
     }
 

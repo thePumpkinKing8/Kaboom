@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FallingState : MonoBehaviour, IPlayerState
 {
-    public Rigidbody2D Rb;
+    private Rigidbody2D _rb;
     private PlayerActionsData _actions;
     public float Momentum { get; set; }
     private bool _stateActive;
     private GroundCheck _groundCheck;
     private float _horizontal;
-    [SerializeField] private PlayerSettings _settings;
+    private PlayerSettings _settings;
     private ShootingState _shootingState;
     private BaseState _baseState;
     private void Awake()
@@ -18,10 +18,11 @@ public class FallingState : MonoBehaviour, IPlayerState
         _actions = InputManager.Instance.ActionsData;
         _actions.PlayerMoveEvent.AddListener(HandleMovement);
         _actions.PlayerShootEvent.AddListener(PlayerShooting);
-        Rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
         _groundCheck = GetComponentInChildren<GroundCheck>();
         _shootingState = GetComponent<ShootingState>();
         _baseState = GetComponent<BaseState>();
+        _settings = GameManager.Instance.PlayerPhysicsSettings;
     }
 
 
@@ -35,8 +36,8 @@ public class FallingState : MonoBehaviour, IPlayerState
     {
         if(_stateActive)
         {
-            HandleMomentum();
-            if (_groundCheck.IsGrounded())
+            
+            if (_groundCheck.IsGrounded(_settings.groundCheckRadius, _settings.groundLayerMask))
             {
                 ExitState(_baseState);
             }
@@ -47,7 +48,9 @@ public class FallingState : MonoBehaviour, IPlayerState
     {
         if (_stateActive)
         {
-            Rb.velocity = new Vector2(_horizontal * _settings.airSpeed + Momentum, Rb.velocity.y);
+            HandleMomentum();
+            Debug.Log(Momentum);
+            _rb.velocity = new Vector2(_horizontal * _settings.airSpeed + Momentum, _rb.velocity.y);
         }
     }
 

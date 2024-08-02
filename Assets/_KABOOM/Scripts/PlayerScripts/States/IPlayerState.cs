@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IPlayerState 
 {
     public float Momentum { get; set; }
+
     void EnterState(float momentum = 0);
     void HandleMovement(Vector2 movement);
     void HandleMomentum();

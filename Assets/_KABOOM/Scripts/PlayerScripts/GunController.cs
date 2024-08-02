@@ -5,13 +5,14 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [HideInInspector] public float GunAngle { get; private set; }
-    private PlayerController _player;
     private SpriteRenderer _gun;
+    private SpriteRenderer _playerSprite;
 
     private void Awake()
     {
         InputManager.Instance.ActionsData.PlayerAimEvent.AddListener(Aim);
         _gun = GetComponentInChildren<SpriteRenderer>();
+        _playerSprite = GetComponentInParent<SpriteRenderer>();
     }
     // Start is called before the first frame update
     void Start()
@@ -42,12 +43,15 @@ public class GunController : MonoBehaviour
         if (Mathf.Abs(GunAngle) <= 90)
         {
             _gun.flipY = false;
-            _player.FlipPlayer(false);
+            //_player.FlipPlayer(false);
+            _playerSprite.flipX = false;
+            
         }
         else
         {
             _gun.flipY = true;
-            _player.FlipPlayer(true);
+            //_player.FlipPlayer(true);
+            _playerSprite.flipX = true;
         }
             
     }
