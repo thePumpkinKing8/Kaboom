@@ -1,65 +1,95 @@
 
 using UnityEngine;
-/*
 
-/// <summary>
-/// Base class for player states.
-/// </summary>
-public abstract class BaseState
+public class BaseState : MonoBehaviour, IPlayerState
 {
-    public string name;
-    protected internal PlayerController player;
-    protected InputController input;
-    protected PlayerSettings settings;
-    protected BaseState(string name, PlayerController player)
+    private Rigidbody2D _rb;
+    private PlayerActionsData _actions;
+    public float Momentum { get; set; }
+    private bool _stateActive;
+    private GroundCheck _groundCheck;
+    private float _horizontal;
+    private PlayerSettings _settings;
+    private ShootingState _shootingState;
+    private FallingState _fallingState;
+ 
+    private void Awake()
     {
-        this.name = name;
-        this.player = player;
-        input = player.inputController;
-        settings = player.settings;
-    }
-    
-
-
-    
-
-    protected void ChangeState(BaseState state) => player.ChangeState(state); 
-    public virtual void EnterState() { }
-
-    //handled on the update step
-    public virtual void HandleInput()
-    {
-        if (input.IsShoot)
-            player.ChangeState(player.shootingState);
+        _actions = InputManager.Instance.ActionsData;
+        _actions.PlayerMoveEvent.AddListener(HandleMovement);
+        _actions.PlayerShootEvent.AddListener(PlayerShooting);
+        _rb = GetComponent<Rigidbody2D>();
+        _groundCheck = GetComponentInChildren<GroundCheck>();
+        _shootingState = GetComponent<ShootingState>();
+        _fallingState = GetComponent<FallingState>();
+        _settings = GameManager.Instance.PlayerPhysicsSettings;
     }
 
-
-    //handled on the update step
-    public virtual void UpdateState()
+    private void Start()
     {
-        if(Mathf.Abs(player.rb.velocity.x) > settings.maxVelocity)
+        _rb.gravityScale = _settings.gravityScale;
+        EnterState(); //this is always the starting state
+    }
+    //in this state the player is grounded and can walk
+    public void EnterState(float momentum = 0)
+    {
+        _stateActive = true;
+        Momentum = momentum;
+    }
+
+    private void Update()
+    {
+        if(_stateActive)
         {
-            player.rb.velocity = new Vector2(Mathf.Sign(player.rb.velocity.x) * settings.maxVelocity, player.rb.velocity.y);
-        }
+            if (!_groundCheck.IsGrounded(_settings.groundCheckRadius, _settings.groundLayerMask))
+            {
+                ExitState(_fallingState);
+                //go to falling state
+            }
+        }     
+    }
 
-        if (Mathf.Abs(player.rb.velocity.y) > settings.maxVelocity)
+    private void FixedUpdate()
+    {
+        if (_stateActive)
         {
-            player.rb.velocity = new Vector2(player.rb.velocity.x, Mathf.Sign(player.rb.velocity.y) *  settings.maxVelocity);
+            HandleMomentum();
+            _rb.velocity = new Vector2(_horizontal * _settings.movementSpeed + Momentum, _rb.velocity.y);
         }
     }
-    /// <summary>
-    /// used to handle movement that we want to happen on the fixed update step
-    /// </summary>
-    public virtual void HandleMovement()
-    {
 
+    // used to handle movement inputs
+    public void HandleMovement(Vector2 move)
+    {
+        _horizontal = move.x;
     }
 
-    public virtual void ExitState() 
+    //manually reduces the players momentum over time
+    public void HandleMomentum()
     {
-    
+        float sign = Mathf.Sign(Momentum); //save whether momentum is in a positive or negative direction
+
+        Momentum = (Mathf.Abs(Momentum) - _settings.playerFriction); //reduce the absolute value of the players momentum 
+
+        if (Momentum <= 0) //sets the player momentum to zero if it becomes negative
+            Momentum = 0;
+        else
+            Momentum *= sign; //reapply the saved sign to momentum
+    }
+
+    private void PlayerShooting()
+    {
+        ExitState(_shootingState);
+        //change state to shooting state
+    }
+
+    //sets this state to inactive and activates the next state
+    public void ExitState(IPlayerState state) 
+    {
+        _stateActive = false;
+        state.EnterState(Momentum);
+        
     }
 
 
 }
-*/

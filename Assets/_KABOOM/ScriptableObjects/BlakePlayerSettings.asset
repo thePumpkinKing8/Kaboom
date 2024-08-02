@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01642a625c5b7224d9ba5d8b7b030269, type: 3}
-  m_Name: PlayerSettings
+  m_Name: BlakePlayerSettings
   m_EditorClassIdentifier: 
   movementSpeed: 5
   maxVelocity: 20
   maxHealth: 100
   invulnFrameTime: 1.5
-  knockBackForce: 2
+  knockBackForce: 6
   hitTime: 0.25
   airSpeed: 5
   gravityScale: 1
-  playerDrag: 0.02
-  playerFriction: 1
+  playerDrag: 0.15
+  playerFriction: 1.5
   fallCheck: 0.2
-  shootingForce: 1
-  maxShootingForce: 50
-  minShootingForce: 20
+  shootingForce: 20
+  maxShootingForce: 20
+  minShootingForce: 15
   groundCheckRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
