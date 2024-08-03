@@ -297,7 +297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &205253840
 Grid:
   m_ObjectHideFlags: 0
@@ -819,7 +819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1243309471
 Transform:
   m_ObjectHideFlags: 0
@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6833419b97ee53e44ba46ccb7673d38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tilebreakDelay: 2
 --- !u!19719996 &1243309475
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1060,33 +1061,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1243309475}
-    m_ColliderPaths:
-    - - X: 27800000
-        Y: 17800000
-      - X: 2200000
-        Y: 17800000
-      - X: 2200000
-        Y: -7799999
-      - X: 27800000
-        Y: -7799999
-    - - X: -32200000
-        Y: 17800000
-      - X: -57799996
-        Y: 17800000
-      - X: -57799996
-        Y: -7799999
-      - X: -32200000
-        Y: -7799999
-    - - X: -2200000
-        Y: 17800000
-      - X: -27800000
-        Y: 17800000
-      - X: -27800000
-        Y: -7799999
-      - X: -2200000
-        Y: -7799999
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 2.779971, y: -0.7799999}
