@@ -7,6 +7,9 @@ public class BreakableTile : MonoBehaviour
 {
     private Tilemap _breakableTilemap;
 
+    [SerializeField]
+    private float _tilebreakDelay = 2;
+
     private void Awake()
     {
         _breakableTilemap = GetComponent<Tilemap>();
@@ -29,6 +32,17 @@ public class BreakableTile : MonoBehaviour
     // This function should be called by an event
     public void BreakTile(Vector2 contactPoint)
     {
+        Debug.Log("before");
+
+        StartCoroutine(TileBreakDelay(contactPoint));
+
+        Debug.Log("after");
+
+    }
+
+    IEnumerator TileBreakDelay(Vector2 contactPoint)
+    {
+        yield return new WaitForSeconds(_tilebreakDelay);
 
         Vector3 hitPosition = Vector3.zero;
 
@@ -40,8 +54,9 @@ public class BreakableTile : MonoBehaviour
 
         Vector3Int currentCellPosition = _breakableTilemap.WorldToCell(hitPosition);
 
-    
+
         _breakableTilemap.SetTile(currentCellPosition, null);
 
+        Debug.Log("coroutine finished");
     }
 }
