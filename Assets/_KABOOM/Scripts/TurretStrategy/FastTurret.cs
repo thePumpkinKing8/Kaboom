@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandardTurret : MonoBehaviour
+public class FastTurret : MonoBehaviour
 {
-    //public void Shoot()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
     // WILL REFRACTOR THESE TO NOT BE SO TERRIBLE
 
     [SerializeField]
@@ -18,16 +13,16 @@ public class StandardTurret : MonoBehaviour
     private GameObject _bulletPrefab;
 
     [SerializeField]
-    private float _shotSpeed = 2f;
+    private float _shotSpeed = 20f;
 
     [SerializeField]
-    private float _shotDelay = 5f;
+    private float _shotDelay = 1f;
 
     private bool _currentlyShooting = false;
 
     private void Update()
     {
-        if(_currentlyShooting == false)
+        if (_currentlyShooting == false)
         {
             StartCoroutine(WaitToShoot());
         }
