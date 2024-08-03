@@ -4,6 +4,6 @@ using UnityEngine;
 
  public interface IShoot
  {
-    void Use();
+    void Shoot();
  }
 
