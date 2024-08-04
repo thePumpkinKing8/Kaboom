@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bounce : MonoBehaviour
+public class FastBounce : MonoBehaviour
 {
     float speed = 0.1f;
     private Vector3 direction; 
