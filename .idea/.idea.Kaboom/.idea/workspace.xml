@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a50194a-98fa-450c-b5f3-a53a2636f7ca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_KABOOM/Scenes/ShayGym.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_KABOOM/Scenes/ShayGym.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-    </list>
+    <list default="true" id="0a50194a-98fa-450c-b5f3-a53a2636f7ca" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +92,7 @@
       <workItem from="1721668165418" duration="820000" />
       <workItem from="1721731553997" duration="135000" />
       <workItem from="1722266077622" duration="1373000" />
-      <workItem from="1722714763092" duration="19647000" />
+      <workItem from="1722714763092" duration="19862000" />
     </task>
     <servers />
   </component>
