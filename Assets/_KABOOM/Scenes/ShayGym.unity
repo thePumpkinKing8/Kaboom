@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412461452}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bcb52aed852c4e5dab1ab48eb8aa4c4, type: 3}
   m_Name: 
@@ -2127,8 +2127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1625243489}
   _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
-  _shotSpeed: 5
-  _shotDelay: 3
 --- !u!1 &1926099735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004802087}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c8654ddf929b46709d0b7414018a69d, type: 3}
   m_Name: 

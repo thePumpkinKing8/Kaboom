@@ -20,56 +20,71 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected GameObject _bulletPrefab; // The bullet
 
-    [SerializeField]
     protected float _shotSpeed; // How fast the bullet comes out
 
-    [SerializeField]
     protected float _shotDelay; // Time between shots
 
-    [SerializeField]
     protected float _amountOfProjectiles; // How many bullets per shot
 
     protected bool _isHoming = false; // Whether the bullets track the player or not
 
     protected int _bulletPoolAmount = 20; // How many bullets pooled
 
+    protected float _bulletLifetime = 10f; // How long until bullets are set inactive
+
     protected List<GameObject> _pooledBullets; // List of the projectiles for the pool
 
-    protected Vector2 _shotDiretion;
+    public GameObject GetPooledObject()
+    {
+        for(int i = 0; i < _bulletPoolAmount; i++)
+        {
+            if (!_pooledBullets[i].activeInHierarchy)
+            {
+                return _pooledBullets[i];
+            }
+        }
+
+        return null;
+    }
 
     private void Awake()
     {
         SharedInstance = this;
+        Debug.Log("this script is being called wow");
+
+        CreateBulletPool();
+
     }
 
     private void Start()
     {
-        _pooledBullets = new List<GameObject>();
-        GameObject bullet = _bulletPrefab;
+        TryShoot();
+    }
 
-        // For as many bullets as we've declared for the pool:
-        for(int i = 0; i < _bulletPoolAmount; i++)
+    private void CreateBulletPool()
+    {
+        _pooledBullets = new List<GameObject>();
+
+        //For as many bullets as we've declared for the pool:
+        for (int i = 0; i < _bulletPoolAmount; i++)
         {
-            bullet = Instantiate(_bulletPrefab); // Instantiate bullet
+            GameObject bullet = Instantiate(_bulletPrefab); // Instantiate bullet
 
             bullet.SetActive(false); // Hides the bullet until it's used
 
             _pooledBullets.Add(bullet); // Add this bullet to the pool
         }
+
+        Debug.Log("successfully created pool");
     }
 
     private void Update()
     {
         // Only shoot if a shot is not currently being fired
-        if(_currentlyShooting == false)
+        if (_currentlyShooting == false)
         {
             StartCoroutine(WaitToShoot());
         }
-    }
-
-    protected void ShootBullet()
-    {
-        _bulletPrefab.transform.Translate(transform.right * _shotSpeed * Time.deltaTime); // Move the bullet forward at the correct speed
     }
 
     private IEnumerator WaitToShoot()
@@ -77,17 +92,24 @@ public class BaseShoot : MonoBehaviour
         _currentlyShooting = true;
 
         yield return new WaitForSeconds(_shotDelay); // Wait between shots
-        ShootBullet(); // Shoot after waiting
+
+        GameObject bullet = GetPooledObject();
+
+        if (bullet != null)
+        {
+            bullet.transform.position = _shotSpawnPoint.position;
+            bullet.transform.rotation = _shotSpawnPoint.rotation;
+            bullet.SetActive(true);
+            bullet.GetComponent<Rigidbody2D>().velocity = _shotSpawnPoint.forward * _shotSpeed;
+        }
 
         _currentlyShooting = false; // Allows the coroutine to be called again
     }
 
-
-
-
-
-
-
-
+    private void TryShoot()
+    {
+        CurrentShotType?.Shoot();
+        Debug.Log("tried to shoot");
+    }
 
 }

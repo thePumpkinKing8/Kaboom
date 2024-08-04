@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class StandardTurret : BaseShoot, IShoot
 {
-    public void Shoot()
-    {
-        throw new System.NotImplementedException();
-    }
+
 
     //private void Update()
     ////{
@@ -29,11 +26,23 @@ public class StandardTurret : BaseShoot, IShoot
     //    //_currentlyShooting = false;
     //}
 
+    public float Speed
+    {
+        get { return _shotSpeed; }
+        set { Speed = value; }
+    }
+
     private void Start()
     {
         this.CurrentShotType = this; // Sets this as the shot type for the turret in question. Will not use the interface otherwise.
 
+        _shotSpeed = 0.1f;
+    }
+    public void Shoot()
+    {
         // Set variables for this type of turret
         this._shotSpeed = 5f;
+
+        this._shotDelay = 2f;
     }
 }
