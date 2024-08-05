@@ -9,6 +9,9 @@ public class PlayerLaser : MonoBehaviour
     private GunController _gunController;
     private Transform _barrel;
     private RaycastHit2D _ray;
+    [SerializeField] private float _laserWidth = .25f;
+    [SerializeField] private ParticleSystem _laserParticlePrefab; //particle effect thats spawned by the laser
+    private ParticleSystem _laserContactEffect;
     private void Awake()
     {
         InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
@@ -25,11 +28,13 @@ public class PlayerLaser : MonoBehaviour
     private void StartShooting()
     {
         _laser.enabled = true;
+        _laserContactEffect = Instantiate(_laserParticlePrefab);
     }
 
     private void StopShooting()
     { 
         _laser.enabled = false;
+        _laserContactEffect.Stop();
     }
 
     private void Update()
@@ -46,7 +51,7 @@ public class PlayerLaser : MonoBehaviour
     public void Shoot()
     {
         _laser.SetPosition(0, _barrel.position);
-        _ray = Physics2D.Raycast(_barrel.position, _gunAngle,100f, ~LayerMask.NameToLayer("Player"));
+        _ray = Physics2D.CircleCast(_barrel.position,_laserWidth,_gunAngle,100f, ~LayerMask.NameToLayer("Player"));
         
         if (_ray.collider != null)
         {
@@ -63,6 +68,8 @@ public class PlayerLaser : MonoBehaviour
             _laser.SetPosition(1, (Vector2)_barrel.position + (_gunAngle * 100f));
             Debug.DrawLine(_barrel.position, (Vector2)_barrel.position + (_gunAngle * 100f));
         }
+        //sets the contact effects position to where the laser is hitting
+        _laserContactEffect.transform.position = _ray.point;
             
     }
 
