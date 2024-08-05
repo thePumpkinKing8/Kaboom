@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -20,20 +21,25 @@ public class BaseShoot : MonoBehaviour
     [SerializeField]
     protected GameObject _bulletPrefab; // The bullet
 
-    protected float _shotSpeed; // How fast the bullet comes out
+    protected float _shotSpeed = 1f; // How fast the bullet comes out
 
-    protected float _shotDelay; // Time between shots
+    protected float _shotDelay = 1f; // Time between shots
 
-    protected float _amountOfProjectiles; // How many bullets per shot
+    protected int _amountOfProjectiles = 1; // How many bullets per shot
 
     protected bool _isHoming = false; // Whether the bullets track the player or not
 
-    protected int _bulletPoolAmount = 20; // How many bullets pooled
+    protected int _bulletPoolAmount = 10; // How many bullets pooled. KEEP HIGH ENOUGH for the speed and amount of projectiles to avoid out of range exceptions
 
-    protected float _bulletLifetime = 10f; // How long until bullets are set inactive
+    protected float _bulletLifetime = 1f; // How long until bullets are set inactive
 
-    protected List<GameObject> _pooledBullets; // List of the projectiles for the pool
+    protected float _shotStagger = 0.1f; // Stagger shots in case of shooting multiple bullets at a time
 
+    protected List<GameObject> _pooledBullets = new List<GameObject>(); // List of the projectiles for the pool
+
+    public IObjectPool<GameObject> BulletPool;
+
+    // Get bullets from the pool
     public GameObject GetPooledObject()
     {
         for(int i = 0; i < _bulletPoolAmount; i++)
@@ -50,21 +56,12 @@ public class BaseShoot : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
-        Debug.Log("this script is being called wow");
 
         CreateBulletPool();
-
-    }
-
-    private void Start()
-    {
-        TryShoot();
     }
 
     private void CreateBulletPool()
     {
-        _pooledBullets = new List<GameObject>();
-
         //For as many bullets as we've declared for the pool:
         for (int i = 0; i < _bulletPoolAmount; i++)
         {
@@ -74,8 +71,6 @@ public class BaseShoot : MonoBehaviour
 
             _pooledBullets.Add(bullet); // Add this bullet to the pool
         }
-
-        Debug.Log("successfully created pool");
     }
 
     private void Update()
@@ -83,33 +78,47 @@ public class BaseShoot : MonoBehaviour
         // Only shoot if a shot is not currently being fired
         if (_currentlyShooting == false)
         {
+            TryShoot();
+
             StartCoroutine(WaitToShoot());
         }
     }
 
     private IEnumerator WaitToShoot()
     {
-        _currentlyShooting = true;
+        _currentlyShooting = true; // In the process of firing a shot
 
-        yield return new WaitForSeconds(_shotDelay); // Wait between shots
+        yield return new WaitForSeconds(_shotDelay);
 
         GameObject bullet = GetPooledObject();
 
-        if (bullet != null)
+        for(int i = 0; i <_amountOfProjectiles; i++)
         {
-            bullet.transform.position = _shotSpawnPoint.position;
-            bullet.transform.rotation = _shotSpawnPoint.rotation;
-            bullet.SetActive(true);
-            bullet.GetComponent<Rigidbody2D>().velocity = _shotSpawnPoint.forward * _shotSpeed;
+            if (bullet != null)
+            {
+                // Put the bullets at the spawn point (opening of the turret barrel)
+                bullet.transform.position = _shotSpawnPoint.position;
+                bullet.transform.rotation = _shotSpawnPoint.rotation;
+
+                bullet.SetActive(true); // Activate one bullet
+
+                bullet.GetComponent<Rigidbody2D>().velocity = _shotSpawnPoint.right * _shotSpeed; // Shoot the bullet forward
+            }
+
+            yield return new WaitForSeconds(_shotStagger); // In the event of multiple bullets per volley
+
         }
 
-        _currentlyShooting = false; // Allows the coroutine to be called again
+        _currentlyShooting = false; // Allows this coroutine to be called again
+
+        yield return new WaitForSeconds(_bulletLifetime);
+
+        bullet.SetActive(false); // Deactivate bullet after its lifetime
     }
 
     private void TryShoot()
     {
-        CurrentShotType?.Shoot();
-        Debug.Log("tried to shoot");
+        CurrentShotType?.Shoot(); // Sets the turret type
     }
 
 }

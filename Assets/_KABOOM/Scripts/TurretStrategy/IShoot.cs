@@ -6,4 +6,3 @@ using UnityEngine;
  {
     void Shoot();
  }
-
