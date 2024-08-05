@@ -10,7 +10,6 @@ public class PlayerLaser : MonoBehaviour
     private Transform _barrel;
     private RaycastHit2D _ray;
     [SerializeField] private float _laserWidth = .25f;
-    [SerializeField] private ParticleSystem _laserParticlePrefab; //particle effect thats spawned by the laser
     private ParticleSystem _laserContactEffect;
     private void Awake()
     {
@@ -28,7 +27,7 @@ public class PlayerLaser : MonoBehaviour
     private void StartShooting()
     {
         _laser.enabled = true;
-        _laserContactEffect = Instantiate(_laserParticlePrefab);
+        _laserContactEffect = PoolManager.Instance.Spawn("LaserContactEffect").GetComponent<ParticleSystem>();
     }
 
     private void StopShooting()
