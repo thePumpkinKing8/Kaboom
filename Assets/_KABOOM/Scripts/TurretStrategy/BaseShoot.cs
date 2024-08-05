@@ -37,7 +37,9 @@ public class BaseShoot : MonoBehaviour
 
     protected List<GameObject> _pooledBullets = new List<GameObject>(); // List of the projectiles for the pool
 
-    public IObjectPool<GameObject> BulletPool;
+    private Rigidbody2D _bulletRB;
+
+
 
     // Get bullets from the pool
     public GameObject GetPooledObject()
@@ -58,6 +60,8 @@ public class BaseShoot : MonoBehaviour
         SharedInstance = this;
 
         CreateBulletPool();
+
+        _bulletRB = _bulletPrefab.GetComponent<Rigidbody2D>();
     }
 
     private void CreateBulletPool()
