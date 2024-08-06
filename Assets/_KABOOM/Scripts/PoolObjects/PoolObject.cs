@@ -14,6 +14,6 @@ public class PoolObject : MonoBehaviour
     /// </summary>
     public virtual void OnSpawn()
     {
-        //GetComponent<SpriteRenderer>().color = GameManager.Instance.color;
+        
     }
 }
