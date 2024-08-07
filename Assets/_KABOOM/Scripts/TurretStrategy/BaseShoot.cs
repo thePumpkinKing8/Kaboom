@@ -23,7 +23,7 @@ public class BaseShoot : MonoBehaviour
 
     protected float _shotSpeed = 1f; // How fast the bullet comes out
 
-    protected float _shotDelay = 1f; // Time between shots
+    protected float _shotDelay = 2f; // Time between shots
 
     protected int _amountOfProjectiles = 1; // How many bullets per shot
 

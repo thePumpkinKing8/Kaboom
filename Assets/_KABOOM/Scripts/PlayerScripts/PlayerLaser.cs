@@ -15,6 +15,7 @@ public class PlayerLaser : MonoBehaviour
     {
         InputManager.Instance.ActionsData.PlayerShootEvent.AddListener(StartShooting);
         InputManager.Instance.ActionsData.PlayerShootCancel.AddListener(StopShooting);
+        LevelManager.Instance.EventData.NewLevelStartEvent.AddListener(LevelEnd);
         _barrel = transform.parent;
         _laser = GetComponent<LineRenderer>();
         _gunController = GetComponentInParent<GunController>();
@@ -22,6 +23,12 @@ public class PlayerLaser : MonoBehaviour
         //_settings = _player.Settings;
         _laser.enabled = false;
     }
+
+    private void LevelEnd(string tr)
+    {
+        _laserContactEffect.Stop();
+    }
+
 
 
     private void StartShooting()

@@ -39,6 +39,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void ReLoadLevel(string str)
     {
+        EventData.NewLevelStartEvent.Invoke("new level");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
