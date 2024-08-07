@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b265c3ab2f4e4a24da57268fee523899, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  LevelName: BlakeGym
+  LevelName: Gym
   KeysToWin: 3
   BGMName: funnymusic.wav

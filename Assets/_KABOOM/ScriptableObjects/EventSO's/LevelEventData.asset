@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1f793b027910242940e0aaa3009148, type: 3}
+  m_Name: LevelEventData
+  m_EditorClassIdentifier: 
+  ExplosionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  KeyCollectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  TurretFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  WallDestroyedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  NewLevelStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  LevelCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerKilledEvent:
+    m_PersistentCalls:
+      m_Calls: []

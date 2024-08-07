@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 6179941000586752281}
   - component: {fileID: 3220262499228483303}
   - component: {fileID: 2841916434035736254}
+  - component: {fileID: 4542600446871286228}
   m_Layer: 0
   m_Name: StatesPlayer
   m_TagString: Untagged
@@ -282,6 +283,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b495d979594c69549af8db844d1efd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4542600446871286228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112621236446615803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf49cb600962fea47bc6785d5404da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1391378317200169478
@@ -522,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb8d27aa42fcd74d8bf540705a4b3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _laserWidth: 0.25
 --- !u!1 &8636621228813054826
 GameObject:
   m_ObjectHideFlags: 0

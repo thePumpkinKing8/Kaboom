@@ -746,6 +746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 568941742}
+  - component: {fileID: 568941743}
   m_Layer: 0
   m_Name: '[LevelManager]'
   m_TagString: Untagged
@@ -768,6 +769,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568941743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568941741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109c31f9cc702e443826a2d08484783b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventData: {fileID: 11400000, guid: 4f8e622c29e75984e8a7ae530167ecb6, type: 2}
+  _levelIndex: 0
+  _levels:
+  - {fileID: 11400000, guid: d29339ae3bcfd4f4bbb32e8396dea8e4, type: 2}
 --- !u!1 &650281967
 GameObject:
   m_ObjectHideFlags: 0
@@ -121784,10 +121801,6 @@ PrefabInstance:
     - target: {fileID: 1112621236446615803, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1543682115676032543, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1543682115676032543, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_LocalPosition.x

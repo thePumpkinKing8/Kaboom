@@ -70,6 +70,7 @@ public class BaseShoot : MonoBehaviour
         for (int i = 0; i < _bulletPoolAmount; i++)
         {
             GameObject bullet = Instantiate(_bulletPrefab); // Instantiate bullet
+            bullet.GetComponent<BulletPlaceholder>().parent = this;
 
             bullet.SetActive(false); // Hides the bullet until it's used
 
@@ -117,7 +118,16 @@ public class BaseShoot : MonoBehaviour
 
         yield return new WaitForSeconds(_bulletLifetime);
 
-        bullet.SetActive(false); // Deactivate bullet after its lifetime
+        DespawnProjectile(bullet);
+       // bullet.SetActive(false); // Deactivate bullet after its lifetime
+    }
+
+    public void DespawnProjectile(GameObject obj)
+    {
+        if(_pooledBullets.Find(x => x.gameObject == obj) != null)
+        {
+            obj.SetActive(false);
+        }
     }
 
     private void TryShoot()

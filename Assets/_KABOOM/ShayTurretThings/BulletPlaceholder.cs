@@ -5,9 +5,11 @@ using UnityEngine;
 public class BulletPlaceholder : MonoBehaviour
 {
     private float _bulletLifetime = 5;
+    public BaseShoot parent; 
 
-    private void Awake()
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject, _bulletLifetime);
+        parent.DespawnProjectile(this.gameObject);
     }
 }
