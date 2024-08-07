@@ -74,21 +74,32 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(string audioName)
     {
-        if(_audioPairs.TryGetValue(audioName, out var audioData))
+        //finds all audioPairs that contain audioName and adds them to a list
+        List<AudioSO> audioData = new List<AudioSO>();
+        foreach(KeyValuePair<string, AudioSO> audio in _audioPairs)
         {
-            _audioSource = GetAudioSource();
-
-            // Gives the parameters from the scriptable object to the audio clip in question
-            _audioSource.clip = audioData.Clip;
-            _audioSource.volume = audioData.Volume;
-            _audioSource.pitch = audioData.Pitch;
-            _audioSource.priority = audioData.Priority;
-            _audioSource.loop = audioData.Loop;
-            _audioSource.playOnAwake = audioData.PlayOnAwake;
-            _audioSource.outputAudioMixerGroup = audioData.Mixer;   
-
-            _audioSource.PlayOneShot(audioData.Clip);
+            if(audio.Key.Contains(audioName))
+            {
+                audioData.Add(audio.Value);
+            }
         }
+
+        //sets up and plays an audioclip chosen randomly from the above list
+        if(audioData.Count > 0)
+        {
+            AudioSO audio = audioData[Random.Range(0, audioData.Count -1)];
+            // Gives the parameters from the scriptable object to the audio clip in question
+            _audioSource.clip = audio.Clip;
+            _audioSource.volume = audio.Volume;
+            _audioSource.pitch = audio.Pitch;
+            _audioSource.priority = audio.Priority;
+            _audioSource.loop = audio.Loop;
+            _audioSource.playOnAwake = audio.PlayOnAwake;
+            _audioSource.outputAudioMixerGroup = audio.Mixer;
+
+            _audioSource.PlayOneShot(audio.Clip);
+        }
+       
         else
         {
             Debug.Log("The clip" + audioName + "cannot be found.");
