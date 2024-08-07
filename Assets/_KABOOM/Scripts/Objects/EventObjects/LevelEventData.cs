@@ -11,4 +11,6 @@ public class LevelEventData : ScriptableObject
     public UnityEvent<string> KeyCollectedEvent;
     public UnityEvent<string> TurretFireEvent;
     public UnityEvent<string> WallDestroyedEvent;
+    public UnityEvent<string> NewLevelStartEvent;
+    public UnityEvent LevelCompleteEvent;
 }
