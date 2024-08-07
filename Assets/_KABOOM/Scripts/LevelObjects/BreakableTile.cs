@@ -59,7 +59,7 @@ public class BreakableTile : MonoBehaviour
         _breakableTilemap.SetTile(currentCellPosition, null);
         PoolManager.Instance.Spawn("Explosion1");
 
-        Debug.Log("coroutine finished");
+        //Debug.Log("coroutine finished");
 
         //yield return null;
     }
