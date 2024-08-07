@@ -6,7 +6,7 @@ public class Key : Collectibles
 {
     protected override void Collect()
     {
-
+        LevelManager.Instance.EventData.KeyCollectedEvent.Invoke("KeyCollected");
         base.Collect(); 
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EventManager : Singleton<EventManager>
 {
+    /*
     public LevelEventData LevelEvents { get; private set; }
 
     private void OnEnable()
@@ -30,4 +31,5 @@ public class EventManager : Singleton<EventManager>
     {
         LevelEvents.WallDestroyedEvent.Invoke("WallDestruction");
     }
+    */
 }
