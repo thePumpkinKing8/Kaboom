@@ -116,9 +116,9 @@ public class BaseShoot : MonoBehaviour
 
         _currentlyShooting = false; // Allows this coroutine to be called again
 
-        yield return new WaitForSeconds(_bulletLifetime);
+        //yield return new WaitForSeconds(_bulletLifetime);
 
-        DespawnProjectile(bullet);
+        //DespawnProjectile(bullet);
        // bullet.SetActive(false); // Deactivate bullet after its lifetime
     }
 
