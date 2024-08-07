@@ -7,8 +7,8 @@ public class BreakableTile : MonoBehaviour
 {
     private Tilemap _breakableTilemap;
 
-    [SerializeField]
-    private float _tilebreakDelay = 2;
+    //[SerializeField]
+    //private float _tilebreakDelay = 2;
 
     private void Awake()
     {
@@ -34,15 +34,16 @@ public class BreakableTile : MonoBehaviour
     {
         Debug.Log("before");
 
-        StartCoroutine(TileBreakDelay(contactPoint));
+        TileBreakDelay(contactPoint);
 
         Debug.Log("after");
 
     }
 
-    IEnumerator TileBreakDelay(Vector2 contactPoint)
+    // Change to coroutine again when we use the tilebreakdelay
+    void TileBreakDelay(Vector2 contactPoint)
     {
-        yield return new WaitForSeconds(_tilebreakDelay);
+        //yield return new WaitForSeconds(_tilebreakDelay);
 
         Vector3 hitPosition = Vector3.zero;
 
@@ -59,5 +60,7 @@ public class BreakableTile : MonoBehaviour
         PoolManager.Instance.Spawn("Explosion1");
 
         Debug.Log("coroutine finished");
+
+        //yield return null;
     }
 }
