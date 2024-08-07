@@ -13,14 +13,15 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private LevelSO[] _levels;
 
 
-    private void Awake()
+    private void OnEnable()
     {
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
+        LoadLevel();
     }
     private void Start()
     {
-        LoadLevel();
+        
     }
     //sets up parameters for level completion and othe level specific settings
     public void LoadLevel()
