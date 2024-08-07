@@ -56,9 +56,14 @@ public class PlayerLaser : MonoBehaviour
         {
             _laser.SetPosition(1, _ray.point);
             Debug.DrawLine(_barrel.position, _ray.point);
+            //remove this code and make it so that the object hit detects the laser
             if(_ray.collider.GetComponent<BreakableTile>() != null)
             {
                 _ray.collider.GetComponent<BreakableTile>().BreakTile(_ray.point);
+            }
+            if(_ray.collider.GetComponent<BulletPlaceholder>() != null)
+            {
+                _ray.collider.gameObject.SetActive(false);
             }
         }
             
