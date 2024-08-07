@@ -2038,6 +2038,7 @@ GameObject:
   - component: {fileID: 1819718944}
   - component: {fileID: 1819718943}
   - component: {fileID: 1819718945}
+  - component: {fileID: 1819718946}
   m_Layer: 0
   m_Name: NormalTurret
   m_TagString: Untagged
@@ -2127,6 +2128,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1625243489}
   _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  ShootEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2549642349609061936, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+        m_TargetAssemblyTypeName: ShayTurretProjectile, Assembly-CSharp
+        m_MethodName: FireProjectile
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1819718946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819718942}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ef7cc41755da04cae2201edb924927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1926099735
 GameObject:
   m_ObjectHideFlags: 0
