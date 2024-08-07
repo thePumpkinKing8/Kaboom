@@ -20,15 +20,15 @@ public class BaseShoot : MonoBehaviour
 
     [SerializeField]
     protected GameObject _bulletPrefab; // The bullet
-
+    [SerializeField]
     protected float _shotSpeed = 1f; // How fast the bullet comes out
-
+    [SerializeField]
     protected float _shotDelay = 2f; // Time between shots
-
+    [SerializeField]
     protected int _amountOfProjectiles = 1; // How many bullets per shot
-
+    [SerializeField]
     protected bool _isHoming = false; // Whether the bullets track the player or not
-
+   
     protected int _bulletPoolAmount = 10; // How many bullets pooled. KEEP HIGH ENOUGH for the speed and amount of projectiles to avoid out of range exceptions
 
     protected float _bulletLifetime = 1f; // How long until bullets are set inactive
