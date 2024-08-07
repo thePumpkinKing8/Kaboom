@@ -18,6 +18,10 @@ public class LevelManager : Singleton<LevelManager>
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
     }
+    private void Start()
+    {
+        LoadLevel();
+    }
     //sets up parameters for level completion and othe level specific settings
     public void LoadLevel()
     {
