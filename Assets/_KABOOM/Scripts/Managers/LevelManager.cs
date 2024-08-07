@@ -18,6 +18,7 @@ public class LevelManager : Singleton<LevelManager>
         //EventData = new LevelEventData();
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
+        EventData.PlayerKilledEvent.AddListener(ReLoadLevel);
         //LoadLevel();
     }
     private void Start()
@@ -34,6 +35,11 @@ public class LevelManager : Singleton<LevelManager>
         SceneManager.LoadScene(_currentLevel.LevelName);
         //EventData.NewLevelStartEvent.Invoke(_currentLevel.BGMName);
         _levelIndex++;
+    }
+
+    public void ReLoadLevel(string str)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void KeyCollected(string str)
