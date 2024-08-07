@@ -10,6 +10,6 @@ public class BulletPlaceholder : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        parent.DespawnProjectile(this.gameObject)
+        parent.DespawnProjectile(this.gameObject);
     }
 }
