@@ -35,48 +35,22 @@ public class BaseShoot : MonoBehaviour
 
     protected float _shotStagger = 0.1f; // Stagger shots in case of shooting multiple bullets at a time
 
-    protected List<GameObject> _pooledBullets = new List<GameObject>(); // List of the projectiles for the pool
+    private PoolManager _poolManager;
+    //protected List<GameObject> _pooledBullets = new List<GameObject>(); // List of the projectiles for the pool
 
     private Rigidbody2D _bulletRB;
-
-
-
-    // Get bullets from the pool
-    public GameObject GetPooledObject()
-    {
-        for(int i = 0; i < _bulletPoolAmount; i++)
-        {
-            if (!_pooledBullets[i].activeInHierarchy)
-            {
-                return _pooledBullets[i];
-            }
-        }
-
-        return null;
-    }
 
     private void Awake()
     {
         SharedInstance = this;
 
-        CreateBulletPool();
 
         _bulletRB = _bulletPrefab.GetComponent<Rigidbody2D>();
+
+        _poolManager = PoolManager.Instance;
     }
 
-    private void CreateBulletPool()
-    {
-        //For as many bullets as we've declared for the pool:
-        for (int i = 0; i < _bulletPoolAmount; i++)
-        {
-            GameObject bullet = Instantiate(_bulletPrefab); // Instantiate bullet
-            bullet.GetComponent<BulletPlaceholder>().parent = this;
-
-            bullet.SetActive(false); // Hides the bullet until it's used
-
-            _pooledBullets.Add(bullet); // Add this bullet to the pool
-        }
-    }
+ 
 
     private void Update()
     {
@@ -95,7 +69,8 @@ public class BaseShoot : MonoBehaviour
 
         yield return new WaitForSeconds(_shotDelay);
 
-        GameObject bullet = GetPooledObject();
+        PoolObject obj = _poolManager.Spawn("TurretProjectile");
+        TurretProjectile bullet = obj.GetComponent<TurretProjectile>();
 
         for(int i = 0; i <_amountOfProjectiles; i++)
         {
@@ -104,10 +79,9 @@ public class BaseShoot : MonoBehaviour
                 // Put the bullets at the spawn point (opening of the turret barrel)
                 bullet.transform.position = _shotSpawnPoint.position;
                 bullet.transform.rotation = _shotSpawnPoint.rotation;
-
-                bullet.SetActive(true); // Activate one bullet
-
-                bullet.GetComponent<Rigidbody2D>().velocity = _shotSpawnPoint.right * _shotSpeed; // Shoot the bullet forward
+                //we need a generic projectile script so that typing dosent become an issue
+                bullet.Speed = _shotSpeed;
+                bullet.Direction = _shotSpawnPoint.right;// Shoot the bullet forward
             }
 
             yield return new WaitForSeconds(_shotStagger); // In the event of multiple bullets per volley
@@ -120,14 +94,6 @@ public class BaseShoot : MonoBehaviour
 
         //DespawnProjectile(bullet);
        // bullet.SetActive(false); // Deactivate bullet after its lifetime
-    }
-
-    public void DespawnProjectile(GameObject obj)
-    {
-        if(_pooledBullets.Find(x => x.gameObject == obj) != null)
-        {
-            obj.SetActive(false);
-        }
     }
 
     private void TryShoot()

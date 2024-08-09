@@ -10,6 +10,10 @@ public class TurretProjectile : PoolObject
 
     public int damage;
 
+    private void Awake()
+    {
+        Shoot();
+    }
     // Start is called before the first frame update
     public void Shoot()
     {
