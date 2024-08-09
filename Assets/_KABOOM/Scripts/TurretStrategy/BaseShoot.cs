@@ -34,11 +34,15 @@ public class BaseShoot : MonoBehaviour
 
     private Rigidbody2D _bulletRB;
 
+    protected Vector2 _shotDirection;
+
     private void Awake()
     {
         _bulletRB = _bulletPrefab.GetComponent<Rigidbody2D>();
 
         _poolManager = PoolManager.Instance;
+
+        _shotDirection = transform.forward;
     }
 
  
@@ -72,7 +76,7 @@ public class BaseShoot : MonoBehaviour
                 bullet.transform.rotation = _shotSpawnPoint.rotation;
                 //we need a generic projectile script so that typing dosent become an issue
                 bullet.Speed = _shotSpeed;
-                bullet.Direction = _shotSpawnPoint.right;// Shoot the bullet forward
+                bullet.Direction = _shotDirection;// Shoot the bullet forward
             }
 
             yield return new WaitForSeconds(_shotStagger); // In the event of multiple bullets per volley
