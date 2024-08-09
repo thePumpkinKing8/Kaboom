@@ -11,8 +11,6 @@ public class BaseShoot : MonoBehaviour
 {
     public IShoot CurrentShotType; // The specific type of shooting to be used
 
-    public static BaseShoot SharedInstance; // For the bullet pool
-
     private bool _currentlyShooting = false;
 
     [SerializeField]
@@ -28,10 +26,6 @@ public class BaseShoot : MonoBehaviour
     protected int _amountOfProjectiles = 1; // How many bullets per shot
     [SerializeField]
     protected bool _isHoming = false; // Whether the bullets track the player or not
-   
-    protected int _bulletPoolAmount = 10; // How many bullets pooled. KEEP HIGH ENOUGH for the speed and amount of projectiles to avoid out of range exceptions
-
-    protected float _bulletLifetime = 1f; // How long until bullets are set inactive
 
     protected float _shotStagger = 0.1f; // Stagger shots in case of shooting multiple bullets at a time
 
@@ -42,9 +36,6 @@ public class BaseShoot : MonoBehaviour
 
     private void Awake()
     {
-        SharedInstance = this;
-
-
         _bulletRB = _bulletPrefab.GetComponent<Rigidbody2D>();
 
         _poolManager = PoolManager.Instance;
@@ -69,8 +60,8 @@ public class BaseShoot : MonoBehaviour
 
         yield return new WaitForSeconds(_shotDelay);
 
-        PoolObject obj = _poolManager.Spawn("TurretProjectile");
-        TurretProjectile bullet = obj.GetComponent<TurretProjectile>();
+        BaseProjectile bullet = _poolManager.Spawn(_bulletPrefab.name).GetComponent<BaseProjectile>();
+       
 
         for(int i = 0; i <_amountOfProjectiles; i++)
         {
@@ -89,11 +80,6 @@ public class BaseShoot : MonoBehaviour
         }
 
         _currentlyShooting = false; // Allows this coroutine to be called again
-
-        //yield return new WaitForSeconds(_bulletLifetime);
-
-        //DespawnProjectile(bullet);
-       // bullet.SetActive(false); // Deactivate bullet after its lifetime
     }
 
     private void TryShoot()
