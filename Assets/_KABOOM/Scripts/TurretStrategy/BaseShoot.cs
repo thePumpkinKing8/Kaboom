@@ -42,7 +42,7 @@ public class BaseShoot : MonoBehaviour
 
         _poolManager = PoolManager.Instance;
 
-        _shotDirection = transform.forward;
+        _shotDirection = _shotSpawnPoint.right;
     }
 
  
@@ -69,19 +69,19 @@ public class BaseShoot : MonoBehaviour
 
         for(int i = 0; i <_amountOfProjectiles; i++)
         {
-            if (bullet != null)
-            {
+            
                 // Put the bullets at the spawn point (opening of the turret barrel)
-                bullet.transform.position = _shotSpawnPoint.position;
-                bullet.transform.rotation = _shotSpawnPoint.rotation;
+            bullet.transform.SetPositionAndRotation(_shotSpawnPoint.position, _shotSpawnPoint.rotation);
                 //we need a generic projectile script so that typing dosent become an issue
-                bullet.Speed = _shotSpeed;
-                bullet.Direction = _shotDirection;// Shoot the bullet forward
-            }
-
+            bullet.Speed = _shotSpeed;
+            bullet.Direction = _shotDirection;// Shoot the bullet forward
+            bullet.Shoot();
+            Debug.Log(_shotDirection);
+        }
+            
             yield return new WaitForSeconds(_shotStagger); // In the event of multiple bullets per volley
 
-        }
+        
 
         _currentlyShooting = false; // Allows this coroutine to be called again
     }

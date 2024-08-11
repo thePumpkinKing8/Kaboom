@@ -16,6 +16,5 @@ public class StandardTurret : BaseShoot, IShoot
 
         this._shotDelay = 0.5f;
 
-        //this._bulletLifetime = 2f;
     }
 }
