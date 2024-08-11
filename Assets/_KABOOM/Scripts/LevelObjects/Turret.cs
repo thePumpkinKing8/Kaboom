@@ -47,15 +47,16 @@ public class Turret : MonoBehaviour
     }
 
     //spawns and initializes projectile
+    /*
     private void ShootProjectile()
     {
-        TurretProjectile projectile = PoolManager.Instance.Spawn("TurretProjectile").GetComponent<TurretProjectile>();
+       BaseProjectile projectile = PoolManager.Instance.Spawn("TurretProjectile").GetComponent<TurretProjectile>();
         projectile.transform.position = _projectileSpawn.position;
         projectile.Direction = ((_target.transform.position - transform.position).normalized);
         projectile.Speed = _projectileVelocity;
         projectile.Shoot();
     }
-
+    */
     //turret starts firing
     IEnumerator ProjectileAttack()
     {
@@ -64,7 +65,7 @@ public class Turret : MonoBehaviour
 
         for (int i = 0; i < _shotAmount; i++)
         {
-            ShootProjectile();
+         ;
             yield return new WaitForSeconds(_shotDelay);
         }
         yield return new WaitForSeconds(_coolDownTime);

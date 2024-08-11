@@ -10,12 +10,12 @@ public class BaseProjectile : PoolObject
 
     public int damage;
 
-    private void Awake()
+    private void Start()
     {
-        Shoot();
+        //Shoot();
     }
     // Start is called before the first frame update
-    public void Shoot()
+    public virtual void Shoot()
     {
         GetComponent<Rigidbody2D>().velocity = Direction * _speed;
     }
@@ -25,9 +25,21 @@ public class BaseProjectile : PoolObject
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.collider.gameObject.layer == ~LayerMask.NameToLayer("Projectile"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+
+            Vector2 Direction = -collision.relativeVelocity.normalized;
+            //collision.gameObject.GetComponent<PlayerController>().OnHit(damage, direction);
             OnDeSpawn();
-        } 
+        }
+
+
+        else if (collision.collider.gameObject.layer == ~LayerMask.NameToLayer("Projectile"))
+        {
+
+            Vector2 Direction = -collision.relativeVelocity.normalized;
+            //collision.gameObject.GetComponent<PlayerController>().OnHit(damage, direction);
+            OnDeSpawn();
+        }
     }
 }
