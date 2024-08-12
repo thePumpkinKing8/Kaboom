@@ -25,7 +25,21 @@ public class PlayerHealth : BaseHealth, IHealth
             SceneManager.LoadScene(_currentScene); // Reloads the current scene when you die. Will need to be replaced with better logic later
     }
 
+    // Had to separate ontriggerenter and oncollisionenter. Keeping the switch cuz we might need it later
+
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Projectile":
+
+                Debug.Log("This is a turret projectile.");
+                TakeDamage(_damageScriptableObject.TurretDamage);
+                break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
@@ -34,12 +48,6 @@ public class PlayerHealth : BaseHealth, IHealth
                 Debug.Log("This is an instant death box.");
                 _isDead = true; // For instakills, like when you fall in acid
                 Die();
-                break;
-
-            case "Projectile":
-
-                Debug.Log("This is a turret projectile.");
-                TakeDamage(_damageScriptableObject.TurretDamage);
                 break;
         }
     }
