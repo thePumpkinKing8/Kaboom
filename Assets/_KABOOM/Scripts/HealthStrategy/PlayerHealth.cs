@@ -25,12 +25,22 @@ public class PlayerHealth : BaseHealth, IHealth
             SceneManager.LoadScene(_currentScene); // Reloads the current scene when you die. Will need to be replaced with better logic later
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("InstantDeathBox"))
+        switch (collision.gameObject.tag)
         {
-            _isDead = true; // For instakills, like when you fall in acid
-            Die();
+            case "InstantDeathBox":
+
+                Debug.Log("This is an instant death box.");
+                _isDead = true; // For instakills, like when you fall in acid
+                Die();
+                break;
+
+            case "Projectile":
+
+                Debug.Log("This is a turret projectile.");
+                TakeDamage(_damageScriptableObject.TurretDamage);
+                break;
         }
     }
 }

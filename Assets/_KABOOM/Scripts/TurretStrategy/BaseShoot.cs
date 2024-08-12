@@ -76,7 +76,7 @@ public class BaseShoot : MonoBehaviour
             bullet.Speed = _shotSpeed;
             bullet.Direction = _shotDirection;// Shoot the bullet forward
             bullet.Shoot();
-            Debug.Log(_shotDirection);
+            //Debug.Log(_shotDirection);
         }
             
             yield return new WaitForSeconds(_shotStagger); // In the event of multiple bullets per volley

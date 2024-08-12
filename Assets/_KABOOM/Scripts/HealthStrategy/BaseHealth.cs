@@ -11,36 +11,41 @@ public class BaseHealth : MonoBehaviour
     public IHealth CurrentHealthType; // What type of object with health we're using
 
     [SerializeField]
-    private HealthSO _healthScriptableObject;
+    protected HealthSO _healthScriptableObject;
 
-    private float _currentHealth;
+    [SerializeField]
+    protected DamageSO _damageScriptableObject; // To store variables for how much damage each thing does
+
+    public float CurrentHealth { get; private set; }
 
     protected bool _isDead = false;
 
     private void Awake()
     {
-       _currentHealth = this._healthScriptableObject.MaxHealthPoints; // Current health is at the max
+       CurrentHealth = this._healthScriptableObject.MaxHealthPoints; // Current health is at the max
 
-        Debug.Log($"Current heath = {_currentHealth}.");
+        Debug.Log($"Current heath = {CurrentHealth}.");
     }
 
     /// <summary>
     /// Call these functions with events. Set the behaviour on death in inherited scripts
     /// </summary>
 
-    public void TakeDamage()
+    public void TakeDamage(float amount)
     {
-        if(_currentHealth > 0)
-            _currentHealth--; // decrement health if it is not at zero
+        // The amount should be the damage modifier for whatever thing is causing something to take damage. Assigned in the child class
 
-        Debug.Log($"Current heath = {_currentHealth}.");
+        if(CurrentHealth > 0)
+            CurrentHealth -= amount; // decrement health if it is not at zero
 
-        if(_currentHealth <= 0)
+        Debug.Log($"Current heath = {CurrentHealth}.");
+
+        if(CurrentHealth <= 0)
         {
             _isDead = true; // Use this bool in the child class to run the Die() function
             Debug.Log($"_isDead == {_isDead}");
 
-            _currentHealth = 0; // Stop decrementing
+            CurrentHealth = 0; // Stop decrementing
 
             TryHealth();
         }
@@ -49,14 +54,14 @@ public class BaseHealth : MonoBehaviour
     public void Heal()
     {
 
-        if(_currentHealth < _healthScriptableObject.MaxHealthPoints)
-            _currentHealth++; // increment health if we aren't already at the max
+        if(CurrentHealth < _healthScriptableObject.MaxHealthPoints)
+            CurrentHealth++; // increment health if we aren't already at the max
 
-        Debug.Log($"Current heath = {_currentHealth}.");
+        Debug.Log($"Current heath = {CurrentHealth}.");
 
-        if (_currentHealth >= _healthScriptableObject.MaxHealthPoints)
+        if (CurrentHealth >= _healthScriptableObject.MaxHealthPoints)
         {
-            _currentHealth = _healthScriptableObject.MaxHealthPoints; // Stop incrementing health if we are already at the max
+            CurrentHealth = _healthScriptableObject.MaxHealthPoints; // Stop incrementing health if we are already at the max
         }
     }
 
