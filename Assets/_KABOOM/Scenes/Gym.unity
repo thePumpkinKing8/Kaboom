@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1292475566}
-  _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _bulletPrefab: {fileID: 7892016904982198628, guid: 1f10cf00e5ba07b479ed689c1654e3d3, type: 3}
   _shotSpeed: 1
   _shotDelay: 2
   _amountOfProjectiles: 1
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1058636013}
-  _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _bulletPrefab: {fileID: 7892016904982198628, guid: 1f10cf00e5ba07b479ed689c1654e3d3, type: 3}
   _shotSpeed: 1
   _shotDelay: 2
   _amountOfProjectiles: 1
@@ -121901,7 +121901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 725597290}
-  _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _bulletPrefab: {fileID: 7892016904982198628, guid: 1f10cf00e5ba07b479ed689c1654e3d3, type: 3}
   _shotSpeed: 1
   _shotDelay: 2
   _amountOfProjectiles: 1
