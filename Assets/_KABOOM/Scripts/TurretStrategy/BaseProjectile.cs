@@ -8,7 +8,7 @@ public class BaseProjectile : PoolObject
     [SerializeField] private float _speed;
     public float Speed { get { return _speed; } set { _speed = value; } }
 
-    public int damage;
+    public int Damage;
 
     private void Start()
     {
@@ -25,21 +25,6 @@ public class BaseProjectile : PoolObject
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-
-            Vector2 Direction = -collision.relativeVelocity.normalized;
-            //collision.gameObject.GetComponent<PlayerController>().OnHit(damage, direction);
-            OnDeSpawn();
-        }
-
-
-        else if (collision.collider.gameObject.layer == ~LayerMask.NameToLayer("Projectile"))
-        {
-
-            Vector2 Direction = -collision.relativeVelocity.normalized;
-            //collision.gameObject.GetComponent<PlayerController>().OnHit(damage, direction);
-            OnDeSpawn();
-        }
+        OnDeSpawn();
     }
 }
