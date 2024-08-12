@@ -11,7 +11,10 @@ public class BaseHealth : MonoBehaviour
     public IHealth CurrentHealthType; // What type of object with health we're using
 
     [SerializeField]
-    private HealthSO _healthScriptableObject;
+    protected HealthSO _healthScriptableObject;
+
+    [SerializeField]
+    protected DamageSO _damageScriptableObject; // To store variables for how much damage each thing does
 
     private float _currentHealth;
 
@@ -28,10 +31,12 @@ public class BaseHealth : MonoBehaviour
     /// Call these functions with events. Set the behaviour on death in inherited scripts
     /// </summary>
 
-    public void TakeDamage()
+    public void TakeDamage(float amount)
     {
+        // The amount should be the damage modifier for whatever thing is causing something to take damage. Assigned in the child class
+
         if(_currentHealth > 0)
-            _currentHealth--; // decrement health if it is not at zero
+            _currentHealth -= amount; // decrement health if it is not at zero
 
         Debug.Log($"Current heath = {_currentHealth}.");
 

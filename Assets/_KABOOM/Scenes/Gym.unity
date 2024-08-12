@@ -121048,7 +121048,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -121257,7 +121257,7 @@ MonoBehaviour:
   m_Follow: {fileID: 5518672011173724203}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4.5
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -131784,6 +131784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthScriptableObject: {fileID: 11400000, guid: 4b83c2aa03264f44d8e7536ece5f001e, type: 2}
+  _damageScriptableObject: {fileID: 11400000, guid: 93d17117b01ca2d48977529b5c404144, type: 2}
 --- !u!1001 &8128799047783663497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131859,9 +131860,17 @@ PrefabInstance:
     - target: {fileID: 2278707050002622453, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1db16a6312a648447b5f06777cf148ec, type: 3}
+      objectReference: {fileID: 21300000, guid: b4495d40c3443b74ea83dc2def2d8687, type: 3}
     - target: {fileID: 2278707050002622453, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844327002478287611, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844327002478287611, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
