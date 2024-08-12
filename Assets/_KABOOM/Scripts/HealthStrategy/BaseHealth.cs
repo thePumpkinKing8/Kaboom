@@ -15,9 +15,7 @@ public class BaseHealth : MonoBehaviour
 
     private float _currentHealth;
 
-    private bool _isDead = false;
-
-    public bool IsDead => _isDead;
+    protected bool _isDead = false;
 
     private void Awake()
     {

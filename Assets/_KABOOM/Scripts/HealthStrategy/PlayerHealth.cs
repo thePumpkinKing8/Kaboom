@@ -21,7 +21,16 @@ public class PlayerHealth : BaseHealth, IHealth
 
     public void Die()
     {
-        if(IsDead == true)
+        if(_isDead == true)
             SceneManager.LoadScene(_currentScene); // Reloads the current scene when you die. Will need to be replaced with better logic later
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("InstantDeathBox"))
+        {
+            _isDead = true; // For instakills, like when you fall in acid
+            Die();
+        }
     }
 }
