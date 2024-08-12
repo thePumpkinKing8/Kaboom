@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BaseProjectile : PoolObject
 {
@@ -10,6 +12,10 @@ public class BaseProjectile : PoolObject
 
     public int damage;
 
+    public float Lifetime = 10f;
+
+    private LayerMask _groundLayer;
+
     private void Start()
     {
         //Shoot();
@@ -18,6 +24,7 @@ public class BaseProjectile : PoolObject
     public virtual void Shoot()
     {
         GetComponent<Rigidbody2D>().velocity = Direction * _speed;
+        StartCoroutine(DespawnAfterLifetime());
     }
 
 
@@ -41,5 +48,12 @@ public class BaseProjectile : PoolObject
             //collision.gameObject.GetComponent<PlayerController>().OnHit(damage, direction);
             OnDeSpawn();
         }
+    }
+
+
+    IEnumerator DespawnAfterLifetime()
+    {
+        yield return new WaitForSeconds(Lifetime);
+        OnDeSpawn();
     }
 }
