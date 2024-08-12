@@ -634,7 +634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1839735485 &299304781
 Tilemap:
   m_ObjectHideFlags: 0
@@ -687,6 +687,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1292475566}
   _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _shotSpeed: 1
+  _shotDelay: 2
+  _amountOfProjectiles: 1
+  _isHoming: 0
 --- !u!212 &299304783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -839,7 +843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &383584285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,6 +858,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1058636013}
   _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _shotSpeed: 1
+  _shotDelay: 2
+  _amountOfProjectiles: 1
+  _isHoming: 0
 --- !u!212 &383584286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1597,6 +1605,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1729028954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &739425821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112621236446615803, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
+  m_PrefabInstance: {fileID: 8128799047783663497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &758018159
 GameObject:
   m_ObjectHideFlags: 0
@@ -121060,7 +121073,7 @@ Transform:
   m_GameObject: {fileID: 760179962}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.42, y: -2.01, z: -10}
+  m_LocalPosition: {x: -0.3, y: -2.02, z: -10}
   m_LocalScale: {x: 2.856585, y: 2.856585, z: 2.856585}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -121118,7 +121131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &766563769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121133,6 +121146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 466244724}
   _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _shotSpeed: 1
+  _shotDelay: 2
+  _amountOfProjectiles: 1
+  _isHoming: 0
 --- !u!212 &766563770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121193,13 +121210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766563768}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 111.9, y: 24.31, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.575, y: 2.165, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 466244724}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1729028954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &792781136
 GameObject:
@@ -121831,7 +121848,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 1881499972}
-  _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _bulletPrefab: {fileID: 7892016904982198628, guid: 1f10cf00e5ba07b479ed689c1654e3d3, type: 3}
+  _shotSpeed: 1
+  _shotDelay: 2
+  _amountOfProjectiles: 1
+  _isHoming: 0
 --- !u!212 &1689171411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121932,6 +121953,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotSpawnPoint: {fileID: 725597290}
   _bulletPrefab: {fileID: 7718393570175652001, guid: 70ad54ded6f8a8342aac41720b1aa7d1, type: 3}
+  _shotSpeed: 1
+  _shotDelay: 2
+  _amountOfProjectiles: 1
+  _isHoming: 0
 --- !u!212 &1729028953
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121998,6 +122023,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 725597290}
+  - {fileID: 766563771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799266361
@@ -122133,6 +122159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6833419b97ee53e44ba46ccb7673d38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tilebreakDelay: 2
 --- !u!483693784 &1826491796
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -131796,6 +131823,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1543682115676032543, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
   m_PrefabInstance: {fileID: 8128799047783663497}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5518672011173724211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739425821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd04d13fb520ab47a5670a1cb2e7aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthScriptableObject: {fileID: 11400000, guid: 4b83c2aa03264f44d8e7536ece5f001e, type: 2}
 --- !u!1001 &8128799047783663497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131814,11 +131854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543682115676032543, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.42
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1543682115676032543, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1543682115676032543, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -131855,7 +131895,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1112621236446615803, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5518672011173724211}
   m_SourcePrefab: {fileID: 100100000, guid: e8ff8e4d3dc2c6d44a3fb3c344520e76, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -131867,7 +131910,6 @@ SceneRoots:
   - {fileID: 568941742}
   - {fileID: 1390425095}
   - {fileID: 1689171412}
-  - {fileID: 766563771}
   - {fileID: 1729028954}
   - {fileID: 109923541}
   - {fileID: 205253841}
