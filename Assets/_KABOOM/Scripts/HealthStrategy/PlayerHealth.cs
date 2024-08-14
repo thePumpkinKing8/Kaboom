@@ -34,7 +34,7 @@ public class PlayerHealth : BaseHealth, IHealth
             case "Projectile":
 
                 Debug.Log("This is a turret projectile.");
-                TakeDamage(_damageScriptableObject.TurretDamage);
+                TakeDamage(_damageScriptableObject.TurretDamage); // Take the amount of damage the turrets deal
                 break;
         }
     }
@@ -48,6 +48,12 @@ public class PlayerHealth : BaseHealth, IHealth
                 Debug.Log("This is an instant death box.");
                 _isDead = true; // For instakills, like when you fall in acid
                 Die();
+                break;
+
+            case "ExplosionTrigger":
+
+                TakeDamage(_damageScriptableObject.BarrelDamage); // Take the amount of damage an exploding barrel deals
+                Debug.Log("This is an explosion.");
                 break;
         }
     }

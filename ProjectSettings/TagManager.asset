@@ -8,6 +8,7 @@ TagManager:
   - LoadingScreen
   - InstantDeathBox
   - Projectile
+  - ExplosionTrigger
   layers:
   - Default
   - TransparentFX
