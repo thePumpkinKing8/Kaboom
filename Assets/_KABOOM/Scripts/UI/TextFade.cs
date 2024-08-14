@@ -6,8 +6,7 @@ public class TextFade : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _fadeText;
 
-    [SerializeField]
-    private float _fadeTimeMultiplier = 1f;
+    private float _fadeTimeMultiplier = 1.5f;
 
     private bool _isFading = false;
 
