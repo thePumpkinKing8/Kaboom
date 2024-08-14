@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3031582712673048620}
   - component: {fileID: 2748234921289291153}
+  - component: {fileID: 6344985736402370214}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -205,3 +206,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6344985736402370214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370964443376792078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9b05ee99a7a0e4083270ed1b9ed705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthScriptableObject: {fileID: 11400000, guid: 59391598d557ffe4c9c573a6dbdcd23c, type: 2}
+  _damageScriptableObject: {fileID: 11400000, guid: 93d17117b01ca2d48977529b5c404144, type: 2}

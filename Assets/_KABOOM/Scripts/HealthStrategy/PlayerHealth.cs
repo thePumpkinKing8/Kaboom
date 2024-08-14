@@ -13,8 +13,6 @@ public class PlayerHealth : BaseHealth, IHealth
         this.CurrentHealthType = this;
 
         _currentScene = SceneManager.GetActiveScene().name;
-
-        _canTakeDamage = true;
     }
     public void Health()
     {

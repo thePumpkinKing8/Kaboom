@@ -16,8 +16,6 @@ public class BaseHealth : MonoBehaviour
     [SerializeField]
     protected DamageSO _damageScriptableObject; // To store variables for how much damage each thing does
 
-    protected bool _canTakeDamage;
-
     public float CurrentHealth { get; private set; }
 
     protected bool _isDead = false;
