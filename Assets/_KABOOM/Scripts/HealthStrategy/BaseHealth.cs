@@ -51,11 +51,11 @@ public class BaseHealth : MonoBehaviour
         }
     }
 
-    public void Heal()
+    public void Heal(float amount)
     {
 
         if(CurrentHealth < _healthScriptableObject.MaxHealthPoints)
-            CurrentHealth++; // increment health if we aren't already at the max
+            CurrentHealth += amount; // increment health if we aren't already at the max, by the specified amount
 
         Debug.Log($"Current heath = {CurrentHealth}.");
 

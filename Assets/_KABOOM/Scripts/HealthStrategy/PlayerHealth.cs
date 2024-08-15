@@ -8,6 +8,9 @@ public class PlayerHealth : BaseHealth, IHealth
 {
     string _currentScene;
 
+    [SerializeField]
+    private HealSO _healthPackScriptableObject;
+
     private void Start()
     {
         this.CurrentHealthType = this;
@@ -52,9 +55,20 @@ public class PlayerHealth : BaseHealth, IHealth
 
             case "ExplosionTrigger":
 
-                TakeDamage(_damageScriptableObject.BarrelDamage); // Take the amount of damage an exploding barrel deals
                 Debug.Log("This is an explosion.");
+                Die(); // Changed from having a certain amount of damage.
                 break;
+
+            case "HealthPack":
+
+                Debug.Log("This is a health pack.");
+                Heal(_healthPackScriptableObject.HealhPackAmount); // Heal the amount a health pack heals
+                break;
+
+
+
+
+
         }
     }
 }
