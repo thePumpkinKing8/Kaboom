@@ -65,19 +65,6 @@ public class BaseHealth : MonoBehaviour
         }
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Q))
-    //    {
-    //        Heal();
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.R))
-    //    {
-    //        TakeDamage();
-    //    }
-    //}
-
     private void TryHealth()
     {
         CurrentHealthType?.Health(); // Attempts to call the function from the child class
