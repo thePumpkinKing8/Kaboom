@@ -9,6 +9,7 @@ TagManager:
   - InstantDeathBox
   - Projectile
   - ExplosionTrigger
+  - HealthPack
   layers:
   - Default
   - TransparentFX
