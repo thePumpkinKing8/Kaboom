@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : BaseHealth, IHealth
@@ -11,11 +12,15 @@ public class PlayerHealth : BaseHealth, IHealth
     [SerializeField]
     private HealSO _healthPackScriptableObject;
 
+    public UnityEvent<float> OnHealthChanged;
+
     private void Start()
     {
         this.CurrentHealthType = this;
 
         _currentScene = SceneManager.GetActiveScene().name;
+
+        OnHealthChanged.Invoke(CurrentHealth);
     }
     public void Health()
     {
@@ -28,6 +33,20 @@ public class PlayerHealth : BaseHealth, IHealth
             SceneManager.LoadScene(_currentScene); // Reloads the current scene when you die. Will need to be replaced with better logic later
     }
 
+    protected override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+
+        OnHealthChanged?.Invoke(CurrentHealth);
+    }
+
+    protected override void Heal(float amount)
+    {
+        base.Heal(amount);
+
+        OnHealthChanged?.Invoke(CurrentHealth);
+    }
+
     // Had to separate ontriggerenter and oncollisionenter. Keeping the switch cuz we might need it later
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,6 +56,7 @@ public class PlayerHealth : BaseHealth, IHealth
             case "Projectile":
 
                 Debug.Log("This is a turret projectile.");
+
                 TakeDamage(_damageScriptableObject.TurretDamage); // Take the amount of damage the turrets deal
                 break;
         }
@@ -64,10 +84,6 @@ public class PlayerHealth : BaseHealth, IHealth
                 Debug.Log("This is a health pack.");
                 Heal(_healthPackScriptableObject.HealhPackAmount); // Heal the amount a health pack heals
                 break;
-
-
-
-
 
         }
     }
