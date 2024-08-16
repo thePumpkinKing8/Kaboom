@@ -29,7 +29,7 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         CloseMenus();
-        _eventSystem = GetComponent<EventSystem>();
+        _eventSystem = FindAnyObjectByType<EventSystem>();
     }
 
     #region Coroutines
