@@ -63,7 +63,7 @@ public class ExplodingBarrel : BaseHealth, IHealth
         {
             case "ExplosionTrigger":
 
-                TakeDamage(_damageScriptableObject.BarrelDamage); // Take the amount of damage an exploding barrel deals
+                Die();
                 break;
         }
     }
