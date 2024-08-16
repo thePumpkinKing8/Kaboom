@@ -23,7 +23,6 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
 
     public void Explode()
     {
-        Debug.Log("explode");
         //_explosionTrigger.SetActive(true); // Sets the trigger as active
         Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, _explosionRadius, LayerMask.NameToLayer("Player"));
         if(playerCollider)
@@ -40,7 +39,7 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
                 hit.collider.GetComponent<BreakableTile>()?.BreakTile(hit.point);
 
             else if(hit.collider.GetComponent<IDestructable>() != null)
-                hit.collider.GetComponent<TurretHealth>()?.Die();
+                hit.collider.GetComponent<IDestructable>()?.ObjectDestroyed();
         }
 
        
