@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
-  m_Name: turret_shoot
+  m_Name: TurretShoot
   m_EditorClassIdentifier: 
   _clip:
   - {fileID: 8300000, guid: bc3d6b7d0e8cc044baf8c6d05e9514c3, type: 3}

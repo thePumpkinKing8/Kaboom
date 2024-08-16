@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
-  m_Name: explosion_2
+  m_Name: ExplodingCylinders
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: 35dc963c858642c459f36167b15fb533, type: 3}
+  - {fileID: 8300000, guid: 812c9623ed126c947b5fdfbc832379ba, type: 3}
   Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
-  AudioName: 
+  AudioName: ExplodingCylinders
   Volume: 0.5
   Pitch: 1
   Priority: 128

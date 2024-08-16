@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
-  m_Name: wall_breaking
+  m_Name: Explosion
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: e01cc903c87ab4544badc197419e890b, type: 3}
+  - {fileID: 8300000, guid: 210e64173fe56954f8c221aac2237ef5, type: 3}
+  - {fileID: 8300000, guid: 35dc963c858642c459f36167b15fb533, type: 3}
+  - {fileID: 8300000, guid: 96bdfdfe3dddd4b4f9b9c1d405f2c2fe, type: 3}
   Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
-  AudioName: 
-  Volume: 1
+  AudioName: Explosion
+  Volume: 0.5
   Pitch: 1
   Priority: 128
   Loop: 0

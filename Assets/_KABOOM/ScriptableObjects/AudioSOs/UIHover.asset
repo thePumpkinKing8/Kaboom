@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
-  m_Name: player_footsteps
+  m_Name: UIHover
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: 6b07ccae22b9dd94fa720522c1c98589, type: 3}
+  - {fileID: 8300000, guid: c1faa9f15ceaf4449bb35ee32c479f91, type: 3}
   Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
-  AudioName: 
+  AudioName: UIHover
   Volume: 0.5
   Pitch: 1
   Priority: 128

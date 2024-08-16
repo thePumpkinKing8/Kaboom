@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
-  m_Name: turret_strong_shoot
+  m_Name: TurretBreaking
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: c9e482529e5a4074b8a25035fed10740, type: 3}
+  - {fileID: 8300000, guid: 927691e6b649dc14bbafdbed89f3e18d, type: 3}
   Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
   AudioName: 
   Volume: 0.5
