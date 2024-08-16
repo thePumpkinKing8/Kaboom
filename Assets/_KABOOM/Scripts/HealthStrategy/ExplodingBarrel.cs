@@ -6,7 +6,7 @@ using UnityEngine;
 public class ExplodingBarrel :MonoBehaviour, IDestructable
 {
     [SerializeField] protected float _explosionForce;
-    [SerializeField] protected float _explosionRadius;
+    [SerializeField] protected float _explosionRadius = 10f;
     private void Awake()
     {
     }
@@ -25,18 +25,22 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
     {
         Debug.Log("explode");
         //_explosionTrigger.SetActive(true); // Sets the trigger as active
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, 20f, LayerMask.NameToLayer("Player"));
+        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, _explosionRadius, LayerMask.NameToLayer("Player"));
         if(playerCollider)
         {
             playerCollider.gameObject.GetComponent<Rigidbody2D>().AddForce((playerCollider.transform.position - transform.position).normalized * _explosionForce);
         }
 
-        RaycastHit2D[] circle = Physics2D.CircleCastAll(transform.position, 20f, Vector2.zero,LayerMask.NameToLayer("Breakable"));
+        RaycastHit2D[] circle = Physics2D.CircleCastAll(transform.position, _explosionRadius, Vector2.zero);
       
 
         foreach(RaycastHit2D hit in circle)
         {
-            hit.collider.GetComponent<BreakableTile>()?.BreakTile(hit.point);
+            if(hit.collider.GetComponent<BreakableTile>())
+                hit.collider.GetComponent<BreakableTile>()?.BreakTile(hit.point);
+
+            else if(hit.collider.GetComponent<IDestructable>() != null)
+                hit.collider.GetComponent<TurretHealth>()?.Die();
         }
 
        

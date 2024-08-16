@@ -35,7 +35,7 @@ public class GameManager : Singleton<GameManager>
         //testscript
         if (Input.GetKeyDown(KeyCode.K)) 
         {
-            LevelManager.Instance.ReLoadLevel();
+            //LevelManager.Instance.ReLoadLevel();
         }
     }
 }

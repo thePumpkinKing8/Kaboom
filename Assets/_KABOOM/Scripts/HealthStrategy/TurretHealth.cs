@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretHealth : BaseHealth, IHealth
+public class TurretHealth : BaseHealth, IHealth, IDestructable
 {
     void Start()
     {
@@ -39,5 +39,10 @@ public class TurretHealth : BaseHealth, IHealth
                 Die();
                 break;
         }
+    }
+
+    public void ObjectDestroyed()
+    {
+        Destroy(gameObject);
     }
 }
