@@ -15,5 +15,4 @@ public class LevelEventData : ScriptableObject
     public UnityEvent LevelCompleteEvent;
     public UnityEvent<string> PlayerKilledEvent;
     public UnityEvent<float> OnHealthChangedEvent;
-
 }
