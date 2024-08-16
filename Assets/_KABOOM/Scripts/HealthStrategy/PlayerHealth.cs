@@ -12,15 +12,13 @@ public class PlayerHealth : BaseHealth, IHealth
     [SerializeField]
     private HealSO _healthPackScriptableObject;
 
-    public UnityEvent<float> OnHealthChanged;
-
     private void Start()
     {
         this.CurrentHealthType = this;
 
         _currentScene = SceneManager.GetActiveScene().name;
 
-        OnHealthChanged.Invoke(CurrentHealth);
+        LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
     }
     public void Health()
     {
@@ -37,14 +35,14 @@ public class PlayerHealth : BaseHealth, IHealth
     {
         base.TakeDamage(amount);
 
-        OnHealthChanged?.Invoke(CurrentHealth);
+        LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
     }
 
     protected override void Heal(float amount)
     {
         base.Heal(amount);
 
-        OnHealthChanged?.Invoke(CurrentHealth);
+        LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
     }
 
     // Had to separate ontriggerenter and oncollisionenter. Keeping the switch cuz we might need it later

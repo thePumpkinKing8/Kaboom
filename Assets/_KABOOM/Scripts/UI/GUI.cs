@@ -21,9 +21,9 @@ public class GUI : MonoBehaviour
     {
         _healthScript = _player.GetComponent<PlayerHealth>();
 
-        _healthScript.OnHealthChanged.AddListener(UpdateHealthUI);
-
         // Initialize the UI with the current health
+        LevelManager.Instance.EventData.OnHealthChangedEvent.AddListener(UpdateHealthUI);
+
         UpdateHealthUI(_healthScript.CurrentHealth);
     }
 
@@ -31,7 +31,7 @@ public class GUI : MonoBehaviour
     {
         if(_healthScript != null)
         {
-            _healthScript.OnHealthChanged.RemoveListener(UpdateHealthUI);
+            LevelManager.Instance.EventData.OnHealthChangedEvent.RemoveListener(UpdateHealthUI);
         }
     }
 
