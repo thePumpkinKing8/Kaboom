@@ -18,12 +18,15 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             return _instance;
         }
     }
+
+    [SerializeField] private bool _persistant;
     protected virtual void Awake()
     {
         if (_instance == null)
         {
             _instance = this as T;
-            DontDestroyOnLoad(gameObject);
+            if(_persistant)
+                DontDestroyOnLoad(gameObject);
         }
         else
         {

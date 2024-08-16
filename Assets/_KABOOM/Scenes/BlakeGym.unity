@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109c31f9cc702e443826a2d08484783b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 1
   EventData: {fileID: 11400000, guid: 4f8e622c29e75984e8a7ae530167ecb6, type: 2}
   _levelIndex: 0
   _levels:
@@ -290,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5f921357470b44c8e0d2e04fba79dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 1
   _playerPhysicsSettings: {fileID: 11400000, guid: 5a1f917a4bc49984080f5c1b2ec26351, type: 2}
 --- !u!4 &216178484
 Transform:
@@ -94523,6 +94525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9070866b7f739e458bab4bd923c6c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 0
 --- !u!1 &918176401
 GameObject:
   m_ObjectHideFlags: 0
@@ -94624,6 +94627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c653cf46154d3c48bffdbc89557477a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistant: 1
   _actions: {fileID: 11400000, guid: 010a7a50e4b24d94eb4179437e282a1e, type: 2}
 --- !u!4 &1395663000
 Transform:
@@ -94691,6 +94695,10 @@ PrefabInstance:
     - target: {fileID: 7696608647487545206, guid: 1e5caece81efee745821c19e71c11a22, type: 3}
       propertyPath: m_Name
       value: Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696608647487545206, guid: 1e5caece81efee745821c19e71c11a22, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
