@@ -18,10 +18,10 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
 
     public void Health()
     {
-        Die();
+        Explode();
     }
 
-    public void Die()
+    public void Explode()
     {
         Debug.Log("explode");
         //_explosionTrigger.SetActive(true); // Sets the trigger as active
