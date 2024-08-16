@@ -20,6 +20,7 @@ public class BreakableTile : MonoBehaviour
     // This function should be called by an event
     public void BreakTile(Vector2 contactPoint)
     {
+        contactPoint = new Vector2(contactPoint.x, contactPoint.y);
         TileBreak(contactPoint);
     }
 
@@ -37,6 +38,7 @@ public class BreakableTile : MonoBehaviour
 
 
         _breakableTilemap.SetTile(currentCellPosition, null);
-        PoolManager.Instance.Spawn("Explosion1");
+        PoolObject effect = PoolManager.Instance.Spawn("Explosion1");
+        effect.transform.position = hitPosition;
     }
 }

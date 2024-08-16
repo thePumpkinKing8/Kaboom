@@ -15,6 +15,7 @@ public class BaseState : MonoBehaviour, IPlayerState
  
     private void Awake()
     {
+        GameManager.Instance.Player = gameObject;
         _actions = InputManager.Instance.ActionsData;
         _actions.PlayerMoveEvent.AddListener(HandleMovement);
         _actions.PlayerShootEvent.AddListener(PlayerShooting);
@@ -22,7 +23,7 @@ public class BaseState : MonoBehaviour, IPlayerState
         _groundCheck = GetComponentInChildren<GroundCheck>();
         _shootingState = GetComponent<ShootingState>();
         _fallingState = GetComponent<FallingState>();
-        _settings = GameManager.Instance.PlayerPhysicsSettings;
+        _settings = GameManager.Instance.PlayerPhysicsSettings;    
     }
 
     private void Start()
