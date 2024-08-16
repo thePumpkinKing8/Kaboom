@@ -7,6 +7,8 @@ public class BreakableTile : MonoBehaviour
 {
     private Tilemap _breakableTilemap;
 
+    private SpriteRenderer _currentTileSprite;
+
     private void Awake()
     {
         _breakableTilemap = GetComponent<Tilemap>();

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_KABOOM/Scenes/MainMenu.unity
     guid: 3c0caa31bbe27cf4a9e84be365627a31
   - enabled: 1
+    path: Assets/_KABOOM/Scenes/Level1.unity
+    guid: 2729b964588609042b2a717e814755e4
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/Gym.unity
     guid: b0806c4b26e9d5148a1003820ec83415
   - enabled: 0
@@ -26,31 +29,31 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/ComicSceneExample/ComicExample4.unity
     guid: 1c2fa1f4ef74c2b44b6118a3a5a673bb
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic1.unity
     guid: a939cdb874bebc84eb3dc62632503453
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic2.unity
     guid: a52c8f2e6b081c44990bcaec532170aa
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic3.unity
     guid: 01fd5b0cb41003b4aa6dc0f5e0782ef8
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic4.unity
     guid: 1c6c3aa0ba671ef48960ec5a652a87ec
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic5.unity
     guid: 2cbe5a2ad72fbca4497b92908a67c6ce
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic6.unity
     guid: f1df111c7af35bb44a2d7cb83aa3f8dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic7.unity
     guid: f29af356aba88bf49bde0aebb1218c05
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic8.unity
     guid: 8a763022fc522b845b40b0d65fc538b7
-  - enabled: 1
+  - enabled: 0
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic9.unity
     guid: 8b9f915ffe735364681184c3564601fc
   m_configObjects: {}
