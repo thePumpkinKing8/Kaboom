@@ -30,12 +30,17 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
             playerCollider.gameObject.GetComponent<Rigidbody2D>().AddForce((playerCollider.transform.position - transform.position).normalized * _explosionForce);
         }
 
-        RaycastHit2D[] circle = Physics2D.CircleCastAll(transform.position, _explosionRadius, Vector2.zero);
+        RaycastHit2D[] circle = Physics2D.CircleCastAll(transform.position, _explosionRadius, transform.position,0);
       
 
         foreach(RaycastHit2D hit in circle)
         {
-            if(hit.collider.GetComponent<BreakableTile>())
+            if(hit.collider.gameObject == gameObject)
+            {
+                //do nothing
+            }
+
+            else if(hit.collider.GetComponent<BreakableTile>())
                 hit.collider.GetComponent<BreakableTile>()?.BreakTile(hit.point);
 
             else if(hit.collider.GetComponent<IDestructable>() != null)

@@ -27,7 +27,7 @@ public class BreakableTile : MonoBehaviour
     void TileBreak(Vector2 contactPoint)
     {
         Vector3 hitPosition = Vector3.zero;
-
+        
         HashSet<Vector3Int> brokenTiles = new HashSet<Vector3Int>(); // Used to avoid processing issues from duplicate hits
 
         hitPosition.x = contactPoint.x;
@@ -36,7 +36,7 @@ public class BreakableTile : MonoBehaviour
 
         Vector3Int currentCellPosition = _breakableTilemap.WorldToCell(hitPosition);
 
-
+        Debug.Log(hitPosition);
         _breakableTilemap.SetTile(currentCellPosition, null);
         PoolObject effect = PoolManager.Instance.Spawn("Explosion1");
         effect.transform.position = hitPosition;
