@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseHealth : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class BaseHealth : MonoBehaviour
     /// Call these functions with events. Set the behaviour on death in inherited scripts
     /// </summary>
 
-    public void TakeDamage(float amount)
+    protected virtual void TakeDamage(float amount)
     {
         // The amount should be the damage modifier for whatever thing is causing something to take damage. Assigned in the child class
 
@@ -51,7 +52,7 @@ public class BaseHealth : MonoBehaviour
         }
     }
 
-    public void Heal(float amount)
+    protected virtual void Heal(float amount)
     {
 
         if(CurrentHealth < _healthScriptableObject.MaxHealthPoints)

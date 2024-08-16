@@ -36,7 +36,7 @@ public class TurretHealth : BaseHealth, IHealth
         {
             case "ExplosionTrigger":
 
-                TakeDamage(_damageScriptableObject.BarrelDamage); // Take the amount of damage an exploding barrel deals
+                Die();
                 break;
         }
     }
