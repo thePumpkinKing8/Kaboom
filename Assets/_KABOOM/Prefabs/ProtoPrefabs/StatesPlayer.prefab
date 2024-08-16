@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3220262499228483303}
   - component: {fileID: 2841916434035736254}
   - component: {fileID: 4542600446871286228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StatesPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,8 +12,37 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindAnyObjectByType<T>();
+                DontDestroyOnLoad(_instance);
             }
+            
             return _instance;
         }
     }
+
+    [SerializeField] private bool _persistant;
+    protected virtual void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this as T;
+            if(_persistant)
+                DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if (this != _instance)
+            {
+                // If there is already an instance of this Singleton, destroy this one.
+                Destroy(gameObject);
+            }
+        }
+
+        OnAwake();
+    }
+
+    protected virtual void OnAwake()
+    {
+
+    }
+
 }
