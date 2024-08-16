@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7367241f67dc0a64a884dcd523be120a, type: 3}
   m_Name: DamageStats
   m_EditorClassIdentifier: 
-  TurretDamage: 2
+  TurretDamage: 3
+  BarrelDamage: 50
+  PlayerLaserDamage: 0
