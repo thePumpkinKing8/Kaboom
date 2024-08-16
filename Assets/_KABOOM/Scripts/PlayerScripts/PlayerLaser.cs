@@ -63,15 +63,7 @@ public class PlayerLaser : MonoBehaviour
         {
             _laser.SetPosition(1, _ray.point);
             Debug.DrawLine(_barrel.position, _ray.point);
-            //remove this code and make it so that the object hit detects the laser
-            if(_ray.collider.GetComponent<BreakableTile>() != null)
-            {
-                _ray.collider.GetComponent<BreakableTile>().BreakTile(_ray.point);
-            }
-            if(_ray.collider.GetComponent<BulletPlaceholder>() != null)
-            {
-                _ray.collider.gameObject.SetActive(false);
-            }
+            CheckHit();
         }
             
         else
@@ -110,6 +102,18 @@ public class PlayerLaser : MonoBehaviour
         Vector2 force = new Vector2(-recoilForce * _gunAngle.x, -recoilForce * _gunAngle.y);
         //_player.AddForce(force);
         return force;
+    }
+
+    private void CheckHit()
+    {
+        if (_ray.collider.GetComponent<BreakableTile>() != null)
+        {
+            _ray.collider.GetComponent<BreakableTile>().BreakTile(_ray.point);
+        }
+        if(_ray.collider.GetComponent<IDestructable>() != null)
+        {
+            _ray.collider.GetComponent<IDestructable>().ObjectDestroyed();
+        }
     }
 
     
