@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: TurretStrongShot
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: c9e482529e5a4074b8a25035fed10740, type: 3}
+  - {fileID: 8300000, guid: ca8cf0008c3db1e4d9f05119021fa2e9, type: 3}
   Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
   AudioName: TurretStrongShoot
-  Volume: 0.5
+  Volume: 0.3
   Pitch: 1
   Priority: 128
   Loop: 0
