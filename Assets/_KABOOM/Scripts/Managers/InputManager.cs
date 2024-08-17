@@ -13,7 +13,8 @@ public class InputManager : Singleton<InputManager>
 
     
     private void OnEnable()
-    { 
+    {
+        _persistant = true;
         if (_input == null)
         {
              _input = new PlayerInputActions();
