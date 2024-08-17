@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0}
   _speed: 5
-  Damage: 0
+  Damage: 50
   Lifetime: 10
 --- !u!58 &8906266237501534357
 CircleCollider2D:

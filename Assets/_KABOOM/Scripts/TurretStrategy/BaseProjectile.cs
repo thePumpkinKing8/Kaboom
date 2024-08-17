@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class BaseProjectile : PoolObject
+public class BaseProjectile : PoolObject, IDestructable
 {
     [HideInInspector] public Vector2 Direction;
     [SerializeField] private float _speed;
@@ -24,7 +24,7 @@ public class BaseProjectile : PoolObject
     public virtual void Shoot()
     {
         GetComponent<Rigidbody2D>().velocity = Direction * _speed;
-        StartCoroutine(DespawnAfterLifetime());
+        //StartCoroutine(DespawnAfterLifetime());
     }
 
 
@@ -39,6 +39,11 @@ public class BaseProjectile : PoolObject
     IEnumerator DespawnAfterLifetime()
     {
         yield return new WaitForSeconds(Lifetime);
+        OnDeSpawn();
+    }
+
+    public void ObjectDestroyed()
+    {
         OnDeSpawn();
     }
 }

@@ -18,6 +18,6 @@ public class LevelEventData : ScriptableObject
     public UnityEvent<float> OnHealthChangedEvent;
     public UnityEvent<string> TurretDestroyedEvent;
     public UnityEvent<string> BarrelExplosionEvent;
-
+    public UnityEvent<string> PlayerHitEvent;
     
 }

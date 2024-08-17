@@ -28,7 +28,7 @@ public class PlayerHealth : BaseHealth, IHealth
     public void Die()
     {
         if (_isDead == true)
-            LevelManager.Instance.EventData.PlayerKilledEvent.Invoke("PlayerDead");
+            LevelManager.Instance.EventData.PlayerKilledEvent.Invoke("PlayerDeath");
     }
 
     protected override void TakeDamage(float amount)
@@ -60,10 +60,12 @@ public class PlayerHealth : BaseHealth, IHealth
         }
     }
 
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
+            /*
             case "InstantDeathBox":
 
                 Debug.Log("This is an instant death box.");
@@ -76,7 +78,7 @@ public class PlayerHealth : BaseHealth, IHealth
                 Debug.Log("This is an explosion.");
                 Die(); // Changed from having a certain amount of damage.
                 break;
-
+            */
             case "HealthPack":
 
                 Debug.Log("This is a health pack.");
@@ -84,5 +86,6 @@ public class PlayerHealth : BaseHealth, IHealth
                 break;
 
         }
+    
     }
 }

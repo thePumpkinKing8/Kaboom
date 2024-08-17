@@ -12,7 +12,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindAnyObjectByType<T>();
-                DontDestroyOnLoad(_instance);
+               
             }
             
             return _instance;
@@ -26,7 +26,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             _instance = this as T;
             if(_persistant)
-                DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(Instance);
         }
         else
         {
