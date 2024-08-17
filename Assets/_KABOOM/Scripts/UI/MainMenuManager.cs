@@ -26,6 +26,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private string _storySceneName = "MenuComic1";
 
+    [SerializeField]
+    private GameObject _controlsScreen;
+
     private EventSystem _eventSystem;
     #endregion
 
@@ -85,9 +88,18 @@ public class MainMenuManager : MonoBehaviour
         _eventSystem.SetSelectedGameObject(_settingsTopButton);
         yield return null ;
     }
+
+    IEnumerator Controls()
+    {
+        _controlsScreen.SetActive(true);
+        _eventSystem.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+        _eventSystem.SetSelectedGameObject(_controlsScreen);    
+        yield return null ;
+    }
     public void OnControls()
     {
-        // controls stuff
+        StartCoroutine(Controls());
     }
     public void OnQuit()
     {
@@ -104,6 +116,7 @@ public class MainMenuManager : MonoBehaviour
         if(_optionsMenu.activeInHierarchy)
         {
             _optionsMenu.SetActive(false);
+
             _mainMenu.SetActive(true);
             _eventSystem.SetSelectedGameObject(null);
             yield return new WaitForEndOfFrame();
