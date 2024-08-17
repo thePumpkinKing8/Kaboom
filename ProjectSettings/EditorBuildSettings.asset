@@ -9,14 +9,11 @@ EditorBuildSettings:
     path: Assets/_KABOOM/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/_KABOOM/Scenes/UIScenes/SplashScreen.unity
+    guid: 90da9d3c5ea9980458edbdb1827398a8
+  - enabled: 1
     path: Assets/_KABOOM/Scenes/UIScenes/MainMenu.unity
     guid: 3c0caa31bbe27cf4a9e84be365627a31
-  - enabled: 1
-    path: Assets/_KABOOM/Scenes/Level1.unity
-    guid: 2729b964588609042b2a717e814755e4
-  - enabled: 0
-    path: Assets/_KABOOM/Scenes/Gym.unity
-    guid: b0806c4b26e9d5148a1003820ec83415
   - enabled: 1
     path: Assets/_KABOOM/Scenes/ComicStrips/FromStartOfGame/Comic1.unity
     guid: a939cdb874bebc84eb3dc62632503453
@@ -71,4 +68,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_KABOOM/Scenes/ComicStrips/FromMainMenu/MenuComic9.unity
     guid: ddedaf5b9cc14d6468153a20fa20df60
+  - enabled: 1
+    path: Assets/_KABOOM/Scenes/Gym.unity
+    guid: b0806c4b26e9d5148a1003820ec83415
+  - enabled: 1
+    path: Assets/_KABOOM/Scenes/Level1.unity
+    guid: 2729b964588609042b2a717e814755e4
+  - enabled: 1
+    path: Assets/_KABOOM/Scenes/UIScenes/WinScreen.unity
+    guid: ea9d9f45e0a3a7c48945a82c9598b777
   m_configObjects: {}
