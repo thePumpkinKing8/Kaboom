@@ -57,13 +57,14 @@ public class PlayerLaser : MonoBehaviour
     public void Shoot()
     {
         _laser.SetPosition(0, _barrel.position);
-        _ray = Physics2D.CircleCast(_barrel.position,_laserWidth,_gunAngle,100f, ~LayerMask.NameToLayer("Player"));
+        _ray = Physics2D.CircleCast(_barrel.position,_laserWidth,_gunAngle,100f, ~LayerMask.GetMask("Player"));
         
         if (_ray.collider != null)
         {
             _laser.SetPosition(1, _ray.point);
             Debug.DrawLine(_barrel.position, _ray.point);
             CheckHit();
+            Debug.Log(_ray.collider.name);
         }
             
         else
