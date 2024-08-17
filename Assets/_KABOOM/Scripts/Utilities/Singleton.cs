@@ -19,7 +19,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    [SerializeField] private bool _persistant;
+    [SerializeField] protected bool _persistant;
     protected virtual void Awake()
     {
         if (_instance == null)

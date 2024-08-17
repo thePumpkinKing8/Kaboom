@@ -6,16 +6,15 @@ using UnityEngine.SceneManagement;
 public class LevelManager : Singleton<LevelManager>
 {
     public LevelEventData EventData;
-    private int _keysNeeded = 0;
+    [SerializeField] private int _keysNeeded = 3;
     private int _keysCollected = 0;
     [SerializeField] private int _levelIndex = 1;
-    private LevelSO _currentLevel;
-    [SerializeField] private LevelSO[] _levels;
     public Vector3 SpawnPoint { get; private set; }
 
 
     private void OnEnable()
     {
+        _persistant = true;
         //EventData = new LevelEventData();
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
@@ -25,17 +24,12 @@ public class LevelManager : Singleton<LevelManager>
     private void Start()
     {
         Debug.Log("?");
-        _currentLevel = _levels[_levelIndex];
-        _keysNeeded = _currentLevel.KeysToWin;
         SpawnPoint = Vector3.zero;
     }
     //sets up parameters for level completion and othe level specific settings
     public void LoadLevel()
     {
-        LevelSO _currentLevel = _levels[_levelIndex];
-        _keysNeeded = _currentLevel.KeysToWin;
-        _keysCollected = 0;
-        SceneManager.LoadScene(_currentLevel.LevelName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //EventData.NewLevelStartEvent.Invoke(_currentLevel.BGMName);
         _levelIndex++;
         SpawnPoint = Vector3.zero;
