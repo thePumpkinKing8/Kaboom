@@ -76,7 +76,8 @@ public class BaseShoot : MonoBehaviour
             bullet.Speed = _shotSpeed;
             bullet.Direction = _shotDirection;// Shoot the bullet forward
             bullet.Shoot();
-            LevelManager.Instance.EventData.TurretFireEvent.Invoke("TurretShoot");
+            if(GetComponent<SpriteRenderer>().isVisible)
+                LevelManager.Instance.EventData.TurretFireEvent.Invoke("TurretShoot");
             //Debug.Log(_shotDirection);
         }
             

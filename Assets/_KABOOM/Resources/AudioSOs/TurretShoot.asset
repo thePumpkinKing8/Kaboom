@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bc3d6b7d0e8cc044baf8c6d05e9514c3, type: 3}
   Mixer: {fileID: 0}
   AudioName: TurretShoot
-  Volume: 0
+  Volume: 0.4
   Pitch: 1
   Priority: 128
   Loop: 0
