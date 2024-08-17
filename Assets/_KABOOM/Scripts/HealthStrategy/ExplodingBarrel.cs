@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ExplodingBarrel :MonoBehaviour, IDestructable
 {
-    [SerializeField] protected float _explosionForce;
+    [SerializeField] protected float _explosionForce = 1000;
     [SerializeField] protected float _explosionRadius = 10f;
     [SerializeField] protected int _explosionDamage = 100;
     private bool _exploded = false;
