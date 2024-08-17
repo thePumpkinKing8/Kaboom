@@ -18,19 +18,34 @@ public class LevelManager : Singleton<LevelManager>
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
         EventData.PlayerKilledEvent.AddListener(ReLoadLevel);
+        EventData.ToMenu.AddListener(ReLoadLevel);
         //LoadLevel();
     }
     private void Start()
     {
-        Debug.Log("?");
+        AudioManager.Instance.PlayAudio("Level1");
         SpawnPoint = Vector3.zero;
     }
     //sets up parameters for level completion and othe level specific settings
     public void LoadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-      
+        AudioManager.Instance.StopAudio("Level1");
+        AudioManager.Instance.StopAudio("Level2");
         _levelIndex++;
+        switch(_levelIndex)
+        {
+            case 1:
+                AudioManager.Instance.PlayAudio("Level1");
+                break;
+            case 2:
+                AudioManager.Instance.PlayAudio("Level2");
+                break;
+            default:
+                _levelIndex = 1;
+                break;
+        }
+
         SpawnPoint = Vector3.zero;
     }
 
@@ -59,6 +74,14 @@ public class LevelManager : Singleton<LevelManager>
        
         InputManager.Instance.Input.Player.Enable();
         yield return null;
+    }
+
+    private void Unload()
+    {
+        AudioManager.Instance.StopAudio("Level1");
+        AudioManager.Instance.StopAudio("Level2");
+        Destroy(Instance);
+        Destroy(gameObject);
     }
     public bool AllKeysCollected() => _keysCollected >= _keysNeeded;
 }

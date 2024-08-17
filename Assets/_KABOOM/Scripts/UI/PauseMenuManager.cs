@@ -65,6 +65,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void CloseMenus()
     {
+        LevelManager.Instance.EventData.ToMenu.Invoke();
         StartCoroutine(OpenMenu());
         _pauseMenu.SetActive(true);
         _controlsMenu.SetActive(false);

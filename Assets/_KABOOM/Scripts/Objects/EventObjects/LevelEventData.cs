@@ -19,5 +19,5 @@ public class LevelEventData : ScriptableObject
     public UnityEvent<string> TurretDestroyedEvent;
     public UnityEvent<string> BarrelExplosionEvent;
     public UnityEvent<string> PlayerHitEvent;
-    
+    public UnityEvent ToMenu;
 }
