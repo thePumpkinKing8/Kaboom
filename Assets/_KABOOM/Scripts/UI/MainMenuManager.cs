@@ -23,6 +23,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private GameObject _loadingScreen;
 
+    [SerializeField]
+    private string _storySceneName = "MenuComic1";
+
     private EventSystem _eventSystem;
     #endregion
 
@@ -93,7 +96,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void OnStory()
     {
-        // Stuff for opening the story
+        SceneManager.LoadScene(_storySceneName); // Load the comic scene (must be the menu specific one)
     }
     IEnumerator CloseMenus()
     {
