@@ -89,7 +89,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb8d27aa42fcd74d8bf540705a4b3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barrel: {fileID: 0}
+  _laserWidth: 0.25
 --- !u!1 &4965389478848417982
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -488,7 +488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bc24772d960c241a21850bed99bbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireingAngle: 0
 --- !u!1 &7373195023138727062
 GameObject:
   m_ObjectHideFlags: 0
