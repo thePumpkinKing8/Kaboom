@@ -51,6 +51,7 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
         // Some logic for explosions/event to trigger explosion logic here
 
         PoolObject obj = PoolManager.Instance.Spawn("BigExplosion");
+        LevelManager.Instance.EventData.BarrelExplosionEvent.Invoke("Barrel");
         obj.transform.position = transform.position;
     }
 

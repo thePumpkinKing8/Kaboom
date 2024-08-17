@@ -63,6 +63,10 @@ public class BaseState : MonoBehaviour, IPlayerState
     public void HandleMovement(Vector2 move)
     {
         _horizontal = move.x;
+        if(_horizontal != 0)
+        {
+            AudioManager.Instance.PlayAudio("PlayerStep");
+        }
     }
 
     //manually reduces the players momentum over time

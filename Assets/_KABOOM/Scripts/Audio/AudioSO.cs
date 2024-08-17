@@ -25,5 +25,5 @@ public class AudioSO : ScriptableObject
     public bool Loop;
     public bool PlayOnAwake;
 
-  
+    [HideInInspector] public AudioSource PlaySource;
 }

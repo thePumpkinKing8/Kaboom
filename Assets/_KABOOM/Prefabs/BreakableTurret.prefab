@@ -176,7 +176,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8581036693282007531}
   - component: {fileID: 228306152859702502}
-  - component: {fileID: 6722499435562533421}
   - component: {fileID: 3304928919503394604}
   m_Layer: 0
   m_Name: BreakableTurret
@@ -254,24 +253,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6722499435562533421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7628301178671828912}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeffde1e9cbd71d46b6597c30f5d12d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shotSpawnPoint: {fileID: 4036601349807728589}
-  _bulletPrefab: {fileID: 7892016904982198628, guid: 1f10cf00e5ba07b479ed689c1654e3d3, type: 3}
-  _shotSpeed: 1
-  _shotDelay: 2
-  _amountOfProjectiles: 1
-  _isHoming: 0
 --- !u!114 &3304928919503394604
 MonoBehaviour:
   m_ObjectHideFlags: 0

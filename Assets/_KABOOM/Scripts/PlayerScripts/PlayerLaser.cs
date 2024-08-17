@@ -35,12 +35,15 @@ public class PlayerLaser : MonoBehaviour
     {
         _laser.enabled = true;
         _laserContactEffect = PoolManager.Instance.Spawn("LaserContactEffect").GetComponent<ParticleSystem>();
+        AudioManager.Instance.PlayAudio("Laser");
     }
 
     private void StopShooting()
-    { 
+    {
+        AudioManager.Instance.StopAudio("Laser");
         _laser.enabled = false;
         _laserContactEffect.Stop();
+        
     }
 
     private void Update()

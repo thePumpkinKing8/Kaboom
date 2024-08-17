@@ -104,8 +104,9 @@ public class AudioManager : MonoBehaviour
             _audioSource.loop = audioData.Loop;
             _audioSource.playOnAwake = audioData.PlayOnAwake;
             _audioSource.outputAudioMixerGroup = audioData.Mixer;
-
+            audioData.PlaySource = _audioSource;
             _audioSource.PlayOneShot(audioData.Clip);
+            
         }
         else
         {
@@ -125,9 +126,15 @@ public class AudioManager : MonoBehaviour
 
     public void StopAudio(string audioName)
     {
-        if(_audioSource.isPlaying)
+        if(_audioPairs.TryGetValue(audioName, out var audioData))
         {
-            _audioSource.Stop();
+            if(audioData.PlaySource != null)
+            {
+                if(audioData.PlaySource.clip == audioData.Clip)
+                {
+                    audioData.PlaySource.Stop();
+                }
+            }
         }
     }
 

@@ -27,15 +27,15 @@ public class PlayerHealth : BaseHealth, IHealth
 
     public void Die()
     {
-        if(_isDead == true)
-            SceneManager.LoadScene(_currentScene); // Reloads the current scene when you die. Will need to be replaced with better logic later
+        if (_isDead == true)
+            LevelManager.Instance.EventData.PlayerKilledEvent.Invoke("PlayerDead");
     }
 
     protected override void TakeDamage(float amount)
     {
         base.TakeDamage(amount);
 
-       LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
+        LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
     }
 
     protected override void Heal(float amount)

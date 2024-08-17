@@ -300,6 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf49cb600962fea47bc6785d5404da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthScriptableObject: {fileID: 11400000, guid: 4b83c2aa03264f44d8e7536ece5f001e, type: 2}
+  _damageScriptableObject: {fileID: 11400000, guid: 93d17117b01ca2d48977529b5c404144, type: 2}
+  _healthPackScriptableObject: {fileID: 11400000, guid: c92147cf540112b41ae24785cdcb9909, type: 2}
 --- !u!114 &8303190131025423168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +369,7 @@ MonoBehaviour:
   - {x: 0.2111655, y: -0.4665118, z: 0}
   m_ShapePathHash: -1174850181
   m_Mesh: {fileID: 0}
-  m_InstanceId: -225658
+  m_InstanceId: 104908
   m_LocalBounds:
     m_Center: {x: -0.004069507, y: -0.0017667711, z: 0}
     m_Extent: {x: 0.25057608, y: 0.46648917, z: 0}

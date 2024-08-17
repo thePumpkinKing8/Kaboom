@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHitDetection : MonoBehaviour
+public class PlayerHitDetection : PlayerHealth
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
