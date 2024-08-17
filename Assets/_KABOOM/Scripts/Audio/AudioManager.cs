@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance;
 
-    [SerializeField]
     private AudioSO[] _audioSOs;
 
     private AudioSource _audioSource;
@@ -23,6 +22,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        _audioSOs = Resources.LoadAll<AudioSO>("AudioSOs");
         _audioSource = gameObject.GetComponent<AudioSource>();
         _audioPairs = new Dictionary<string, AudioSO>();
         _poolSize = _audioSOs.Length; // Amount of audio sources we will instantiate depends on how many clips we have
