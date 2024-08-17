@@ -564,8 +564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68b5f19ea0e8c848b9dd6fddf74ba7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextComicScene: Comic6
-  _sceneToSkipTo: Level1
+  _nextComicScene: MenuComic6
+  _sceneToSkipTo: MainMenu
   _lastScene: 
 --- !u!4 &460735938
 Transform:
