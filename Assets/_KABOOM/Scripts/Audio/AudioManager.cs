@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
 
             foreach (var audioData in _audioSOs)
             {
@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
             Destroy(Instance.gameObject);
 
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
 
         _audioPool = new List<AudioSource>();
