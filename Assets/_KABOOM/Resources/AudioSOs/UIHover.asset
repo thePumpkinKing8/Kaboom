@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61e8f25ee159c246b80027ecc85cdca, type: 3}
-  m_Name: MainMenu
+  m_Name: UIHover
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: 36d89fe4939d5994b906c0d06249f81d, type: 3}
-  Mixer: {fileID: 24300002, guid: de38b627024e8434297c731d039aa1f0, type: 2}
-  AudioName: 
-  Volume: 0.5
+  - {fileID: 8300000, guid: c1faa9f15ceaf4449bb35ee32c479f91, type: 3}
+  Mixer: {fileID: 0}
+  AudioName: Hover
+  Volume: 1
   Pitch: 1
   Priority: 128
-  Loop: 1
+  Loop: 0
   PlayOnAwake: 0

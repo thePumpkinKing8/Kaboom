@@ -64,7 +64,7 @@ public class PlayerLaser : MonoBehaviour
             _laser.SetPosition(1, _ray.point);
             Debug.DrawLine(_barrel.position, _ray.point);
             CheckHit();
-            Debug.Log(_ray.collider.name);
+          //  Debug.Log(_ray.collider.name);
         }
             
         else

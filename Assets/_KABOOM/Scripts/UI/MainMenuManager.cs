@@ -124,5 +124,15 @@ public class MainMenuManager : MonoBehaviour
         }
         yield return null;
     }
+
+    public void OnHover()
+    {
+        AudioManager.Instance.PlayAudio("Hover");
+    }
+
+    public void OnClick()
+    {
+        AudioManager.Instance.PlayAudio("Click");
+    }
     #endregion
 }

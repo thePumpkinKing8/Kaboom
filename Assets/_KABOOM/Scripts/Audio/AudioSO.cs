@@ -10,7 +10,7 @@ public class AudioSO : ScriptableObject
     {  
         get
         {
-            return _clip[Random.Range(0, _clip.Length - 1)];
+            return _clip[Random.Range(0, _clip.Length)];
         } 
     }
     [SerializeField] private AudioClip[] _clip;

@@ -44,7 +44,7 @@ public class PauseMenuManager : MonoBehaviour
 
         _pauseMenu.SetActive(true);
         StartCoroutine(OpenMenu());
-        InputManager.Instance.Input.Player.Disable();
+        //InputManager.Instance.Input.Player.Disable();
         IsPaused = true;
     }
 
@@ -91,7 +91,16 @@ public class PauseMenuManager : MonoBehaviour
         yield return null;
     }
 
-    
+    public void OnHover()
+    {
+        AudioManager.Instance.PlayAudio("Hover");
+        Debug.Log("we");
+    }
+
+    public void OnClick()
+    {
+        AudioManager.Instance.PlayAudio("Click");
+    }
 
 
 }
