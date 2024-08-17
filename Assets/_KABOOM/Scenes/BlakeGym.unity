@@ -358,10 +358,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel
       objectReference: {fileID: 0}
-    - target: {fileID: 6344985736402370214, guid: 31d7b25ced233b340a36aaa24a0980c2, type: 3}
-      propertyPath: _explosionRadius
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94557,12 +94553,7 @@ Transform:
   - {fileID: 369405264}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1144967477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8785708655863128394, guid: 69f78a6950d9a1c4cb09e56b6b0d3f6f, type: 3}
-  m_PrefabInstance: {fileID: 7940830843307519046}
-  m_PrefabAsset: {fileID: 0}
---- !u!43 &1172493091
+--- !u!43 &1138080155
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94727,6 +94718,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1144967477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8785708655863128394, guid: 69f78a6950d9a1c4cb09e56b6b0d3f6f, type: 3}
+  m_PrefabInstance: {fileID: 7940830843307519046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1227259997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 714894052348720877, guid: 69f78a6950d9a1c4cb09e56b6b0d3f6f, type: 3}
