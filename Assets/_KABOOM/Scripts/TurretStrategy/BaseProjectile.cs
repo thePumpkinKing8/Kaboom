@@ -31,8 +31,8 @@ public class BaseProjectile : PoolObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        OnDeSpawn();
+        if(collision.gameObject.layer != LayerMask.NameToLayer("Turret"))
+            OnDeSpawn();
     }
 
 

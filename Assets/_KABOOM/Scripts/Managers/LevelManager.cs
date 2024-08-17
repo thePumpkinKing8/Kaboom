@@ -36,9 +36,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void ReLoadLevel(string str = "Reload")
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        EventData.ReloadLevelEvent.Invoke();
-        
+        StartCoroutine(PlayerDeath());
     }
 
 
@@ -52,5 +50,15 @@ public class LevelManager : Singleton<LevelManager>
         SpawnPoint = point;
     }
 
+    IEnumerator PlayerDeath()
+    {
+        InputManager.Instance.Input.Player.Disable();
+        yield return new WaitForSecondsRealtime(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        EventData.ReloadLevelEvent.Invoke();
+       
+        InputManager.Instance.Input.Player.Enable();
+        yield return null;
+    }
     public bool AllKeysCollected() => _keysCollected >= _keysNeeded;
 }

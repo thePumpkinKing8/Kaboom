@@ -6,7 +6,8 @@ public class Collectibles : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Collect();
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            Collect();
     }
 
     protected virtual void Collect()

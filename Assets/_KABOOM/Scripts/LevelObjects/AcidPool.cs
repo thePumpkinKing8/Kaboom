@@ -6,9 +6,11 @@ public class AcidPool : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            LevelManager.Instance.EventData.ReloadLevelEvent.Invoke();
+            LevelManager.Instance.EventData.PlayerKilledEvent.Invoke("Acid");
+
         }
     }
 }
