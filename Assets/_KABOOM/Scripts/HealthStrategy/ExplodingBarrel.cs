@@ -7,6 +7,8 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
 {
     [SerializeField] protected float _explosionForce;
     [SerializeField] protected float _explosionRadius = 10f;
+    [SerializeField] protected int _explosionDamage = 100;
+    private bool _exploded = false;
     private void Awake()
     {
     }
@@ -23,11 +25,17 @@ public class ExplodingBarrel :MonoBehaviour, IDestructable
 
     public void Explode()
     {
+        if (_exploded)
+            return;
+
+        _exploded = true;
         //_explosionTrigger.SetActive(true); // Sets the trigger as active
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, _explosionRadius, LayerMask.NameToLayer("Player"));
+        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, _explosionRadius, LayerMask.GetMask("Player"));
         if(playerCollider)
         {
+            Debug.Log("playerhit");
             playerCollider.gameObject.GetComponent<Rigidbody2D>().AddForce((playerCollider.transform.position - transform.position).normalized * _explosionForce);
+            playerCollider.GetComponent<PlayerHitDetection>().GetHit(_explosionDamage);
         }
 
         RaycastHit2D[] circle = Physics2D.CircleCastAll(transform.position, _explosionRadius, transform.position,0);

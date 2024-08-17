@@ -18,7 +18,7 @@ public class LevelManager : Singleton<LevelManager>
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
         EventData.PlayerKilledEvent.AddListener(ReLoadLevel);
-        EventData.ToMenu.AddListener(ReLoadLevel);
+        EventData.ToMenu.AddListener(Unload);
         //LoadLevel();
     }
     private void Start()
