@@ -21,3 +21,4 @@ MonoBehaviour:
   Priority: 128
   Loop: 0
   PlayOnAwake: 0
+  PlaySource: {fileID: 0}
