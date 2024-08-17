@@ -18,7 +18,7 @@ public class PlayerHealth : BaseHealth, IHealth
 
         _currentScene = SceneManager.GetActiveScene().name;
 
-        LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
+        //LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
     }
     public void Health()
     {
@@ -35,7 +35,7 @@ public class PlayerHealth : BaseHealth, IHealth
     {
         base.TakeDamage(amount);
 
-        LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
+       LevelManager.Instance.EventData.OnHealthChangedEvent?.Invoke(CurrentHealth);
     }
 
     protected override void Heal(float amount)

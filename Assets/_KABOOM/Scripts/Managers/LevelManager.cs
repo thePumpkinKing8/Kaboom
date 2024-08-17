@@ -15,7 +15,6 @@ public class LevelManager : Singleton<LevelManager>
     private void OnEnable()
     {
         _persistant = true;
-        //EventData = new LevelEventData();
         EventData.KeyCollectedEvent.AddListener(KeyCollected);
         EventData.LevelCompleteEvent.AddListener(LoadLevel);
         EventData.PlayerKilledEvent.AddListener(ReLoadLevel);
@@ -30,7 +29,7 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //EventData.NewLevelStartEvent.Invoke(_currentLevel.BGMName);
+      
         _levelIndex++;
         SpawnPoint = Vector3.zero;
     }

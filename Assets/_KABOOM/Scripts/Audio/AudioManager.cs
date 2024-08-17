@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class AudioManager : MonoBehaviour
 {
     // One scriptable object per clip
@@ -55,6 +57,22 @@ public class AudioManager : MonoBehaviour
         {
             AudioSource pooledAudioSource = this.gameObject.AddComponent<AudioSource>();
             _audioPool.Add(pooledAudioSource);
+        }
+
+        //subscribes to all level events that play audio
+        LevelEventData data = LevelManager.Instance.EventData;
+        List<UnityEvent<string>> events = new List<UnityEvent<string>>();
+
+        foreach (FieldInfo info in data.GetType().GetFields())
+        {
+            if(info.GetValue(data) as UnityEvent<string> != null)
+            {
+                events.Add(info.GetValue(data) as UnityEvent<string>);
+            }
+        }
+        foreach(UnityEvent<string> unityEvent in events)
+        {
+            unityEvent.AddListener(PlayAudio);
         }
     }
 

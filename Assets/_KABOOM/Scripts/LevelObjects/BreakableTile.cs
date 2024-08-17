@@ -40,6 +40,7 @@ public class BreakableTile : MonoBehaviour
 
         Debug.Log(hitPosition);
         _breakableTilemap.SetTile(currentCellPosition, null);
+        LevelManager.Instance.EventData.WallDestroyedEvent.Invoke("Explosion");
         PoolObject effect = PoolManager.Instance.Spawn("Explosion1");
         effect.transform.position = hitPosition;
     }
