@@ -30,6 +30,9 @@ public class MainMenuManager : MonoBehaviour
     private GameObject _controlsScreen;
 
     private EventSystem _eventSystem;
+
+    [SerializeField]
+    private string _firstSceneName = "Comic1";
     #endregion
 
     private void Awake()
@@ -68,7 +71,7 @@ public class MainMenuManager : MonoBehaviour
     // When the game starts
     public void OnPlayGame()
     {
-        StartCoroutine(LoadSceneAsync(_firstSceneIndex));
+        StartCoroutine(LoadSceneAsync(_firstSceneName));
     }
 
     public void Options()

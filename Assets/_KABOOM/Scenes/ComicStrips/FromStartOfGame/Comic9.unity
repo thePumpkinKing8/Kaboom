@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextComicScene: 
-  _sceneToSkipTo: Level1
-  _lastScene: Level1
+  _sceneToSkipTo: Gym
+  _lastScene: Gym
 --- !u!4 &460735938
 Transform:
   m_ObjectHideFlags: 0
